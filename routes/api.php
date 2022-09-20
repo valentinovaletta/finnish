@@ -16,6 +16,7 @@ use App\Http\Controllers\TelegramEnFiBotController;
 */
 
 Route::get('/en-fi/{token}',  [TelegramEnFiBotController::class, 'index']);
+Route::post('/en-fi/{token}',  [TelegramEnFiBotController::class, 'index']);
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
