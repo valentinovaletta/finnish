@@ -6,6 +6,7 @@ use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Routing\Controller as BaseController;
 
 class TelegramEnFiBotController extends BaseController
@@ -21,6 +22,8 @@ class TelegramEnFiBotController extends BaseController
 
         $this->message = json_encode($request->all());
         $this->id = $request->input('message.from.id');
+
+        Storage::disk('local')->put('log.txt', $this->message);
 
         return $this->TelegramApi('sendMessage', $this->id, ['text' => ($this->message)]);
     }
