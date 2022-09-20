@@ -12,7 +12,7 @@ class TelegramEnFiBotController extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
 
-    private $token = '5495549584:AAF3AHevr_zFRqZX61kE7Atz2W2emIczquk';
+    private $token = '5773821899:AAGhBn9Vx4EDlOlsO_O4ceTncFYp0KCbUW8';
 
     private $id;
     private $name;
@@ -35,23 +35,7 @@ class TelegramEnFiBotController extends BaseController
         $commandPos = strpos($request->input('message.text'), " "); 
         $this->command = $commandPos>0 ? strstr($request->input('message.text'), ' ', true) : $request->input('message.text');
 
-        switch ($this->command) {
-            case  '/start':
-                $this->startMessage();
-                break;        
-            case  '/word':
-                $this->wordMessage();
-                break;                   
-            case  '/repeat':
-                $this->repeatMessage();
-                break;      
-            case  '/subscribe':
-                $this->subscribeMessage();
-                break;                                   
-            default:
-                $this->defaultMessage();
-                break;
-        }
+        $this->text = $this->message;
 
         $keyboard = array(array("/word","/repeat","/restart"));
         $this->menu = array("keyboard" => $keyboard,"resize_keyboard" => true,"one_time_keyboard" => true);
