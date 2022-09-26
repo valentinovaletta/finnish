@@ -25,6 +25,10 @@ jobs:
       # Runs a single command using the runners shell
       - name: Ls
         run: ls -la
+        
+      # Install composer
+      - name: Install composer dependencies
+        run: composer install --no-scripts
 
       # PHPUnit tests
       - name: PHPUnit tests
