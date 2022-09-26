@@ -26,5 +26,6 @@ jobs:
       - name: Ls
         run: ls -la
 
+      # PHPUnit tests
       - name: PHPUnit tests
         uses: php-actions/phpunit@v3
