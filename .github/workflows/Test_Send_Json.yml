@@ -26,5 +26,5 @@ jobs:
       - name: Ls
         run: ls -la
 
-      - name: Run Test
-        run: vendor/bin/phpunit tests/
+      - name: PHPUnit tests
+        uses: php-actions/phpunit@v3
