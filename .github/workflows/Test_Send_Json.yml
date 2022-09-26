@@ -28,4 +28,4 @@ jobs:
 
       # PHPUnit tests
       - name: PHPUnit tests
-        uses: php-actions/phpunit@v3
+        run: vendor/bin/phpunit tests/
