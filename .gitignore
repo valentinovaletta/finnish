@@ -4,6 +4,7 @@
 /storage/*.key
 /vendor/*
 !/vendor/phpunit/
+!/vendor/autoload.php
 .env
 .env.backup
 .phpunit.result.cache
