@@ -28,4 +28,4 @@ jobs:
 
       # PHPUnit tests
       - name: PHPUnit tests
-        run: vendor/bin/phpunit tests/
+        run: vendor/phpunit tests/
