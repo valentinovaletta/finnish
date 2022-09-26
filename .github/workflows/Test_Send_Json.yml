@@ -20,7 +20,8 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - name: Git Clone
         uses: actions/checkout@v3
-
+        with:
+          ref: 'master'
       # Runs a single command using the runners shell
       - name: Ls
         run: ls -la
