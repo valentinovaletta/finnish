@@ -48,6 +48,5 @@ jobs:
         port: ${{ secrets.SSH_SITES_PORT }}
         script: |
           cd www/finnish.arcadepub.ru
-          ls
           ${{ secrets.SITES_GIT_PULL}}
           exit
