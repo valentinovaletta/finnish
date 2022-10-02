@@ -33,12 +33,3 @@ jobs:
       # PHPUnit tests
       - name: PHPUnit tests
         run: php artisan test
-
-      # Upload
-      - name: 📂 Sync files
-        uses: SamKirkland/FTP-Deploy-Action@4.3.2
-        with:
-          server: 31.31.196.252
-          username: ${{ secrets.ftp_sites_user }}
-          password: ${{ secrets.ftp_sites_password }}
-          port: 21
