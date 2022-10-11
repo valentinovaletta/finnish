@@ -24,8 +24,8 @@ jobs:
         run: ls -la
         
       # Install composer
-      - name: Install composer dependencies
-        run: composer install --no-scripts
+      # - name: Install composer dependencies
+      # run: composer install --no-scripts
 
       # PHPUnit tests
       - name: PHPUnit tests
