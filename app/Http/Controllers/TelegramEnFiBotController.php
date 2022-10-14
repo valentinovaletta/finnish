@@ -18,8 +18,7 @@ class TelegramEnFiBotController extends BaseController
     private $id;
     private $message;
 
-    public function index(Request $request){
-
+    public function index(Request $request) {
         $this->message = json_encode($request->all());
         $this->id = $request->input('message.from.id');
 
