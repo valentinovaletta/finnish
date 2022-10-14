@@ -5,7 +5,7 @@ namespace Tests\Feature;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
-class ExampleTest extends TestCase
+class JsonApiTest extends TestCase
 {
     public function test_making_an_api_request()
     {
@@ -26,13 +26,11 @@ class ExampleTest extends TestCase
                     "username" => "aboutvolleybal", 
                     "type" => "private" 
                     ], 
-                "date" => 1663686223, 
-                "text" => "test"
+                "date" => time(),
+                "text" => rand(0,1000)
             ] 
         ];
         $response = $this->postJson('/api/en-fi/test', $data);
-        $response
-            ->assertStatus(200);
+        $response -> assertStatus(200);
     }
-
 }
