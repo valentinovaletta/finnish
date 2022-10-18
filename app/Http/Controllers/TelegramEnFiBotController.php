@@ -28,7 +28,7 @@ class TelegramEnFiBotController extends BaseController
     }
 
     private function TelegramApi($method,$id,$param) {
-        $url = "https://api.telegram.org/bot$this->token/$method?chat_id=".$id."&".http_build_query($param);
+        $url = "1https://api.telegram.org/bot$this->token/$method?chat_id=".$id."&".http_build_query($param);
         $ch = curl_init();
         $optArray = array(
               CURLOPT_URL => $url,
