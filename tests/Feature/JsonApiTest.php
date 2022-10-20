@@ -31,6 +31,6 @@ class JsonApiTest extends TestCase
             ] 
         ];
         $response = $this->postJson('/api/en-fi/test', $data);
-        $response -> assertStatus(404);
+        $response -> assertStatus(200);
     }
 }
