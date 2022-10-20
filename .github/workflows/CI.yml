@@ -27,7 +27,8 @@ jobs:
       # PHPUnit tests
       - name: PHPUnit tests
         run: php artisan test
-
+  
+  # This is second job called "ssh-git-pull"
   ssh-git-pull:
     name: ssh-git-pull
     runs-on: ubuntu-latest
