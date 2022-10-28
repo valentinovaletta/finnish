@@ -52,14 +52,14 @@ class TelegramEnFiBotController extends BaseController
         $this->menu = array("keyboard" => $keyboard,"resize_keyboard" => true,"one_time_keyboard" => true);        
     }
     private function startMessage() {
-        $this->text = "Hello! ". $this->name. " \r\nI'm a Finnish Bot. Nice to meet you!";
+        $this->text = "Hello! ". $this->name. " \r\nI'm a Finnish Language Bot. Nice to meet you!";
         $keyboard = array(array("/start","/info"));
         $this->menu = array("keyboard" => $keyboard,"resize_keyboard" => true,"one_time_keyboard" => true);
     }
 
 
-    private function TelegramApi($method,$id,$param, $menu) {
-        $url = "https://api.telegram.org/bot$this->token/$method?chat_id=".$id."&".http_build_query($param)."&reply_markup=".$menu;
+    private function TelegramApi($method,$id,$param,$menu) {
+        $url = "https://api.telegram.org/bot$this->token/$method?chat_id=".$id."&reply_markup=".$menu."&".http_build_query($param);
         $ch = curl_init();
         $optArray = array(
               CURLOPT_URL => $url,
