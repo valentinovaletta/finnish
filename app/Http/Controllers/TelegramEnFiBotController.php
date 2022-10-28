@@ -43,7 +43,7 @@ class TelegramEnFiBotController extends BaseController
                 break;
         }
 
-        return $this->TelegramApi('sendMessage', $this->id, ['text' => ($this->text)], $this->menu);
+        return $this->TelegramApi('sendMessage', $this->id, ['text' => ($this->text)], json_encode($this->menu));
     }
 
     private function defaultMessage(){
