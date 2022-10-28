@@ -10,7 +10,8 @@ class MessageFactory
     if(class_exists($product)) {
       return new $product();
     } else {
-      return new Message_Default();
+      $product = "Message_Default";
+      return new $product();
     }
   }
 }
