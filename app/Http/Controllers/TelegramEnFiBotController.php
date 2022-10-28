@@ -48,6 +48,8 @@ class TelegramEnFiBotController extends BaseController
 
     private function defaultMessage(){
         $this->text = $this->message;
+        $keyboard = array(array("/start","/info"));
+        $this->menu = array("keyboard" => $keyboard,"resize_keyboard" => true,"one_time_keyboard" => true);        
     }
     private function startMessage() {
         $this->text = "Hello! ". $this->name. " \r\nI'm a Finnish Bot. Nice to meet you!";
