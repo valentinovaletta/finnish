@@ -43,7 +43,7 @@ class TelegramEnFiBotController extends BaseController
                 break;
         }
 
-        return $this->TelegramApi('sendMessage', $this->id, ['text' => ($this->text)], json_encode($this->menu));
+        return $this->TelegramApi('sendMessage', $this->id, ['text' => ($this->text), 'reply_markup' => json_encode($this->menu)]);
     }
 
     private function defaultMessage(){
@@ -58,8 +58,8 @@ class TelegramEnFiBotController extends BaseController
     }
 
 
-    private function TelegramApi($method,$id,$param,$menu) {
-        $url = "https://api.telegram.org/bot$this->token/$method?chat_id=".$id."&".http_build_query($param)."&reply_markup=".$menu;
+    private function TelegramApi($method,$id,$param) {
+        $url = "https://api.telegram.org/bot$this->token/$method?chat_id=".$id."&".http_build_query($param);
         $ch = curl_init();
         $optArray = array(
               CURLOPT_URL => $url,
