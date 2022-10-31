@@ -15,7 +15,7 @@ class AppServiceProvider extends ServiceProvider
     {
         $this->app->bind(
             App\Lib\ILogger::class, // the logger interface
-            App\Lib\FileLogger::class
+            App\Lib\DBLogger::class
         );
     }
 
