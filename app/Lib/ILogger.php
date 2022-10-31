@@ -2,12 +2,12 @@
 
 namespace App\Lib;
 
-interface Logger
+interface ILogger
 {
     public function log($content);
 }
 
-class DBLogger implements Logger
+class DBLogger implements ILogger
 {
     public function log($content)
     {
@@ -15,7 +15,7 @@ class DBLogger implements Logger
     }
 }
 
-class FileLogger implements Logger
+class FileLogger implements ILogger
 {
     public function log($content)
     {
@@ -23,7 +23,7 @@ class FileLogger implements Logger
     }
 }
 
-class CloudLogger implements Logger
+class CloudLogger implements ILogger
 {
     public function log($content)
     {
