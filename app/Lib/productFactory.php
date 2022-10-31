@@ -2,7 +2,7 @@
 
 namespace App\Lib;
 
-class ProductFactory 
+class ProductFactory
 {
   public static function build($product_type, $sku, $name)
   {
