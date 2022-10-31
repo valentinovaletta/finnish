@@ -13,10 +13,9 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->bind(
-            App\Lib\ILogger::class, // the logger interface
-            App\Lib\DBLogger::class
-        );
+        $this->app->bind(\App\Lib\ILogger::class, function() {
+            return new \App\Lib\DBLogger;
+        });        
     }
 
     /**
