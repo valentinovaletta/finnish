@@ -1,7 +1,6 @@
 <?php
 
 namespace App\Lib;
-use App\Lib\ILogger;
 
 class DBLogger implements ILogger
 {
