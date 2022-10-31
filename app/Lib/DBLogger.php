@@ -7,6 +7,6 @@ class DBLogger implements ILogger
 {
     public function log($content)
     {
-        echo "Log to DB";
+        echo "Log to DB $content";
     }
 }
