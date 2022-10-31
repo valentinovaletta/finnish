@@ -16,6 +16,10 @@ class AppServiceProvider extends ServiceProvider
         $this->app->bind(\App\Lib\ILogger::class, function() {
             return new \App\Lib\DBLogger;
         });        
+        $this->app->bind(\App\Lib\Message\Imessage::class, function() {
+            return new \App\Lib\Message\MessageFactory;
+        }); 
+
     }
 
     /**
