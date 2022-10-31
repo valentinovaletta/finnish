@@ -13,7 +13,10 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-
+        $this->app->bind(
+            App\Lib\ILogger::class, // the logger interface
+            App\Lib\FileLogger::class
+        );
     }
 
     /**

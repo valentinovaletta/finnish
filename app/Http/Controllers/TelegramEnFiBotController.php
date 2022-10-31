@@ -8,7 +8,6 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Routing\Controller as BaseController;
-use App\Lib\Messages\Message;
 
 class TelegramEnFiBotController extends BaseController
 {
@@ -33,12 +32,8 @@ class TelegramEnFiBotController extends BaseController
         $this->lang = $request->input('message.from.language_code');
         $this->command = $request->input('message.text');
 
-        //Storage::disk('local')->put('log.txt', $this->message);
+        Storage::disk('local')->put('log.txt', $this->message);
 
-        $message = new Message;
-        $this->text = $message->getText();
-        $this->menu = $message->getMenu();        
-/*
         switch ($this->command) {
             case  '/start':
                 $this->startMessage();
@@ -47,7 +42,7 @@ class TelegramEnFiBotController extends BaseController
                 $this->defaultMessage();
                 break;
         }
-*/
+
         return $this->TelegramApi('sendMessage', $this->id, ['text' => ($this->text), 'reply_markup' => json_encode($this->menu)]);
     }
 
