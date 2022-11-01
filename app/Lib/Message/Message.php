@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Lib;
+namespace App\Lib\Message;
 
-abstract class Product{
+abstract class Message{
     abstract public function getText();
     abstract public function getMenu();
 }

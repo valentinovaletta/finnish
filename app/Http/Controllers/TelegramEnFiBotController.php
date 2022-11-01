@@ -8,7 +8,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Routing\Controller as BaseController;
-use App\Lib\Factory;
+use App\Lib\Message\MessageFactory;
 
 class TelegramEnFiBotController extends BaseController
 {
@@ -35,7 +35,7 @@ class TelegramEnFiBotController extends BaseController
 
         //Storage::disk('local')->put('log.txt', $this->message);
 
-        $factory = new Factory();
+        $factory = new MessageFactory();
         $product = $factory->create( str_replace("/", "", $this->command) );
         $this->text = $product -> getText();
         $this->menu = $product -> getMenu();
