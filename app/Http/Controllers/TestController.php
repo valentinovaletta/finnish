@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Routing\Controller as BaseController;
 use App\Lib\ProductFactory;
-use App\Lib\MyApiClient; // import using namespace
+use App\MyApiClient; // import using namespace
 
 class TestController extends BaseController
 {
@@ -12,8 +12,8 @@ class TestController extends BaseController
     {
         //$product = ProductFactory::build('test', 1, 'test');
         //return $product->getType();
-
-        return $this->test();
+        $foo = new MyApiClient;
+        return $this->test($foo);
     }
 
     public function test()
@@ -21,3 +21,4 @@ class TestController extends BaseController
         return 1;
     }
 }
+
