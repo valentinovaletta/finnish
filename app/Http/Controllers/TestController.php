@@ -10,7 +10,7 @@ class TestController extends BaseController
     public function index()
     {
         $factory = new Factory();
-        $product = $factory->create('A');
+        $product = $factory->create('Q');
         echo $product -> getName();
     }
 }
