@@ -13,7 +13,7 @@ class TestController extends BaseController
         //$product = ProductFactory::build('test', 1, 'test');
         //return $product->getType();
         $foo = new MyApiClient;
-        return $foo;
+        dd($foo);
     }
 }
 
