@@ -6,7 +6,7 @@ abstract class FactoryAbstract {
      
      public function create($type) {
 
-        $product = "Product".ucwords($type);
+        $product = 'Product'.ucwords($type);
         if($product) {
           return new $product();
         } else {
