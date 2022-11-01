@@ -17,7 +17,9 @@ abstract class FactoryAbstract {
 */
           switch ($type) {
               case'A':
-                  return new ProductA();
+                  $product = "ProductA";
+                  return new $product();
+                  //return new ProductA();
               case'B':
               default:
                   return new ProductB();
