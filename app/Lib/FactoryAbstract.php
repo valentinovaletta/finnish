@@ -4,7 +4,9 @@ namespace App\Lib;
 
 abstract class FactoryAbstract {
      
-     public function create($type) {
+    private $namespace = "App\Lib\\";
+
+    public function create($type) {
 /*
         $product = "Product".ucwords($type);
         if(class_exists($product))
@@ -15,14 +17,15 @@ abstract class FactoryAbstract {
           return new ProductB();
         }
 */
-          switch ($type) {
+        switch ($type) {
               case'A':
-                  $product = "App\Lib\ProductA";
+                  $product = $this->namespace."Product".ucfirst($type);
+                  echo $product;
                   return new $product();
                   //return new ProductA();
               case'B':
               default:
                   return new ProductB();
-          }
-     }
+        }
+    }
  }
