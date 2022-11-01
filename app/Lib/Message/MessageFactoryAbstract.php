@@ -4,7 +4,7 @@ namespace App\Lib\Message;
 
 abstract class MessageFactoryAbstract {
      
-    private $namespace = "App\Lib\\";
+    private $namespace = "App\Lib\Message\\";
 
     public function create($type) {
 
