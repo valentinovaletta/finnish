@@ -3,17 +3,15 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Routing\Controller as BaseController;
-use App\Lib\ProductFactory;
-use App\Lib\MyApiClient; // import using namespace
+use App\Lib\Factory;
 
 class TestController extends BaseController
 {
     public function index()
     {
-        //$product = ProductFactory::build('test', 1, 'test');
-        //return $product->getType();
-        $foo = new MyApiClient;
-        dd($foo);
+        $factory = new Factory();
+        $product = $factory->create('B');
+        echo $product -> getName();
     }
 }
 
