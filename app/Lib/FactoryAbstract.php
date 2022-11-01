@@ -10,6 +10,8 @@ abstract class FactoryAbstract {
         if(class_exists($product)) {
           return new $product();
         } else {
+            echo class_exists($product);
+            echo $product;
           return new ProductB();
         }
      }
