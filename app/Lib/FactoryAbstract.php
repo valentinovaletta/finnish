@@ -17,7 +17,7 @@ abstract class FactoryAbstract {
 */
           switch ($type) {
               case'A':
-                  $product = "ProductA";
+                  $product = "App\Lib\ProductA";
                   return new $product();
                   //return new ProductA();
               case'B':
