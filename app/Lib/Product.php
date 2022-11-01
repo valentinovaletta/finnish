@@ -3,5 +3,6 @@
 namespace App\Lib;
 
 abstract class Product{
-    abstract public function getName();
+    abstract public function getText();
+    abstract public function getMenu();
 }
