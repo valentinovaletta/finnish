@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Lib\Message;
+namespace App\Lib\Message\Messages;
 
 abstract class Message{
     abstract public function getText();

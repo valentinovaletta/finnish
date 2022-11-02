@@ -8,7 +8,7 @@ class MessageFactory {
 
     private $namespace = "App\Lib\Message\Messages\\";
 
-    public function create($type) {
+    public function create(string $type) {
 
         $product = $this->namespace."Message".ucfirst($type);
         if(class_exists($product)){

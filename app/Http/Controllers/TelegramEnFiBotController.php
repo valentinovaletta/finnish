@@ -36,7 +36,7 @@ class TelegramEnFiBotController extends BaseController
         Storage::disk('local')->put('log.txt', $this->message);
 
         $factory = new MessageFactory();
-        $product = $factory->create( str_replace("/", "", $this->command) );
+        $product = $factory->create(type: str_replace("/", "", $this->command) );
         $this->text = $product -> getText();
         $this->menu = $product -> getMenu();
 
