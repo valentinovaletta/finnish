@@ -35,34 +35,34 @@ class TelegramEnFiBotController extends BaseController
 
         Storage::disk('local')->put('log.txt', $this->message);
 
-        $factory = new MessageFactory();
-        $product = $factory->create(type: str_replace("/", "", $this->command), id: $this->id, param: ['name' => $this->name, 'lang' => $this->lang] );
-        $this->text = $product -> getText();
-        $this->menu = $product -> getMenu();
+        // $factory = new MessageFactory();
+        // $product = $factory->create(type: str_replace("/", "", $this->command), id: $this->id, param: ['name' => $this->name, 'lang' => $this->lang] );
+        // $this->text = $product -> getText();
+        // $this->menu = $product -> getMenu();
 
-        // switch ($this->command) {
-        //     case  '/start':
-        //         $this->startMessage();
-        //         break;           
-        //     default:
-        //         $this->defaultMessage();
-        //         break;
-        // }
+        switch ($this->command) {
+            case  '/start':
+                $this->startMessage();
+                break;           
+            default:
+                $this->defaultMessage();
+                break;
+        }
 
         return $this->TelegramApi('sendMessage', $this->id, ['text' => ($this->text), 'reply_markup' => json_encode($this->menu)]);
     }
 
-    private function defaultMessage(){
-        $this->text = $this->message;
-        $keyboard = array(array("/start","/info"));
-        $this->menu = array("keyboard" => $keyboard,"resize_keyboard" => true,"one_time_keyboard" => true);        
-    }
     private function startMessage() {
         $this->text = "Hello! ". $this->name. " \r\nI'm a Finnish Language Bot. Nice to meet you!";
         $keyboard = array(array("/start","/info"));
         $this->menu = array("keyboard" => $keyboard,"resize_keyboard" => true,"one_time_keyboard" => true);
     }
-
+    
+    private function defaultMessage(){
+        $this->text = $this->message;
+        $keyboard = array(array("/start","/info"));
+        $this->menu = array("keyboard" => $keyboard,"resize_keyboard" => true,"one_time_keyboard" => true);        
+    }
 
     private function TelegramApi($method,$id,$param) {
         $url = "https://api.telegram.org/bot$this->token/$method?chat_id=".$id."&".http_build_query($param);
