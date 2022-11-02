@@ -15,10 +15,10 @@ class MessageArtisan extends Message {
         $this->id = $id;
         $this->param = $param;
 
-        $this->text = "Hello!\r\nThis is a Default message!\r\nYour id is $this->id\r\nYour name is ".$this->param['name']."\r\nYour lang is ".$this->param['lang'];
+        Artisan::call('migrate', ['--force' => true,]);
+
+        $this->text = "Hello!\r\nThis is a Artisan message!\r\n".Artisan::output();
         $this->menu = array("keyboard" => array(array("/start","/info")),"resize_keyboard" => true,"one_time_keyboard" => true);
-    
-        Artisan::call('migrate',array('--force' => true));
     }
 
     public function getText(){
