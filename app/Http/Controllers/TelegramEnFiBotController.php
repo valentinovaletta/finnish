@@ -33,7 +33,7 @@ class TelegramEnFiBotController extends BaseController
         $this->lang = $request->input('message.from.language_code');
         $this->command = $request->input('message.text');
 
-        //Storage::disk('local')->put('log.txt', $this->message);
+        Storage::disk('local')->put('log.txt', $this->message);
 
         $factory = new MessageFactory();
         $product = $factory->create( str_replace("/", "", $this->command) );
