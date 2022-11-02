@@ -1,6 +1,8 @@
 <?php
 
-namespace App\Lib\Message;
+namespace App\Lib\Message\Messages;
+
+use App\Lib\Message\Message;
 
 class MessageInfo extends Message{
     private $text = "Hello!\r\nThis is an info message!";

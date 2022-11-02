@@ -2,9 +2,11 @@
 
 namespace App\Lib\Message;
 
+use App\Lib\Message\Messages\MessageDefault;
+
 class MessageFactory {
 
-    private $namespace = "App\Lib\Message\\";
+    private $namespace = "App\Lib\Message\Messages\\";
 
     public function create($type) {
 
