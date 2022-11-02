@@ -15,7 +15,7 @@ class MessageArtisan extends Message {
         $this->id = $id;
         $this->param = $param;
 
-        Artisan::call('migrate', ['--force' => true,]);
+        Artisan::call('db:seed');
 
         $this->text = "Hello!\r\nThis is a Artisan message!\r\n".Artisan::output();
         $this->menu = array("keyboard" => array(array("/start","/info")),"resize_keyboard" => true,"one_time_keyboard" => true);
