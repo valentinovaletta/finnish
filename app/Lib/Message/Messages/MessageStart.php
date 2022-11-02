@@ -7,12 +7,15 @@ class MessageStart extends Message{
     private $id;
     private $param;
 
-    private $text = "Hello!\r\nI'm a Finnish Language Bot. Nice to meet you!";
-    private $menu = array("keyboard" => array(array("/start","/info")),"resize_keyboard" => true,"one_time_keyboard" => true);
+    private $text;
+    private $menu;
 
     public function __construct(int $id, array $param){
-        $this -> id = $id;
-        $this -> param = $param;
+        $this->id = $id;
+        $this->param = $param;
+
+        $this->text = "Hello!\r\nThis is a Start message!\r\nYour id is $this->id\r\nYour name is ".$this->param['name']."\r\nYour lang is ".$this->param['lang'];
+        $this->menu = array("keyboard" => array(array("/start","/info")),"resize_keyboard" => true,"one_time_keyboard" => true);
     }
 
     public function getText(){

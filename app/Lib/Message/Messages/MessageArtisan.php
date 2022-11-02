@@ -1,8 +1,9 @@
 <?php
 
 namespace App\Lib\Message\Messages;
+use Illuminate\Support\Facades\Artisan;
 
-class MessageInfo extends Message{
+class MessageArtisan extends Message {
 
     private $id;
     private $param;
@@ -14,8 +15,10 @@ class MessageInfo extends Message{
         $this->id = $id;
         $this->param = $param;
 
-        $this->text = "Hello!\r\nThis is a Info message!\r\nYour id is $this->id\r\nYour name is ".$this->param['name']."\r\nYour lang is ".$this->param['lang'];
+        $this->text = "Hello!\r\nThis is a Default message!\r\nYour id is $this->id\r\nYour name is ".$this->param['name']."\r\nYour lang is ".$this->param['lang'];
         $this->menu = array("keyboard" => array(array("/start","/info")),"resize_keyboard" => true,"one_time_keyboard" => true);
+    
+        Artisan::call('migrate',array('--force' => true));
     }
 
     public function getText(){
@@ -23,5 +26,5 @@ class MessageInfo extends Message{
     }
     public function getMenu(){
         return $this->menu;
-    }    
+    }  
 }

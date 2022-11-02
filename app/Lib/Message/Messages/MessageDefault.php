@@ -14,7 +14,7 @@ class MessageDefault extends Message {
         $this->id = $id;
         $this->param = $param;
 
-        $this->text = "Hello!\r\nThis is a default message!\r\nYour id is $this->id\r\nYour name is ".$this->param['name'];
+        $this->text = "Hello!\r\nThis is a Default message!\r\nYour id is $this->id\r\nYour name is ".$this->param['name']."\r\nYour lang is ".$this->param['lang'];
         $this->menu = array("keyboard" => array(array("/start","/info")),"resize_keyboard" => true,"one_time_keyboard" => true);
     }
 
