@@ -2,10 +2,14 @@
 
 namespace App\Lib\Message\Messages;
 
+use App\Models\User;
+
 class MessageStart extends Message{
 
     private $id;
     private $param;
+
+    private $user;
 
     private $text;
 
@@ -13,7 +17,23 @@ class MessageStart extends Message{
         $this->id = $id;
         $this->param = $param;
 
-        $this->text = "Hello!\r\nThis is a Start message!\r\nYour id is $this->id\r\nYour name is ".$this->param['name']."\r\nYour lang is ".$this->param['lang'];
+        $newUser = $this->newUser();
+        $this->setText($newUser);
+    }
+
+    private function newUser(){
+        $this->user = User::firstOrCreate(['id' => $this->id, 'name' => $this->param['name'], 'language' => $this->param['lang']]);
+        return $this->user->wasRecentlyCreated;
+    }
+    private function setText($newUser){
+
+        if($newUser){
+            $greeting = "Hello, ".$this->param['name']."! You are a new user here!";
+        } else {
+            $greeting = "Hello again, ".$this->param['name']."!";
+        }
+
+        $this->text = "$greeting\r\nThis is a Start message!";
     }
 
     public function getText(){

@@ -2,9 +2,6 @@
 
 namespace App\Http\Controllers;
 
-//use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
-//use Illuminate\Foundation\Bus\DispatchesJobs;
-//use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Routing\Controller as BaseController;
@@ -12,8 +9,6 @@ use App\Lib\Message\MessageFactory;
 
 class TelegramEnFiBotController extends BaseController
 {
-    //use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
-
     private $token = '5773821899:AAGhBn9Vx4EDlOlsO_O4ceTncFYp0KCbUW8';
 
     private $id;
@@ -40,28 +35,7 @@ class TelegramEnFiBotController extends BaseController
         $message = $messageFactory->create(type: str_replace("/", "", $this->command), id: $this->id, param: ['name' => $this->name, 'lang' => $this->lang] );
         $this->text = $message -> getText();
 
-        // switch ($this->command) {
-        //     case  '/start':
-        //         $this->startMessage();
-        //         break;           
-        //     default:
-        //         $this->defaultMessage();
-        //         break;
-        // }
-
         return $this->TelegramApi('sendMessage', $this->id, ['text' => ($this->text), 'reply_markup' => json_encode($this->menu)]);
-    }
-
-    private function startMessage() {
-        $this->text = "Hello! ". $this->name. " \r\nI'm a Finnish Language Bot. Nice to meet you!";
-        $keyboard = array(array("/start","/info"));
-        $this->menu = array("keyboard" => $keyboard,"resize_keyboard" => true,"one_time_keyboard" => true);
-    }
-    
-    private function defaultMessage(){
-        $this->text = $this->message;
-        $keyboard = array(array("/start","/info"));
-        $this->menu = array("keyboard" => $keyboard,"resize_keyboard" => true,"one_time_keyboard" => true);        
     }
 
     private function TelegramApi($method,$id,$param) {

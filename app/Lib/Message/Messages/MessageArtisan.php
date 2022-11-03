@@ -16,7 +16,7 @@ class MessageArtisan extends Message {
 
         //Artisan::call('migrate', ['--force' => true,]);
         Artisan::call('migrate:refresh');
-        Artisan::call('db:seed');
+        //Artisan::call('db:seed');
 
         $this->text = "Hello!\r\nThis is an Artisan message!\r\n".Artisan::output();
     }
