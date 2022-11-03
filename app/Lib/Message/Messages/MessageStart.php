@@ -13,11 +13,7 @@ class MessageStart extends Message{
         $this->id = $id;
         $this->param = $param;
 
-        $this->text = "Hello!\r\n
-            This is a Start message!\r\n
-            Your id is $this->id\r\n
-            Your name is ".$this->param['name']."\r\n
-            Your lang is ".$this->param['lang'];
+        $this->text = "Hello!\r\nThis is a Start message!\r\nYour id is $this->id\r\nYour name is ".$this->param['name']."\r\nYour lang is ".$this->param['lang'];
     }
 
     public function getText(){

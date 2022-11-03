@@ -8,7 +8,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Routing\Controller as BaseController;
-use App\Lib\Message\Messages\MessageFactory;
+use App\Lib\Message\MessageFactory;
 
 class TelegramEnFiBotController extends BaseController
 {

@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Lib\Message\Messages;
+namespace App\Lib\Message;
 
-//use App\Lib\Message\Messages\MessageDefault;
+use App\Lib\Message\Messages\MessageDefault;
 
 class MessageFactory {
 
@@ -10,10 +10,10 @@ class MessageFactory {
 
     public function create(string $type, int $id, array $param) {
 
-        $product = $this->namespace."Message".ucfirst($type);
+        $message = $this->namespace."Message".ucfirst($type);
 
-        if(class_exists($product)){
-          return new $product($id,$param);
+        if(class_exists($message)){
+          return new $message($id,$param);
         } else {
           return new MessageDefault($id, $param);
         }
