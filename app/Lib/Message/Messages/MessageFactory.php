@@ -6,11 +6,11 @@ namespace App\Lib\Message\Messages;
 
 class MessageFactory {
 
-    //private $namespace = "App\Lib\Message\Messages\\";
+    private $namespace = "App\Lib\Message\Messages\\";
 
     public function create(string $type, int $id, array $param) {
 
-        $product = /*$this->namespace.*/"Message".ucfirst($type);
+        $product = $this->namespace."Message".ucfirst($type);
 
         if(class_exists($product)){
           return new $product($id,$param);
