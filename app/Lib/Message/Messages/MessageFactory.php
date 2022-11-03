@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Lib\Message;
+namespace App\Lib\Message\Messages;
 
-use App\Lib\Message\Messages\MessageDefault;
+//use App\Lib\Message\Messages\MessageDefault;
 
 class MessageFactory {
 
-    private $namespace = "App\Lib\Message\Messages\\";
+    //private $namespace = "App\Lib\Message\Messages\\";
 
     public function create(string $type, int $id, array $param) {
 

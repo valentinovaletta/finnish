@@ -8,7 +8,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Routing\Controller as BaseController;
-use App\Lib\Message\MessageFactory;
+use App\Lib\Message\Messages\MessageFactory;
 
 class TelegramEnFiBotController extends BaseController
 {
@@ -23,7 +23,8 @@ class TelegramEnFiBotController extends BaseController
     private $command;
 
     private $text;
-    private $menu;
+    private $menu = array("keyboard" => array(array("/start","/info")),"resize_keyboard" => true,"one_time_keyboard" => true);
+
 
     public function index(Request $request) {
         $this->message = json_encode($request->all());
@@ -35,19 +36,18 @@ class TelegramEnFiBotController extends BaseController
 
         Storage::disk('local')->put('log.txt', $this->message);
 
-        // $factory = new MessageFactory();
-        // $product = $factory->create(type: str_replace("/", "", $this->command), id: $this->id, param: ['name' => $this->name, 'lang' => $this->lang] );
-        // $this->text = $product -> getText();
-        // $this->menu = $product -> getMenu();
+        $messageFactory = new MessageFactory();
+        $message = $messageFactory->create(type: str_replace("/", "", $this->command), id: $this->id, param: ['name' => $this->name, 'lang' => $this->lang] );
+        $this->text = $message -> getText();
 
-        switch ($this->command) {
-            case  '/start':
-                $this->startMessage();
-                break;           
-            default:
-                $this->defaultMessage();
-                break;
-        }
+        // switch ($this->command) {
+        //     case  '/start':
+        //         $this->startMessage();
+        //         break;           
+        //     default:
+        //         $this->defaultMessage();
+        //         break;
+        // }
 
         return $this->TelegramApi('sendMessage', $this->id, ['text' => ($this->text), 'reply_markup' => json_encode($this->menu)]);
     }
