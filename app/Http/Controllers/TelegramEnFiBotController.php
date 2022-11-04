@@ -50,4 +50,5 @@ class TelegramEnFiBotController extends BaseController
         curl_close($ch);
         return $result;
     }
+     
 }
