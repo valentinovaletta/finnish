@@ -27,9 +27,9 @@ class CambridgeParserLibrary {
     private function getMerriamWebsterApiDictionary($word){
         $dictionaryJson = $this->CallDictionaryApi("https://www.dictionaryapi.com/api/v3/references/collegiate/json/$word?key=90a34ae4-cc22-4bc5-a377-23e12ab74f00");
         
-        $this->part_of_speech = $dictionaryJson[0]['fl'];
-        $this->definition = $dictionaryJson[0]['shortdef'][0];
-        $this->examples = isset($dictionaryJson[0]['def'][0]['sseq'][0][0][1]['dt'][0][1]) ? $dictionaryJson[0]['def'][0]['sseq'][0][0][1]['dt'][0][1] : '';
+        //$this->part_of_speech = $dictionaryJson[0]['fl'];
+        //$this->definition = $dictionaryJson[0]['shortdef'][0];
+        //$this->examples = isset($dictionaryJson[0]['def'][0]['sseq'][0][0][1]['dt'][0][1]) ? $dictionaryJson[0]['def'][0]['sseq'][0][0][1]['dt'][0][1] : '';
 
         return $dictionaryJson[0];
     }
