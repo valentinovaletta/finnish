@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Lib\NewWords;
+namespace App\Lib\Newwords;
 
 use App\Models\NewWords;
 use App\Models\EnDictionary;
