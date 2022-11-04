@@ -20,8 +20,8 @@ class CambridgeParserLibrary {
 
     public function __construct() {
         $this->word = $this->getWordFromDB(1);
-        //$this->img = $this->GetImgUnsplashApi($this->word);
-        $this->CambridgeObj = $this->getMerriamWebsterApiDictionary($this->word);
+        //$this->img = $this->GetImgUnsplashApi(urlencode($this->word));
+        $this->CambridgeObj = $this->getMerriamWebsterApiDictionary(urlencode($this->word));
     }
 
     private function getMerriamWebsterApiDictionary($word){
