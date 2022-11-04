@@ -5,16 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class EnDictionary extends Model
+class NewWords extends Model
 {
     use HasFactory;
 
     protected $fillable = [
-        'word',
-        'ts',
-        'pos',
-        'ex',
-        'img',
-        'status'     
-    ];
+        'status'
+    ]; 
 }

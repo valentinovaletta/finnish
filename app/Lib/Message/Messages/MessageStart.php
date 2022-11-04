@@ -3,6 +3,7 @@
 namespace App\Lib\Message\Messages;
 
 use App\Models\User;
+use Illuminate\Support\Facades\Schema;
 
 class MessageStart extends Message{
 
@@ -23,6 +24,18 @@ class MessageStart extends Message{
 
     private function newUser(){
         $this->user = User::firstOrCreate(['id' => $this->id, 'name' => $this->param['name'], 'language' => $this->param['lang']]);
+
+        if($this->user->wasRecentlyCreated){
+            Schema::connection('mysql')->create($this->id.'_vocabulary', function($table)
+            {
+                $table->increments('id');
+                $table->integer('word_id');
+                $table->integer('points');
+                $table->timestamps()->useCurrent();
+            });            
+        }
+
+
         return $this->user->wasRecentlyCreated;
     }
     private function setText($newUser){
@@ -30,7 +43,7 @@ class MessageStart extends Message{
         if($newUser){
             $greeting = "Hello, ".$this->param['name']."! You are a new user here!";
         } else {
-            $greeting = "Hello again, ".$this->param['name']."! You have ".$this->user->points."points";
+            $greeting = "Hello again, ".$this->param['name']."! You have ".$this->user->points." points";
         }
 
         $this->text = "$greeting\r\nThis is a Start message!";
