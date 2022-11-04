@@ -13,12 +13,12 @@ class CreateNewWordsTable extends Migration
      */
     public function up()
     {
-        Schema::create('new_words', function (Blueprint $table) {
-            $table->id();
-            $table->string('word');
-            $table->boolean('status')->default(0);
-            $table->timestamps();
-        });
+        // Schema::create('new_words', function (Blueprint $table) {
+        //     $table->id();
+        //     $table->string('word');
+        //     $table->boolean('status')->default(0);
+        //     $table->timestamps();
+        // });
     }
 
     /**
