@@ -25,7 +25,7 @@ class CambridgeParserLibrary {
     }
 
     private function getMerriamWebsterApiDictionary($word){
-        $dictionaryJson = $this->CallDictionaryApi(urlencode("https://www.dictionaryapi.com/api/v3/references/collegiate/json/$word?key=90a34ae4-cc22-4bc5-a377-23e12ab74f00"));
+        $dictionaryJson = $this->CallDictionaryApi("https://www.dictionaryapi.com/api/v3/references/collegiate/json/$word?key=90a34ae4-cc22-4bc5-a377-23e12ab74f00");
         
         $this->part_of_speech = $dictionaryJson[0]['fl'];
         $this->definition = $dictionaryJson[0]['shortdef'][0];
@@ -69,7 +69,7 @@ class CambridgeParserLibrary {
     }
 
     private function GetImgUnsplashApi($word){
-        $UnsplashResponce = $this->CallDictionaryApi(urlencode("https://api.unsplash.com/search/photos/?client_id=3d5fKAxk_gmo9I8XI20kCQWf0j0r1foLd6E7kuLaq0k&page=1&per_page=1&query=$word"));
+        $UnsplashResponce = $this->CallDictionaryApi("https://api.unsplash.com/search/photos/?client_id=3d5fKAxk_gmo9I8XI20kCQWf0j0r1foLd6E7kuLaq0k&page=1&per_page=1&query=$word");
 
         print_r( urlencode("https://api.unsplash.com/search/photos/?client_id=3d5fKAxk_gmo9I8XI20kCQWf0j0r1foLd6E7kuLaq0k&page=1&per_page=1&query=$word") );
 
@@ -85,7 +85,7 @@ class CambridgeParserLibrary {
     }
 
     private function CallDictionaryApi($url){
-        $curl = curl_init($url);
+        $curl = curl_init(http_build_query($url));
         curl_setopt($curl, CURLOPT_URL, $url);
         curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, false);
