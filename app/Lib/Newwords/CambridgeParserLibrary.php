@@ -71,13 +71,15 @@ class CambridgeParserLibrary {
     private function GetImgUnsplashApi($word){
         $UnsplashResponce = $this->CallDictionaryApi(urlencode("https://api.unsplash.com/search/photos/?client_id=3d5fKAxk_gmo9I8XI20kCQWf0j0r1foLd6E7kuLaq0k&page=1&per_page=1&query=$word"));
 
-        if( array_key_exists('results', $UnsplashResponce) && $UnsplashResponce['total'] > 0 ){
-            $img = $UnsplashResponce['results'][0]['urls']['small'];
-        } else {
-            $img = false;
-        }
+        print_r( $UnsplashResponce );
 
-        return $img;
+        // if( array_key_exists('results', $UnsplashResponce) && $UnsplashResponce['total'] > 0 ){
+        //     $img = $UnsplashResponce['results'][0]['urls']['small'];
+        // } else {
+        //     $img = false;
+        // }
+
+        // return $img;
     }
 
     private function CallDictionaryApi($url){
