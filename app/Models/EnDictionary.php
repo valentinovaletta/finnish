@@ -15,6 +15,6 @@ class EnDictionary extends Model
         'pos',
         'ex',
         'img',
-        'status'     
+        'status'
     ];
 }
