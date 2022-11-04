@@ -21,7 +21,7 @@ class CambridgeParserLibrary {
     public function __construct() {
         $this->word = $this->getWordFromDB(1);
         //$this->img = $this->GetImgUnsplashApi(urlencode($this->word));
-        $this->CambridgeObj = $this->getMerriamWebsterApiDictionary(urlencode($this->word));
+        $this->CambridgeObj = $this->getMerriamWebsterApiDictionary(urlencode(substr($this->word,2)));
     }
 
     private function getMerriamWebsterApiDictionary($word){
