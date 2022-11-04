@@ -20,7 +20,7 @@ class CambridgeParserLibrary {
 
     public function __construct() {
         $this->word = $this->getWordFromDB(1);
-        $this->img = $this->GetImgUnsplashApi($this->word);
+        //$this->img = $this->GetImgUnsplashApi($this->word);
         $this->CambridgeObj = $this->getMerriamWebsterApiDictionary($this->word);
     }
 
@@ -71,21 +71,17 @@ class CambridgeParserLibrary {
     private function GetImgUnsplashApi($word){
         $UnsplashResponce = $this->CallDictionaryApi("https://api.unsplash.com/search/photos/?client_id=3d5fKAxk_gmo9I8XI20kCQWf0j0r1foLd6E7kuLaq0k&page=1&per_page=1&query=$word");
 
-        print_r( urlencode("https://api.unsplash.com/search/photos/?client_id=3d5fKAxk_gmo9I8XI20kCQWf0j0r1foLd6E7kuLaq0k&page=1&per_page=1&query=$word") );
+        if( array_key_exists('results', $UnsplashResponce) && $UnsplashResponce['total'] > 0 ){
+            $img = $UnsplashResponce['results'][0]['urls']['small'];
+        } else {
+            $img = false;
+        }
 
-        print_r( $UnsplashResponce );
-
-        // if( array_key_exists('results', $UnsplashResponce) && $UnsplashResponce['total'] > 0 ){
-        //     $img = $UnsplashResponce['results'][0]['urls']['small'];
-        // } else {
-        //     $img = false;
-        // }
-
-        // return $img;
+        return $img;
     }
 
     private function CallDictionaryApi($url){
-        $curl = curl_init(http_build_query($url));
+        $curl = curl_init($url);
         curl_setopt($curl, CURLOPT_URL, $url);
         curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, false);
