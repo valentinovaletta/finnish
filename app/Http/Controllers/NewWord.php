@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Http\Controllers\Lib\NewWords\CambridgeParserLibrary;
+use App\Lib\NewWords\CambridgeParserLibrary;
 
 class NewWord extends Controller{
 
