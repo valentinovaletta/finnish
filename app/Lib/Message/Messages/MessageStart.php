@@ -28,9 +28,9 @@ class MessageStart extends Message{
     private function setText($newUser){
 
         if($newUser){
-            $greeting = "Hello, ".$this->param['name']."! You are a new user here!";
+            $greeting = "Hello, ".$this->param['name']."! You are a new user here! You have ".$this->user->get(0)->points." points";
         } else {
-            $greeting = "Hello again, ".$this->param['name']."!";
+            $greeting = "Hello again, ".$this->param['name']."! You have ".$this->user->get(0)->points." points";
         }
 
         $this->text = "$greeting\r\nThis is a Start message!";
