@@ -30,6 +30,7 @@ class EnFi {
     }
     public function saveNewWordInDb(){
 
+        $q['id'] = $this->id;
         $q['word'] = $this->word;
         $q['ex'] = '';        
         $q['status'] = 1;
