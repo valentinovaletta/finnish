@@ -21,17 +21,25 @@ class CambridgeParserLibrary {
     public function __construct() {
         $this->word = $this->getWordFromDB(1);
         $this->img = $this->GetImgUnsplashApi( $this->word );
-        $this->CambridgeObj = $this->getMerriamWebsterApiDictionary( substr( $this->word, 2 ) );  //-to, if it is a verb 
+        $this->CambridgeObj = $this->getYandexApiDictionary( $this->word ); 
     }
 
     private function getMerriamWebsterApiDictionary($word){
         $dictionaryJson = $this->CallDictionaryApi("https://www.dictionaryapi.com/api/v3/references/collegiate/json/$word?key=90a34ae4-cc22-4bc5-a377-23e12ab74f00");
         
-        //$this->part_of_speech = $dictionaryJson[0]['fl'];
-        //$this->definition = $dictionaryJson[0]['shortdef'][0];
-        //$this->examples = isset($dictionaryJson[0]['def'][0]['sseq'][0][0][1]['dt'][0][1]) ? $dictionaryJson[0]['def'][0]['sseq'][0][0][1]['dt'][0][1] : '';
+        $this->part_of_speech = isset($dictionaryJson[0]['fl']) ? $dictionaryJson[0]['fl'] : '';
+        $this->definition = isset($dictionaryJson[0]['shortdef'][0]) ? $dictionaryJson[0]['shortdef'][0] : '';
+        $this->examples = isset($dictionaryJson[0]['def'][0]['sseq'][0][0][1]['dt'][0][1]) ? $dictionaryJson[0]['def'][0]['sseq'][0][0][1]['dt'][0][1] : '';
 
         return $dictionaryJson[0];
+    }
+
+    private function getYandexApiDictionary($word){
+        $dictionaryJson = $this->CallDictionaryApi("https://dictionary.yandex.net/api/v1/dicservice.json/lookup?key=dict.1.1.20220605T165718Z.d29bca9ff5cc7d61.ae331150aaba52f73b5ad4d8bce3564ea9028917&lang=en-en&text=".urlencode(trim($word)));
+        
+        print_r( $dictionaryJson );
+
+        return $dictionaryJson;
     }
 
     public function getNewWordObj(){
