@@ -64,7 +64,7 @@ class CambridgeParserLibrary {
         $q['ts'] = $this->ts;
         $q['ex'] = "$this->examples";
         $q['img'] = $this->img;
-        $q['active'] = 1;
+        $q['status'] = 1;
 
         Endictionary::insert($q);
         $this -> deleteFromNewWords($this->id);
