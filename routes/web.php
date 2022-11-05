@@ -17,7 +17,7 @@ use App\Http\Controllers\NewEnFi;
 |
 */
 
-Route::get('/test',  [TestController::class, 'index']);
+Route::get('/test',  [NewEnFi::class, 'index']);
 Route::get('/newword',  [NewWord::class, 'index']);
 Route::get('/newenfi',  [NewEnFi::class, 'index']);
 
