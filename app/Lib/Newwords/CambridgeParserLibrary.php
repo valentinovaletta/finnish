@@ -22,7 +22,7 @@ class CambridgeParserLibrary {
     public function __construct() {
         $this->word = $this->getWordFromDB(1);
         $this->img = $this->GetImgUnsplashApi( $this->word );
-        $this->CambridgeObj = $this->getYandexApiDictionary( $this->word ); 
+        $this->CambridgeObj = $this->getYandexApiDictionary( substr($this->word, 2) ); 
     }
 
     private function getMerriamWebsterApiDictionary($word){
