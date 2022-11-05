@@ -70,7 +70,7 @@ class CambridgeParserLibrary {
         $this -> deleteFromNewWords($this->id);
     }
     private function getWordFromDB(){
-        $newWord = NewWords::inRandomOrder()->limit(1)->get();
+        $newWord = NewWords::inRandomOrder()->where('status', 0)->limit(1)->get();
         $this->id = $newWord->first()->id;
         return $newWord->first()->word;
     }
