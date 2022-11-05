@@ -42,7 +42,7 @@ class CambridgeParserLibrary {
         $this->ts = isset($dictionaryJson['def'][0]['ts']) ? $dictionaryJson['def'][0]['ts'] : '';
         $this->definition = isset($dictionaryJson['def'][0]['tr'][0]['text']) ? $dictionaryJson['def'][0]['tr'][0]['text'] : '';
 
-        print_r( $dictionaryJson );
+        //print_r( $dictionaryJson );
 
         return $dictionaryJson;
     }
