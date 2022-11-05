@@ -72,9 +72,9 @@ class CambridgeParserLibrary {
 
     private function GetImgUnsplashApi($word){
 
-        print_r( "https://api.unsplash.com/search/photos/?client_id=3d5fKAxk_gmo9I8XI20kCQWf0j0r1foLd6E7kuLaq0k&page=1&per_page=1&query=$word" );
+        print_r( "https://api.unsplash.com/search/photos/?client_id=3d5fKAxk_gmo9I8XI20kCQWf0j0r1foLd6E7kuLaq0k&page=1&per_page=1&query=".trim($word) );
 
-        $UnsplashResponce = $this->CallDictionaryApi("https://api.unsplash.com/search/photos/?client_id=3d5fKAxk_gmo9I8XI20kCQWf0j0r1foLd6E7kuLaq0k&page=1&per_page=1&query=$word");
+        $UnsplashResponce = $this->CallDictionaryApi("https://api.unsplash.com/search/photos/?client_id=3d5fKAxk_gmo9I8XI20kCQWf0j0r1foLd6E7kuLaq0k&page=1&per_page=1&query=".trim($word));
 
         dd($UnsplashResponce);
         // if( array_key_exists('results', $UnsplashResponce) && $UnsplashResponce['total'] > 0 ){
