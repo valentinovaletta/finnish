@@ -10,6 +10,7 @@ class CambridgeParserLibrary {
     private $id;
     private $word;
     private $part_of_speech;
+    private $ts;
     private $audio;
     private $difficulty;
     private $definition;
@@ -37,6 +38,10 @@ class CambridgeParserLibrary {
     private function getYandexApiDictionary($word){
         $dictionaryJson = $this->CallDictionaryApi("https://dictionary.yandex.net/api/v1/dicservice.json/lookup?key=dict.1.1.20220605T165718Z.d29bca9ff5cc7d61.ae331150aaba52f73b5ad4d8bce3564ea9028917&lang=en-en&text=".urlencode(trim($word)));
         
+        $this->part_of_speech = isset($dictionaryJson['def'][0]['pos']) ? $dictionaryJson['def'][0]['pos'] : '';
+        $this->ts = isset($dictionaryJson['def'][0]['ts']) ? $dictionaryJson['def'][0]['ts'] : '';
+        $this->definition = isset($dictionaryJson['def'][0]['tr'][0]['text']) ? $dictionaryJson['def'][0]['tr'][0]['text'] : '';
+
         print_r( $dictionaryJson );
 
         return $dictionaryJson;
@@ -45,21 +50,19 @@ class CambridgeParserLibrary {
     public function getNewWordObj(){
         echo $this->word.'<br/>';
         echo '<img src="'.$this->img.'"></img><br/>';
-        echo '<pre>';
-        var_dump ($this->CambridgeObj);
-        echo '</pre>';
+        // echo '<pre>';
+        // var_dump ($this->CambridgeObj);
+        // echo '</pre>';
         echo $this->part_of_speech.'<br/>';
         echo $this->definition.'<br/>';
-        echo $this->examples.'<br/>';
+        echo $this->ts.'<br/>';
     }
     public function saveNewWordInDb(){
 
         $q['word'] = $this->word;
-        $q['part_of_speech'] = $this->part_of_speech;
-        $q['audio'] = '';
-        $q['difficulty'] = 1;
-        $q['definition'] = "$this->definition";
-        $q['examples'] = "$this->examples";
+        $q['pos'] = $this->part_of_speech;
+        $q['ts'] = $this->ts;
+        $q['ex'] = "$this->examples";
         $q['img'] = $this->img;
         $q['active'] = 1;
 
@@ -73,7 +76,7 @@ class CambridgeParserLibrary {
     }
 
     private function deleteFromNewWords($ids){
-        return NewWords::destroy($ids);
+        return NewWords::where('id', $ids)->update(['status' => 1]);
     }
 
     private function GetImgUnsplashApi($word){
