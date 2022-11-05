@@ -22,8 +22,8 @@ class CambridgeParserLibrary {
         $this->word = $this->getWordFromDB(1);
         //echo '<br/>';
         //echo substr( $this->word, 2 );
-        //$this->img = $this->GetImgUnsplashApi( substr( $this->word, 2 ) );
-        $this->CambridgeObj = $this->getMerriamWebsterApiDictionary( substr( $this->word, 2 ) );
+        $this->img = $this->GetImgUnsplashApi( substr( $this->word, 2 ) );
+        //$this->CambridgeObj = $this->getMerriamWebsterApiDictionary( substr( $this->word, 2 ) );  //-to, if it is a verb 
     }
 
     private function getMerriamWebsterApiDictionary($word){
