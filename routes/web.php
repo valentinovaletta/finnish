@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\TestController;
 use App\Http\Controllers\NewWord;
+use App\Http\Controllers\NewEnFi;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,6 +19,7 @@ use App\Http\Controllers\NewWord;
 
 Route::get('/test',  [TestController::class, 'index']);
 Route::get('/newword',  [NewWord::class, 'index']);
+Route::get('/newenfi',  [NewEnFi::class, 'index']);
 
 Route::get('/', function () {
     return view('welcome');

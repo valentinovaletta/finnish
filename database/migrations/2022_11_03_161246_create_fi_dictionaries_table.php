@@ -17,6 +17,7 @@ class CreateFiDictionariesTable extends Migration
             $table->id();
             $table->string('word');
             $table->string('ex');
+            $table->boolean('status')->default(0);
             $table->timestamps();
         });
     }
