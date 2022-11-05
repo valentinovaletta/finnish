@@ -19,9 +19,11 @@ class CambridgeParserLibrary {
     private $CambridgeObj;
 
     public function __construct() {
-        $this->word = $this->getWordFromDB(1);
-        //$this->img = $this->GetImgUnsplashApi(urlencode($this->word));
-        $this->CambridgeObj = $this->getMerriamWebsterApiDictionary(urlencode(substr($this->word,2)));
+        echo $this->word = $this->getWordFromDB(1);
+        echo '<br/>';
+        echo substr( $this->word, 2 );
+        //$this->img = $this->GetImgUnsplashApi($this->word);
+        $this->CambridgeObj = $this->getMerriamWebsterApiDictionary($this->word);
     }
 
     private function getMerriamWebsterApiDictionary($word){
