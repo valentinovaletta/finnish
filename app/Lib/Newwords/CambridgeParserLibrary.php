@@ -104,6 +104,7 @@ class CambridgeParserLibrary {
             print_r( curl_error($curl) );
         }        
         echo '<h1>ok</h1><br/>';
+        print_r( $resp );
         curl_close($curl);
         return json_decode($resp, true);
     }
