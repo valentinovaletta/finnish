@@ -31,6 +31,7 @@ class EnFi {
     public function saveNewWordInDb(){
 
         $q['word'] = $this->word;
+        $q['ex'] = '';        
         $q['status'] = 1;
 
         Fidictionary::insert($q);
