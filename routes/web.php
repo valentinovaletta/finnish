@@ -2,9 +2,10 @@
 
 use Illuminate\Support\Facades\Route;
 
-use App\Http\Controllers\TestController;
 use App\Http\Controllers\NewWord;
 use App\Http\Controllers\NewEnFi;
+
+use App\Http\Controllers\Test;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,7 +18,8 @@ use App\Http\Controllers\NewEnFi;
 |
 */
 
-Route::get('/test',  [NewEnFi::class, 'index']);
+Route::get('/test',  [Test::class, 'index']);
+
 Route::get('/newword',  [NewWord::class, 'index']);
 Route::get('/newenfi',  [NewEnFi::class, 'index']);
 
