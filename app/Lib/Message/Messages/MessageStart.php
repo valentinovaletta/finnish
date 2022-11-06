@@ -4,6 +4,9 @@ namespace App\Lib\Message\Messages;
 
 use App\Models\User;
 
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
 class MessageStart extends Message{
 
     private $id;
@@ -23,6 +26,14 @@ class MessageStart extends Message{
 
     private function newUser(){
         $this->user = User::firstOrCreate(['id' => $this->id, 'name' => $this->param['name'], 'language' => $this->param['lang']]);
+
+        if( $this->user->wasRecentlyCreated ){
+            Schema::connection('mysql')->create($this->id.'_vocabulary', function (Blueprint $table) {
+                $table->integer('word_id')->primary()->unique();
+                $table->integer('points');
+                $table->timestamps();
+            });    
+        }
 
         return $this->user->wasRecentlyCreated;
     }
