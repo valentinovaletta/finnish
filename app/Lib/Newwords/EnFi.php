@@ -12,7 +12,7 @@ class EnFi {
 
     public function __construct() {
         $this->word = $this->getWordFromDB(1);
-        $this->getYandexApiDictionary( substr($this->word, 2) );
+        $this->getYandexApiDictionary( $this->word ); //substr($this->word, 2)
     }
 
     private function getYandexApiDictionary($word){
