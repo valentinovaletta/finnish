@@ -5,8 +5,6 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\NewWord;
 use App\Http\Controllers\NewEnFi;
 
-use App\Http\Controllers\Test;
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -17,8 +15,6 @@ use App\Http\Controllers\Test;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-Route::get('/test',  [Test::class, 'index']);
 
 Route::get('/newword',  [NewWord::class, 'index']);
 Route::get('/newenfi',  [NewEnFi::class, 'index']);
