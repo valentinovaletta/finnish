@@ -9,8 +9,8 @@ class Test extends Controller{
     public function index(){
 
         $wordsSet = [];
-        for($i=101; $i <= 200; $i++){
-            $wordsSet[$i] = ['tag_id' => 2, 'word_id' => $i];
+        for($i=201; $i <= 300; $i++){
+            $wordsSet[$i] = ['tag_id' => 3, 'word_id' => $i];
         }
 
         print_r( $wordsSet );
