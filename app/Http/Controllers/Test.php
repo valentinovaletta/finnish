@@ -14,7 +14,7 @@ class Test extends Controller{
         }
 
         print_r( $wordsSet );
-        //DB::table('tag_words')->insert($wordsSet);
+        DB::table('tag_words')->insert($wordsSet);
 
     }
 
