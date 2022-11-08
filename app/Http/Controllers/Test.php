@@ -18,6 +18,21 @@ class Test extends Controller{
         ->get()->toArray();
 
         var_dump($data);
+
+        echo '<table>';
+
+        foreach($data as $row){
+            echo "<tr>
+                <td>".$row['word_id']."</td>
+                <td>".$row['points']."</td>
+                <td>".$row['enword']."</td>
+                <td>".$row['pos']."</td>
+                <td>".$row['ts']."</td>
+                <td>".$row['fiword']."</td>
+                <td><img src='".$row['img']."'></td>
+            </tr>";
+        }
+        echo '</table>';
     }
 
 }
