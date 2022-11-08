@@ -38,6 +38,7 @@ class MessageMyWords extends Message{
         foreach($words as $word){
             $text .= '/'.++$i.' '.$word->enword.'\r\n';
         }
+        return $text;
     }
 
     private function setText($text){
