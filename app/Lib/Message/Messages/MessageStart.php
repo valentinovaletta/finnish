@@ -57,7 +57,6 @@ class MessageStart extends Message{
             }
             DB::table($this->id.'_vocabulary')->insert($wordsSet);
         }
-
         return true;
     }
 
