@@ -23,13 +23,13 @@ class Test extends Controller{
 
         foreach($data as $row){
             echo "<tr>
-                <td>".$row['word_id']."</td>
-                <td>".$row['points']."</td>
-                <td>".$row['enword']."</td>
-                <td>".$row['pos']."</td>
-                <td>".$row['ts']."</td>
-                <td>".$row['fiword']."</td>
-                <td><img src='".$row['img']."'></td>
+                <td>$row->word_id</td>
+                <td>".$row->points."</td>
+                <td>".$row->enword."</td>
+                <td>".$row->pos."</td>
+                <td>".$row->ts."</td>
+                <td>".$row->fiword."</td>
+                <td><img src='".$row->img."'></td>
             </tr>";
         }
         echo '</table>';
