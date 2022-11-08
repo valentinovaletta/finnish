@@ -9,7 +9,7 @@ class Test extends Controller{
     public function index(){
 
         $wordsSet = [];
-        for($i=1; $i <= 100; $i++){
+        for($i=1; $i <= 400; $i++){
             $wordsSet[$i] = ['word_id' => $i, 'points' => 0];
         }
 

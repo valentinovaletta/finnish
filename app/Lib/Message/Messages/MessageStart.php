@@ -42,18 +42,20 @@ class MessageStart extends Message{
                 $table->integer('points');
                 $table->timestamps();
             });
-
+            // Subscribe new user to first top 100 tags
             $tagsSet = [
                 ['tag_id'=>'1', 'user_id'=> $this->id],
                 ['tag_id'=>'2', 'user_id'=> $this->id],
                 ['tag_id'=>'3', 'user_id'=> $this->id],
                 ['tag_id'=>'4', 'user_id'=> $this->id]
             ];
-            TagUser::insert($tagsSet); // Subscribe new user to first top 100 tags
-            // $i = 0;
-            // $wordsSet = array_fill(1, 99, ['word_id' => $i++, 'points' => 0]);
-            // DB::table($this->id.'_vocabulary')->insert($wordsSet);
-
+            TagUser::insert($tagsSet);
+            // add words into user vocabulary table
+            $wordsSet = [];
+            for($i=1; $i <= 400; $i++){
+                $wordsSet[$i] = ['word_id' => $i, 'points' => 0];
+            }
+            DB::table('494963311_vocabulary')->insert($wordsSet);
         }
 
         return $this->user->wasRecentlyCreated;
