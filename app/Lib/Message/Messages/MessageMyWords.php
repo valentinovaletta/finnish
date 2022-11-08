@@ -15,7 +15,9 @@ class MessageMyWords extends Message{
         $this->id = $id;
         $this->param = $param;
 
-        $this->setText();
+        $words = $this->getWords();
+        $text = $this->formQuiz($words);
+        $this->setText($text);
     }
 
     private function getWords(){
@@ -24,18 +26,21 @@ class MessageMyWords extends Message{
         ->join('fi_dictionaries', $this->id.'_vocabulary.word_id', '=', 'fi_dictionaries.id')
         ->select($this->id.'_vocabulary.word_id', $this->id.'_vocabulary.points', 'en_dictionaries.word as enword', 'en_dictionaries.pos as pos', 'en_dictionaries.ts as ts', 'en_dictionaries.img as img', 'fi_dictionaries.word as fiword')
         ->orderBy($this->id.'_vocabulary.points')
+        ->inRandomOrder()
         ->take(4)
         ->get();
-        return $words;
+        return $words->shuffle();
     }
 
-    private function setText(){
-        $words = $this->getWords();
-        $text = '';
-
+    private function formQuiz($words){
+        $text = 'What is it in Finnish?\r\n';
+        $i = 0;
         foreach($words as $word){
-            $text .= $word->enword.' ';
+            $text .= '/'.++$i.' '.$word->enword.'\r\n';
         }
+    }
+
+    private function setText($text){
         $this->text = $text;
     }
 
