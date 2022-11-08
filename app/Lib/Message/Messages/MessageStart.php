@@ -55,10 +55,10 @@ class MessageStart extends Message{
             for($i=1; $i <= 400; $i++){
                 $wordsSet[$i] = ['word_id' => $i, 'points' => 0];
             }
-            DB::table('494963311_vocabulary')->insert($wordsSet);
+            DB::table($this->id.'_vocabulary')->insert($wordsSet);
         }
 
-        return $this->user->wasRecentlyCreated;
+        return true;
     }
 
     private function setText($newUser){

@@ -9,12 +9,12 @@ class Test extends Controller{
     public function index(){
 
         $wordsSet = [];
-        for($i=1; $i <= 400; $i++){
-            $wordsSet[$i] = ['word_id' => $i, 'points' => 0];
+        for($i=1; $i <= 100; $i++){
+            $wordsSet[$i] = ['tag_id' => 1, 'word_id' => $i];
         }
 
         print_r( $wordsSet );
-        DB::table('494963311_vocabulary')->insert($wordsSet);
+        //DB::table('tag_words')->insert($wordsSet);
 
     }
 
