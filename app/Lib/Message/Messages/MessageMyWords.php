@@ -33,10 +33,10 @@ class MessageMyWords extends Message{
     }
 
     private function formQuiz($words){
-        $text = 'What is it in Finnish?\r\n';
+        $text = "What is it in Finnish?\r\n";
         $i = 0;
         foreach($words as $word){
-            $text .= '/'.++$i.' '.$word->enword.'\r\n';
+            $text .= "/".++$i." ".$word->enword."\r\n";
         }
         return $text;
     }
