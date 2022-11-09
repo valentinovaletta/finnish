@@ -69,7 +69,7 @@ class MessageMyWords extends Message{
         return json_encode([
             0 => ['method' => 'sendPhoto', 'content' => 'photo', 'value' => $rightAnswerImg],
             1 => ['method' => 'sendMessage', 'content' => 'text', '', 'value' => $text]
-        ]);    
+        ], JSON_FORCE_OBJECT);    
     }
 
     private function formQuizFiEn($words){
@@ -103,7 +103,7 @@ class MessageMyWords extends Message{
         return json_encode([
             0 => ['method' => 'sendPhoto', 'content' => 'photo', 'value' => $rightAnswerImg],
             1 => ['method' => 'sendMessage', 'content' => 'text', '', 'value' => $text]
-        ]);    
+        ], JSON_FORCE_OBJECT);    
     }
 
     private function setText($text){
