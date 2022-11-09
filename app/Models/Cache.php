@@ -12,6 +12,7 @@ class Cache extends Model
     protected $fillable = [
         'id',
         'command',
+        'rightId',
         'rightAnswer'
     ];
 }
