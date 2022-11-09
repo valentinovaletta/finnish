@@ -14,7 +14,7 @@ class MessageSessionStart extends Message{
         $this->param = $param;
 
         session(['id' => $this->id]);
-        $this->text = session('key');
+        $this->text = session('id');
     }
 
     public function getText(){

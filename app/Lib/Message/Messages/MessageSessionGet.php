@@ -13,7 +13,7 @@ class MessageSessionGet extends Message{
         $this->id = $id;
         $this->param = $param;
 
-        $this->text = session('key');    
+        $this->text = session('id');    
     }
 
     public function getText(){
