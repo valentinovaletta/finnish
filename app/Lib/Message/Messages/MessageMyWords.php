@@ -66,10 +66,10 @@ class MessageMyWords extends Message{
             $text .= preg_replace('/{n}/i', ++$key, $value)."\r\n";
         }
 
-        return [
-            0 => ['Method' => 'sendPhoto', 'Content' => 'photo', 'Value' => $rightAnswerImg],
-            1 => ['Method' => 'sendMessage', 'Content' => 'text', '', 'Value' => $text]
-        ];    
+        return json_encode([
+            0 => ['method' => 'sendPhoto', 'content' => 'photo', 'value' => $rightAnswerImg],
+            1 => ['method' => 'sendMessage', 'content' => 'text', '', 'value' => $text]
+        ]);    
     }
 
     private function formQuizFiEn($words){
@@ -100,10 +100,10 @@ class MessageMyWords extends Message{
             $text .= preg_replace('/{n}/i', ++$key, $value)."\r\n";
         }
 
-        return [
-            0 => ['Method' => 'sendPhoto', 'Content' => 'photo', 'Value' => $rightAnswerImg],
-            1 => ['Method' => 'sendMessage', 'Content' => 'text', '', 'Value' => $text]
-        ];    
+        return json_encode([
+            0 => ['method' => 'sendPhoto', 'content' => 'photo', 'value' => $rightAnswerImg],
+            1 => ['method' => 'sendMessage', 'content' => 'text', '', 'value' => $text]
+        ]);    
     }
 
     private function setText($text){
