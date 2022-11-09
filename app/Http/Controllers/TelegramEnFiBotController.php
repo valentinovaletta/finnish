@@ -35,7 +35,10 @@ class TelegramEnFiBotController extends BaseController
         $message = $messageFactory->create(type: str_replace("/", "", $this->command), id: $this->id, param: ['name' => $this->name, 'lang' => $this->lang] );
         $this->text = $message -> getText();
 
-        return $this->TelegramApi('sendMessage', $this->id, ['text' => ($this->text), 'reply_markup' => json_encode($this->menu)]);
+        foreach($this->text as $message){
+            $this->TelegramApi( $message->method, $this->id, [$message->content => $message->value, 'reply_markup' => json_encode($this->menu)]);
+        }
+
     }
 
     private function TelegramApi($method,$id,$param) {

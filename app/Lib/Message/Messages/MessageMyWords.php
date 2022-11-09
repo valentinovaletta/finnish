@@ -66,7 +66,10 @@ class MessageMyWords extends Message{
             $text .= preg_replace('/{n}/i', ++$key, $value)."\r\n";
         }
 
-        return $text;
+        return [
+            0 => ['Method' => 'sendPhoto', 'Content' => 'photo', 'Value' => $rightAnswerImg],
+            1 => ['Method' => 'sendMessage', 'Content' => 'text', '', 'Value' => $text]
+        ];    
     }
 
     private function formQuizFiEn($words){
@@ -97,7 +100,10 @@ class MessageMyWords extends Message{
             $text .= preg_replace('/{n}/i', ++$key, $value)."\r\n";
         }
 
-        return $text;
+        return [
+            0 => ['Method' => 'sendPhoto', 'Content' => 'photo', 'Value' => $rightAnswerImg],
+            1 => ['Method' => 'sendMessage', 'Content' => 'text', '', 'Value' => $text]
+        ];    
     }
 
     private function setText($text){

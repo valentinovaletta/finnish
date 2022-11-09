@@ -13,7 +13,7 @@ class MessageDefault extends Message {
         $this->id = $id;
         $this->param = $param;
 
-        $this->text = "Hello!\r\nThis is a Default message!\r\nYour id is $this->id\r\nYour name is ".$this->param['name']."\r\nYour lang is ".$this->param['lang'];
+        $this->text = [0=>['Method' => 'sendMessage', 'Content' => 'text', 'Value' => "Hello!\r\nThis is a Default message!\r\nYour id is $this->id\r\nYour name is ".$this->param['name']."\r\nYour lang is ".$this->param['lang']]];
     }
 
     public function getText(){
