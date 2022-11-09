@@ -50,11 +50,11 @@ class MessageMyWords extends Message{
         $words = $words->shuffle();
 
         $text = $rightAnsweren."\r\n(".$rightAnswerPos.") [".$rightAnswerTs."] \r\n";
-        $text .= "\r\nWhat is it in Finnish?\r\n";
+        $text .= "What is it in Finnish?\r\n";
 
         $i = 0;
         foreach($words as $word){
-            $text .= "/".$word->fiword."\r\n";
+            $text .= "/".++$i." ".$word->fiword."\r\n";
         }
         return $text;
     }
