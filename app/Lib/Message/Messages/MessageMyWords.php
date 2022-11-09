@@ -37,23 +37,24 @@ class MessageMyWords extends Message{
 
         // choice right answer 
         $rightAnswerId = $words->first()->id;
-        $rightAnswer = $words->first()->enword;
+        $rightAnsweren = $words->first()->enword;
+        $rightAnswerfi = $words->first()->fiword;
         $rightAnswerPos = $words->first()->pos;
         $rightAnswerTs = $words->first()->ts;
         $rightAnswerImg = $words->first()->img;
 
         // cache right answer and function
-        Cache::updateOrCreate(['id' => $this->id],['command' => 'myWords', 'rightAnswer' => $rightAnswer]);
+        Cache::updateOrCreate(['id' => $this->id],['command' => 'myWords', 'rightAnswer' => $rightAnswerfi]);
 
         // form a question and answers
         $words = $words->shuffle();
 
-        $text = $rightAnswer."\r\n (".$rightAnswerPos.") [".$rightAnswerTs."] \r\n";
-        $text .= "What is it in Finnish?\r\n";
+        $text = $rightAnsweren."\r\n(".$rightAnswerPos.") [".$rightAnswerTs."] \r\n";
+        $text .= "\r\nWhat is it in Finnish?\r\n";
 
         $i = 0;
         foreach($words as $word){
-            $text .= "/".++$i." ".$word->fiword."\r\n";
+            $text .= "/".$word->fiword."\r\n";
         }
         return $text;
     }
