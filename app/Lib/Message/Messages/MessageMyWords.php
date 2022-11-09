@@ -60,9 +60,9 @@ class MessageMyWords extends Message{
         $text .= "What is it in Finnish?\r\n";
 
         foreach($answers as $key => $value){
-            $text .= preg_replace('/{n}/i', $key++, $value)."\r\n";
+            $text .= preg_replace('/{n}/i', ++$key, $value)."\r\n";
         }
-        
+
         // $i = 0;
         // foreach($words as $word){
         //     $text .= "/".++$i." ".$word->fiword."\r\n";
