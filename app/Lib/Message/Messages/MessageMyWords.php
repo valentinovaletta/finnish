@@ -57,16 +57,12 @@ class MessageMyWords extends Message{
 
         // form a question and answers
         $text = $rightAnsweren."\r\n(".$rightAnswerPos.") [".$rightAnswerTs."] \r\n";
-        $text .= "What is it in Finnish?\r\n";
+        $text .= "\r\nWhat is it in Finnish?\r\n";
 
         foreach($answers as $key => $value){
             $text .= preg_replace('/{n}/i', ++$key, $value)."\r\n";
         }
 
-        // $i = 0;
-        // foreach($words as $word){
-        //     $text .= "/".++$i." ".$word->fiword."\r\n";
-        // }
         return $text;
     }
 
