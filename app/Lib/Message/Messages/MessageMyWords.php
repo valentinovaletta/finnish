@@ -11,13 +11,16 @@ class MessageMyWords extends Message{
     private $param;
 
     private $text;
+    private $quizFunctions = [0 => 'formQuizFiEn', 1 => 'formQuizEnFi'];
 
     public function __construct(int $id, array $param){
         $this->id = $id;
         $this->param = $param;
 
         $words = $this->getWords();
-        $text = $this->formQuizEnFi($words);
+
+        $quizfunc = $this->quizFunctions[rand( count($this->quizFunctions) )-1];
+        $text = $this->$quizfunc($words);
         $this->setText($text);
     }
 
@@ -59,6 +62,37 @@ class MessageMyWords extends Message{
         $text = $rightAnsweren."\r\n(".$rightAnswerPos.") [".$rightAnswerTs."] \r\n";
         $text .= "\r\nWhat is it in Finnish?\r\n";
 
+        foreach($answers as $key => $value){
+            $text .= preg_replace('/{n}/i', ++$key, $value)."\r\n";
+        }
+
+        return $text;
+    }
+
+    private function formQuizFiEn($words){
+
+        // choice right answer 
+        $rightAnswerId = $words->first()->id;
+        $rightAnsweren = $words->first()->enword;
+        $rightAnswerfi = $words->first()->fiword;
+        $rightAnswerImg = $words->first()->img;
+
+        $answers = [
+            "/{n} ".$words->get(0)->enword,
+            "/{n} ".$words->get(1)->enword,
+            "/{n} ".$words->get(2)->enword,
+            "/{n} ".$words->get(3)->enword
+          ];
+        shuffle($answers);
+        $rightId = (array_search("/{n} ".$words->get(0)->enword, $answers)+1);
+
+        // cache right answer and function
+        Cache::updateOrCreate(['id' => $this->id],['command' => 'myWords', 'rightId' => $rightId, 'rightAnswer' => $rightAnsweren]);
+
+        // form a question and answers
+        $text = $rightAnswerfi."\r\n";
+        $text .= "\r\nWhat is it in English?\r\n";
+        
         foreach($answers as $key => $value){
             $text .= preg_replace('/{n}/i', ++$key, $value)."\r\n";
         }
