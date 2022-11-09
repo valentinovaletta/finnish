@@ -3,6 +3,7 @@
 namespace App\Lib\Message\Messages;
 
 use Illuminate\Support\Facades\DB;
+use App\Models\Cache;
 
 class MessageMyWords extends Message{
 
@@ -16,7 +17,7 @@ class MessageMyWords extends Message{
         $this->param = $param;
 
         $words = $this->getWords();
-        $text = $this->formQuiz($words);
+        $text = $this->formQuiz1($words);
         $this->setText($text);
     }
 
@@ -24,25 +25,35 @@ class MessageMyWords extends Message{
         $words = DB::table($this->id.'_vocabulary')
         ->join('en_dictionaries', $this->id.'_vocabulary.word_id', '=', 'en_dictionaries.id')
         ->join('fi_dictionaries', $this->id.'_vocabulary.word_id', '=', 'fi_dictionaries.id')
-        ->select($this->id.'_vocabulary.word_id', $this->id.'_vocabulary.points', 'en_dictionaries.word as enword', 'en_dictionaries.pos as pos', 'en_dictionaries.ts as ts', 'en_dictionaries.img as img', 'fi_dictionaries.word as fiword')
+        ->select($this->id.'_vocabulary.word_id as id', $this->id.'_vocabulary.points as points', 'en_dictionaries.word as enword', 'en_dictionaries.pos as pos', 'en_dictionaries.ts as ts', 'en_dictionaries.img as img', 'fi_dictionaries.word as fiword')
         ->orderBy($this->id.'_vocabulary.points')
         ->inRandomOrder()
         ->take(4)
         ->get();
-        return $words->shuffle();
+        return $words;
     }
 
-    private function formQuiz($words){
+    private function formQuiz1($words){
 
         // choice right answer 
+        $rightAnswerId = $words->first()->id;
+        $rightAnswer = $words->first()->fiword;
+        $rightAnswerPos = $words->first()->pos;
+        $rightAnswerTs = $words->first()->ts;
+        $rightAnswerImg = $words->first()->img;
+        
         // cache right answer and function
+        Cache::updateOrCreate(['id' => $this->id],['command' => 'myWords', 'rightAnswer' => $rightAnswer]);
+
         // form a question and answers
+        $words = $words->shuffle();
 
+        $text = $rightAnswer."\r\n (".$rightAnswerPos.") [".$rightAnswerTs."] \r\n";
+        $text .= "What is it in Finnish?\r\n";
 
-        $text = "What is it in Finnish?\r\n";
         $i = 0;
         foreach($words as $word){
-            $text .= "/".++$i." ".$word->enword."\r\n";
+            $text .= "/".++$i." ".$word->fiword."\r\n";
         }
         return $text;
     }
