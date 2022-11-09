@@ -37,11 +37,11 @@ class MessageMyWords extends Message{
 
         // choice right answer 
         $rightAnswerId = $words->first()->id;
-        $rightAnswer = $words->first()->fiword;
+        $rightAnswer = $words->first()->enword;
         $rightAnswerPos = $words->first()->pos;
         $rightAnswerTs = $words->first()->ts;
         $rightAnswerImg = $words->first()->img;
-        
+
         // cache right answer and function
         Cache::updateOrCreate(['id' => $this->id],['command' => 'myWords', 'rightAnswer' => $rightAnswer]);
 
