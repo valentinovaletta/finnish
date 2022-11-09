@@ -13,7 +13,7 @@ class MessageDefault extends Message {
         $this->id = $id;
         $this->param = $param;
 
-        $this->text = json_encode([0=>['method' => 'sendMessage', 'content' => 'text', 'value' => "Hello!\r\nThis is a Default message!\r\nYour id is $this->id\r\nYour name is ".$this->param['name']."\r\nYour lang is ".$this->param['lang']]], JSON_FORCE_OBJECT);
+        $this->text = json_encode([0=>['method' => 'sendMessage', 'content' => 'text', 'value' => "Hello!\r\nThis is a Default message!\r\nYour id is $this->id\r\nYour name is ".$this->param['name']."\r\nYour lang is ".$this->param['lang']]]);
     }
 
     public function getText(){
