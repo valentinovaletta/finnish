@@ -19,7 +19,7 @@ class MessageMyWords extends Message{
 
         $words = $this->getWords();
 
-        $quizfunc = $this->quizFunctions[rand( count($this->quizFunctions) )-1];
+        $quizfunc = $this->quizFunctions[rand(0, count($this->quizFunctions)-1 )];
         $text = $this->$quizfunc($words);
         $this->setText($text);
     }
