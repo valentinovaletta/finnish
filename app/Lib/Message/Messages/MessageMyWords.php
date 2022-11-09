@@ -33,6 +33,12 @@ class MessageMyWords extends Message{
     }
 
     private function formQuiz($words){
+
+        // choice right answer 
+        // cache right answer and function
+        // form a question and answers
+
+
         $text = "What is it in Finnish?\r\n";
         $i = 0;
         foreach($words as $word){
