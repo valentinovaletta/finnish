@@ -68,7 +68,11 @@ class MessageStart extends Message{
             $greeting = "Hello again, ".$this->param['name']."! You have ".$this->user->points." points";
         }
 
-        $this->text = "$greeting\r\nThis is a Start message!";
+        $this->text = json_encode([
+            0 => ['method' => 'sendSticker', 'content' => 'sticker', 'value' =>"CAACAgIAAxkBAAEZ0I9jbNJzhp-ZoHQYVYtbLrN3S6kjPQACVAEAAjDUnRE1EWvwoCBW6ysE"],
+            1 => ['method' => 'sendMessage', 'content' => 'text', 'value' => "$greeting\r\nThis is a Start message!"]
+        ]);
+
     }
 
     public function getText(){
