@@ -21,9 +21,9 @@ class MessageDefault extends Message {
         $cache = Cache::where("id", $this->id)->first();
 
         if(!$cache === null){
-            $this->checkQuiz($cache);
+            $text = $this->checkQuiz($cache);
         }
-
+        $this->setText($text);
         $this->clearCache();
     }
 
@@ -43,10 +43,17 @@ class MessageDefault extends Message {
             User::where('id', $this->id)->decrement('points', 1);
             DB::table($this->id."_vocabulary")->where('word_id', $cache->rightId)->decrement('points', 1);
           }
+
+        return json_encode($messages);
+
     }
 
     private function clearCache(){
         return Cache::where('id',$this->id)->delete();
+    }
+
+    private function setText($text){
+        $this->text = $text;
     }
 
     public function getText(){
