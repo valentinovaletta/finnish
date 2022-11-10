@@ -20,7 +20,11 @@ class MessageDefault extends Message {
 
         $cache = Cache::where("id", $this->id)->first();
 
-        if(!$cache === null){
+        if($cache === null){
+            $text = json_encode([
+                0 => ['method' => 'sendMessage', 'content' => 'text', '', 'value' => "Default"]
+            ]); 
+        } else {
             $text = $this->checkQuiz($cache);
         }
         $this->setText($text);
