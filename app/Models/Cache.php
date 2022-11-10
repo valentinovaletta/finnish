@@ -13,6 +13,7 @@ class Cache extends Model
         'id',
         'command',
         'rightId',
+        'rightAnswerId',
         'rightAnswer'
     ];
 }
