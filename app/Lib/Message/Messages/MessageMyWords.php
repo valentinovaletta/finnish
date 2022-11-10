@@ -56,7 +56,7 @@ class MessageMyWords extends Message{
         $rightId = (array_search("/{n} ".$words->get(0)->fiword, $answers)+1);
 
         // cache right answer and function
-        Cache::updateOrCreate(['id' => $this->id],['command' => 'myWords', 'rightId' => $rightId, 'rightAnswer' => $rightAnswerfi]);
+        Cache::updateOrCreate(['id' => $this->id],['command' => 'myWords', 'rightId' => $rightId, 'rightAnswerId' => $rightAnswerId, 'rightAnswer' => $rightAnswerfi]);
 
         // form a question and answers
         $text = $rightAnsweren."\r\n(".$rightAnswerPos.") [".$rightAnswerTs."] \r\n";
@@ -90,7 +90,7 @@ class MessageMyWords extends Message{
         $rightId = (array_search("/{n} ".$words->get(0)->enword, $answers)+1);
 
         // cache right answer and function
-        Cache::updateOrCreate(['id' => $this->id],['command' => 'myWords', 'rightId' => $rightId, 'rightAnswer' => $rightAnsweren]);
+        Cache::updateOrCreate(['id' => $this->id],['command' => 'myWords', 'rightId' => $rightId, 'rightAnswerId' => $rightAnswerId, 'rightAnswer' => $rightAnsweren]);
 
         // form a question and answers
         $text = $rightAnswerfi."\r\n";

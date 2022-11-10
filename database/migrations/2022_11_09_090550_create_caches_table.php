@@ -16,6 +16,8 @@ class CreateCachesTable extends Migration
         Schema::create('caches', function (Blueprint $table) {
             $table->id();
             $table->string('command');
+            $table->integer('rightId');  
+            $table->integer('rightAnswerId');    
             $table->string('rightAnswer');    
             $table->timestamps();
         });

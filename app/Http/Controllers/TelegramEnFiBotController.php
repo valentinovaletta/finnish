@@ -18,7 +18,7 @@ class TelegramEnFiBotController extends BaseController
     private $command;
 
     private $text;
-    private $menu = array("keyboard" => array(array("/start","/info")),"resize_keyboard" => true,"one_time_keyboard" => true);
+    private $menu = array("keyboard" => array(array("/start", "/myWords", "/info")),"resize_keyboard" => true,"one_time_keyboard" => true);
 
 
     public function index(Request $request) {
@@ -32,7 +32,7 @@ class TelegramEnFiBotController extends BaseController
         Storage::disk('local')->put('log.txt', $this->message);
 
         $messageFactory = new MessageFactory();
-        $message = $messageFactory->create(type: str_replace("/", "", $this->command), id: $this->id, param: ['name' => $this->name, 'lang' => $this->lang] );
+        $message = $messageFactory->create(type: str_replace("/", "", $this->command), id: $this->id, param: ['name' => $this->name, 'lang' => $this->lang, 'command' => str_replace("/", "", $this->command)] );
         $this->text = $message -> getText();
 
         foreach(json_decode($this->text) as $message){
