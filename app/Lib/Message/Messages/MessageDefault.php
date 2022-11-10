@@ -36,13 +36,13 @@ class MessageDefault extends Message {
         $messages = []; 
         if( $this->param['command'] == $cache->rightId ){
             $messages[] = ['method' => 'sendSticker', 'content' => 'sticker', 'value' => 'CAACAgIAAxkBAAEZ0fVjbQMjLMWdsAaB-RKhE_ZqUKzRpwACUgEAAjDUnRERwgZS_w81pCsE'];
-            $messages[] = ['method' => 'sendMessage', 'content' => 'text', 'value' => "Yeap! It is $cache->rightAnswer!\r\nYou scored 5 points\r\Continue /myWords ?"];
+            $messages[] = ['method' => 'sendMessage', 'content' => 'text', 'value' => "Yeap! It is $cache->rightAnswer!\r\nYou scored 5 points\r\nContinue /myWords ?"];
 
             User::where('id', $this->id)->increment('points', 5);
             DB::table($this->id."_vocabulary")->where('word_id', $cache->rightAnswerId)->increment('points', 5);
           } else {
             $messages[] = ['method' => 'sendSticker', 'content' => 'sticker', 'value' => 'CAACAgIAAxkBAAEZ0fdjbQM6T1lg7zkTF7n251_knccYbgACNwEAAjDUnRHKK3SQd2L8ASsE'];
-            $messages[] = ['method' => 'sendMessage', 'content' => 'text', 'value' => "Nope. You've lost a point\r\nRight answer was $cache->rightAnswer!\r\Continue /myWords ?"];
+            $messages[] = ['method' => 'sendMessage', 'content' => 'text', 'value' => "Nope. You've lost a point\r\nRight answer was $cache->rightAnswer!\r\nContinue /myWords ?"];
 
             User::where('id', $this->id)->decrement('points', 1);
             DB::table($this->id."_vocabulary")->where('word_id', $cache->rightAnswerId)->decrement('points', 1);
