@@ -22,7 +22,8 @@ class CambridgeParserLibrary {
     public function __construct() {
         //$this->word = $this->getWordFromDB(1); // regular word
         $this->word = $this->getWordFromDBwithoutImg(1); // without image
-        $this->img = $this->GetImgUnsplashApi( substr($this->word, -2) ); // substr($this->word, 2)
+        $this->img = $this->GetImgPexelsApi($this->word);
+        //$this->img = $this->GetImgUnsplashApi( substr($this->word, -2) ); // substr($this->word, 2)
         //$this->CambridgeObj = $this->getYandexApiDictionary( $this->word ); // substr($this->word, 2)
     }
 
@@ -103,18 +104,24 @@ class CambridgeParserLibrary {
         return $img;
     }
 
+    private function GetImgPexelsApi($word){
+        $UnsplashResponce = $this->CallDictionaryApi("https://api.pexels.com/v1/search?query=".urlencode(trim($word)))."&per_page=1";
+
+        print_r($UnsplashResponce);
+
+        //return $img;
+    }
+
     private function CallDictionaryApi($url){
 
         $headers = array(
-            "Authorization: Client-ID 3d5fKAxk_gmo9I8XI20kCQWf0j0r1foLd6E7kuLaq0k",
+            "Authorization: 563492ad6f91700001000001b45ded94511842c3bda5fa180f0c9e18",
         );
 
         $curl = curl_init($url);
         curl_setopt($curl, CURLOPT_URL, $url);
         curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
         curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
-        //curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, false);
-        //curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
         $resp = curl_exec($curl);
         curl_close($curl);
         return json_decode($resp, true);
