@@ -20,9 +20,10 @@ class CambridgeParserLibrary {
     private $CambridgeObj;
 
     public function __construct() {
-        $this->word = $this->getWordFromDB(1);
-        $this->img = $this->GetImgUnsplashApi( $this->word ); // substr($this->word, 2)
-        $this->CambridgeObj = $this->getYandexApiDictionary( $this->word ); // substr($this->word, 2)
+        //$this->word = $this->getWordFromDB(1); // regular word
+        $this->word = $this->getWordFromDBwithoutImg(1); // without image
+        $this->img = $this->GetImgUnsplashApi( substr($this->word, -2) ); // substr($this->word, 2)
+        //$this->CambridgeObj = $this->getYandexApiDictionary( $this->word ); // substr($this->word, 2)
     }
 
     private function getMerriamWebsterApiDictionary($word){
@@ -69,8 +70,15 @@ class CambridgeParserLibrary {
         Endictionary::insert($q);
         $this -> deleteFromNewWords($this->id);
     }
+    
     private function getWordFromDB(){
         $newWord = NewWords::inRandomOrder()->where('status', 0)->limit(1)->get();
+        $this->id = $newWord->first()->id;
+        return $newWord->first()->word;
+    }
+
+    private function getWordFromDBwithoutImg(){
+        $newWord = NewWords::inRandomOrder()->where('img', 0)->limit(1)->get();
         $this->id = $newWord->first()->id;
         return $newWord->first()->word;
     }
