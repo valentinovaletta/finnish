@@ -79,7 +79,8 @@ class CambridgeParserLibrary {
     }
 
     private function getWordFromDBwithoutImg(){
-        $newWord = EnDictionary::where('img', '=', 0)->limit(1)->get();
+        echo $newWord = EnDictionary::where('img', '=', 0)->limit(1)->toSql(); // ->get()
+        
         $this->id = $newWord->first()->id;
         return $newWord->first()->word;
     }
