@@ -82,7 +82,8 @@ class CambridgeParserLibrary {
     private function getWordFromDBwithoutImg(){
         echo $newWord = DB::table('en_dictionaries')
         ->where('status', '=', 0)
-        ->toSql();
+        ->limit(1)
+        ->get();
 
         $this->id = $newWord->first()->id;
         return $newWord->first()->word;
