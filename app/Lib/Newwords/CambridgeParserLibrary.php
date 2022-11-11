@@ -24,8 +24,7 @@ class CambridgeParserLibrary {
     public function __construct() {
         //$this->word = $this->getWordFromDB(1); // regular word
         $this->word = $this->getWordFromDBwithoutImg(1); // without image
-        $this->img = $this->GetImgPexelsApi( urlencode(trim($this->word)) );
-        //$this->img = $this->GetImgUnsplashApi( substr($this->word, -2) ); // substr($this->word, 2)
+        $this->img = $this->GetImgUnsplashApi( $this->word ); // substr($this->word, 2)
         //$this->CambridgeObj = $this->getYandexApiDictionary( $this->word ); // substr($this->word, 2)
     }
 
@@ -99,7 +98,7 @@ class CambridgeParserLibrary {
     private function GetImgUnsplashApi($word){
         $UnsplashResponce = $this->CallDictionaryApi("https://api.unsplash.com/search/photos/?client_id=3d5fKAxk_gmo9I8XI20kCQWf0j0r1foLd6E7kuLaq0k&page=1&per_page=1&query=".urlencode(trim($word)));
 
-        //print_r("https://api.unsplash.com/search/photos/?client_id=3d5fKAxk_gmo9I8XI20kCQWf0j0r1foLd6E7kuLaq0k&page=1&per_page=1&query=".urlencode(trim($word)));
+        print_r("https://api.unsplash.com/search/photos/?client_id=3d5fKAxk_gmo9I8XI20kCQWf0j0r1foLd6E7kuLaq0k&page=1&per_page=1&query=".urlencode(trim($word)));
 
         if( array_key_exists('results', $UnsplashResponce) && $UnsplashResponce['total'] > 0 ){
             $img = $UnsplashResponce['results'][0]['urls']['small'];
@@ -110,56 +109,14 @@ class CambridgeParserLibrary {
         return $img;
     }
 
-    private function GetImgPexelsApi($word){
-
-        $url = "https://api.pexels.com/v1/search?query=to+stop&per_page=11";
-
-        $curl = curl_init($url);
-        curl_setopt($curl, CURLOPT_URL, $url);
-        curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
-        
-        $headers = array(
-           "Authorization: 563492ad6f91700001000001b45ded94511842c3bda5fa180f0c9e18",
-        );
-        curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
-        //for debug only!
-        curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, false);
-        curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
-        
-        $resp = curl_exec($curl);
-
-        if (curl_errno($curl)) {
-            echo $error_msg = curl_error($curl);
-            var_dump($error_msg);
-        }
-
-        curl_close($curl);
-        var_dump($resp);
-
-
-
-        //$UnsplashResponce = $this->CallDictionaryApi("https://api.pexels.com/v1/search?query=$word&per_page=1");
-        //echo "https://api.pexels.com/v1/search?query=$word&per_page=1";
-        //return $img;
-    }
-
     private function CallDictionaryApi($url){
 
-        $headers = array(
-            "Authorization: 563492ad6f91700001000001b45ded94511842c3bda5fa180f0c9e18",
-        );
-
         $curl = curl_init($url);
         curl_setopt($curl, CURLOPT_URL, $url);
         curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
-        curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
-
-        curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, false);
-        curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
 
         $resp = curl_exec($curl);
         curl_close($curl);
-        var_dump($resp);
         return json_decode($resp, true);
     }
 
