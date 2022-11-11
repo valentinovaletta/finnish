@@ -111,8 +111,29 @@ class CambridgeParserLibrary {
     }
 
     private function GetImgPexelsApi($word){
-        $UnsplashResponce = $this->CallDictionaryApi("https://api.pexels.com/v1/search?query=$word&per_page=1");
-        echo "https://api.pexels.com/v1/search?query=$word&per_page=1";
+
+        $url = "https://api.pexels.com/v1/search?query=to+stop&per_page=11";
+
+        $curl = curl_init($url);
+        curl_setopt($curl, CURLOPT_URL, $url);
+        curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+        
+        $headers = array(
+           "Authorization: 563492ad6f91700001000001b45ded94511842c3bda5fa180f0c9e18",
+        );
+        curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
+        //for debug only!
+        curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, false);
+        curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
+        
+        $resp = curl_exec($curl);
+        curl_close($curl);
+        var_dump($resp);
+
+
+
+        //$UnsplashResponce = $this->CallDictionaryApi("https://api.pexels.com/v1/search?query=$word&per_page=1");
+        //echo "https://api.pexels.com/v1/search?query=$word&per_page=1";
         //return $img;
     }
 
