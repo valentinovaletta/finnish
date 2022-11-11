@@ -78,7 +78,7 @@ class CambridgeParserLibrary {
     }
 
     private function getWordFromDBwithoutImg(){
-        $newWord = NewWords::inRandomOrder()->where('img', 0)->limit(1)->get();
+        $newWord = EnDictionary::inRandomOrder()->where('img', 0)->limit(1)->get();
         $this->id = $newWord->first()->id;
         return $newWord->first()->word;
     }
