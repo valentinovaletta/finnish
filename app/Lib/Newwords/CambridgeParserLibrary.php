@@ -25,9 +25,9 @@ class CambridgeParserLibrary {
         //$this->word = $this->getWordFromDB(1); // regular word
         $this->word = $this->getWordFromDBwithoutImg(1); // without image
 
-        $pieces = explode(" ", $this->word);
-        $this->img = $this->GetImgUnsplashApi( end($pieces) ); // substr($this->word, 2)
-        
+        $pieces = explode(" ", trim($this->word));
+        $this->img = $this->GetImgUnsplashApi( $pieces[array_key_last($pieces)] ); // substr($this->word, 2)
+
         //$this->img = $this->GetImgpixabayApi(urlencode(trim($this->word)));
         //$this->CambridgeObj = $this->getYandexApiDictionary( $this->word ); // substr($this->word, 2)
     }
