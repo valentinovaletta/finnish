@@ -80,7 +80,7 @@ class CambridgeParserLibrary {
     }
 
     private function getWordFromDBwithoutImg(){
-        echo $newWord = DB::table('en_dictionaries')
+        $newWord = DB::table('en_dictionaries')
         ->where('status', '=', 0)
         ->limit(1)
         ->get();
@@ -113,7 +113,7 @@ class CambridgeParserLibrary {
     private function GetImgPexelsApi($word){
         $UnsplashResponce = $this->CallDictionaryApi("https://api.pexels.com/v1/search?query=".urlencode(trim($word)))."&per_page=1";
 
-        print_r($UnsplashResponce);
+        var_dump($UnsplashResponce);
 
         //return $img;
     }
