@@ -49,6 +49,7 @@ class CambridgeParserLibrary {
     }
 
     public function getNewWordObj(){
+        echo $this->id.'<br/>';
         echo $this->word.'<br/>';
         echo '<img src="'.$this->img.'"></img><br/>';
         // echo '<pre>';
