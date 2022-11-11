@@ -111,7 +111,7 @@ class CambridgeParserLibrary {
     }
 
     private function GetImgPexelsApi($word){
-        $UnsplashResponce = $this->CallDictionaryApi("https://api.pexels.com/v1/search?query=".urlencode(trim($word))."&per_page=1");
+        $UnsplashResponce = $this->CallDictionaryApi("https://api.pexels.com/v1/search?query=$word&per_page=1");
         //return $img;
     }
 
@@ -123,15 +123,16 @@ class CambridgeParserLibrary {
 
         $curl = curl_init($url);
         curl_setopt($curl, CURLOPT_URL, $url);
-        curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
         curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
+
+        curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, false);
+        curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
+
         $resp = curl_exec($curl);
-        if (curl_errno($curl)) {
-            $error_msg = curl_error($curl);
-            var_dump($error_msg);
-        }
-        var_dump($resp);
         curl_close($curl);
+        var_dump($resp);
         return json_decode($resp, true);
     }
+
 }
