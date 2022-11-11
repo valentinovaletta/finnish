@@ -60,14 +60,12 @@ class CambridgeParserLibrary {
         echo $this->ts.'<br/>';
     }
     public function saveNewWordInDb(){
-
         $q['word'] = $this->word;
         $q['pos'] = $this->part_of_speech;
         $q['ts'] = $this->ts;
         $q['ex'] = "$this->examples";
         $q['img'] = $this->img;
         $q['status'] = 0;
-
         Endictionary::insert($q);
         $this -> deleteFromNewWords($this->id);
     }
@@ -79,9 +77,12 @@ class CambridgeParserLibrary {
     }
 
     private function getWordFromDBwithoutImg(){
-        echo $newWord = EnDictionary::where('img', 'like', '`%0%`')->limit(1)->toSql(); // ->get()
+        echo $newWord = EnDictionary::where('status', 0)->limit(1)->toSql(); // ->get()
         $this->id = $newWord->first()->id;
         return $newWord->first()->word;
+    }
+    public function updateimg(){
+        Endictionary::where('id', $this->id)->update(['img' => $this->img, 'status' => 1]);
     }
 
     private function deleteFromNewWords($ids){
