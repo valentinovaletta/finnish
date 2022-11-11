@@ -24,7 +24,8 @@ class CambridgeParserLibrary {
     public function __construct() {
         //$this->word = $this->getWordFromDB(1); // regular word
         $this->word = $this->getWordFromDBwithoutImg(1); // without image
-        $this->img = $this->GetImgUnsplashApi( $this->word ); // substr($this->word, 2)
+        //$this->img = $this->GetImgUnsplashApi( $this->word ); // substr($this->word, 2)
+        $this->img = $this->GetImgpixabayApi($this->word);
         //$this->CambridgeObj = $this->getYandexApiDictionary( $this->word ); // substr($this->word, 2)
     }
 
@@ -108,6 +109,13 @@ class CambridgeParserLibrary {
 
         return $img;
     }
+    private function GetImgpixabayApi($word){
+        $UnsplashResponce = $this->CallDictionaryApi("https://pixabay.com/api/?key=26835514-7ae86353428ccdd581ce72c45&q=".urlencode(trim($word))."&image_type=photo&orientation=vertical&safesearch=true");
+
+        var_dump($UnsplashResponce);
+
+    }
+
 
     private function CallDictionaryApi($url){
 
