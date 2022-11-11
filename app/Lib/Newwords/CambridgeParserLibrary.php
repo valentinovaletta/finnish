@@ -130,6 +130,7 @@ class CambridgeParserLibrary {
             $error_msg = curl_error($curl);
             var_dump($error_msg);
         }
+        var_dump($resp);
         curl_close($curl);
         return json_decode($resp, true);
     }
