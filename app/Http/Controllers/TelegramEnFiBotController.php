@@ -18,7 +18,7 @@ class TelegramEnFiBotController extends BaseController
     private $command;
 
     private $text;
-    private $menu = array("keyboard" => array(array("/start", "/myWords", "/info")),"resize_keyboard" => true,"one_time_keyboard" => true);
+    private $menu = array("keyboard" => array(array("/myWords", "/newWords", "/info")),"resize_keyboard" => true,"one_time_keyboard" => true);
 
 
     public function index(Request $request) {
