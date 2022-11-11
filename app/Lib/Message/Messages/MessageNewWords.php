@@ -25,7 +25,7 @@ class MessageNewWords extends Message {
 
         $text = "There are new such Word Sets as\r\n";
         foreach($wordSets as $key => $set){
-            $text .= $key.") ". $set->name."\r\n";
+            $text .= $key.") ". $set->tag_name."\r\n";
         }
         $text .= "Click on Word Set Id to subscribe on it.";
 
