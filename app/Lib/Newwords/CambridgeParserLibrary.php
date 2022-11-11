@@ -24,7 +24,7 @@ class CambridgeParserLibrary {
     public function __construct() {
         //$this->word = $this->getWordFromDB(1); // regular word
         $this->word = $this->getWordFromDBwithoutImg(1); // without image
-        $this->img = $this->GetImgPexelsApi( trim($this->word) );
+        $this->img = $this->GetImgPexelsApi( urlencode(trim($this->word)) );
         //$this->img = $this->GetImgUnsplashApi( substr($this->word, -2) ); // substr($this->word, 2)
         //$this->CambridgeObj = $this->getYandexApiDictionary( $this->word ); // substr($this->word, 2)
     }
