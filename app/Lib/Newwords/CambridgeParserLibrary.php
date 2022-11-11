@@ -2,6 +2,8 @@
 
 namespace App\Lib\Newwords;
 
+use Illuminate\Support\Facades\DB;
+
 use App\Models\NewWords;
 use App\Models\EnDictionary;
 
@@ -78,7 +80,10 @@ class CambridgeParserLibrary {
     }
 
     private function getWordFromDBwithoutImg(){
-        echo $newWord = EnDictionary::where('id', 1)->limit(1)->toSql(); // ->get()
+        echo $newWord = DB::table('en_dictionaries')
+        ->where('status', '=', 0)
+        ->toSql();
+
         $this->id = $newWord->first()->id;
         return $newWord->first()->word;
     }
