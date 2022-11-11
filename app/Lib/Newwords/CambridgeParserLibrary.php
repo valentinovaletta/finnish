@@ -127,6 +127,12 @@ class CambridgeParserLibrary {
         curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
         
         $resp = curl_exec($curl);
+
+        if (curl_errno($curl)) {
+            echo $error_msg = curl_error($curl);
+            var_dump($error_msg);
+        }
+
         curl_close($curl);
         var_dump($resp);
 
