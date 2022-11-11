@@ -112,6 +112,7 @@ class CambridgeParserLibrary {
 
     private function GetImgPexelsApi($word){
         $UnsplashResponce = $this->CallDictionaryApi("https://api.pexels.com/v1/search?query=$word&per_page=1");
+        echo "https://api.pexels.com/v1/search?query=$word&per_page=1";
         //return $img;
     }
 
