@@ -66,9 +66,9 @@ class MessageDefault extends Message {
     {
         $tag = Tag::where('id', $this->param['command'])->exists();
         if(!$tag){
-            $messages[0] = ['method' => 'sendMessage', 'content' => 'text', '', 'value' => print_r($tag, true)];
+            $messages[0] = ['method' => 'sendMessage', 'content' => 'text', '', 'value' => "No, there is no such Word Set"];
         } else {
-            $messages[0] = ['method' => 'sendMessage', 'content' => 'text', 'value' => "Yes! There is such Word Set\r\n".print_r($tag, true)."\r\n".$this->param['command']];
+            $messages[0] = ['method' => 'sendMessage', 'content' => 'text', 'value' => "Yes! There is such Word Set\r\n".$tag->tag_name."\r\n".$this->param['command']];
         }
 
         return json_encode($messages);
