@@ -64,7 +64,7 @@ class MessageDefault extends Message {
 
     private function wordSetSubscription($cache)
     {
-        $tag = Tag::where('id', $this->param['command'])->get();
+        $tag = Tag::where('id', $this->param['command'])->exists();
         if($tag === null){
             $messages[0] = ['method' => 'sendMessage', 'content' => 'text', '', 'value' => print_r($tag, true)];
         } else {
