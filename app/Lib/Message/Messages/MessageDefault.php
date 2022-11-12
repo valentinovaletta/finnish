@@ -68,7 +68,7 @@ class MessageDefault extends Message {
         if(!$tag){
             $messages[0] = ['method' => 'sendMessage', 'content' => 'text', '', 'value' => "No, there is no such Word Set"];
         } else {
-            $messages[0] = ['method' => 'sendMessage', 'content' => 'text', 'value' => "Yes! There is such Word Set\r\n".$tag->tag_name."\r\n".$this->param['command']];
+            $messages[0] = ['method' => 'sendMessage', 'content' => 'text', 'value' => "Yes! There is such Word Set\r\n".$tag->first()->tag_name."\r\n".$this->param['command']];
         }
 
         return json_encode($messages);
