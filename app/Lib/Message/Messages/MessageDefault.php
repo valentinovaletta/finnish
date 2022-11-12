@@ -8,6 +8,7 @@ use App\Models\User;
 use App\Models\Cache;
 use App\Models\Tag;
 use App\Models\TagUser;
+use App\Models\TagWord;
 
 class MessageDefault extends Message {
 
@@ -24,19 +25,21 @@ class MessageDefault extends Message {
 
         if($cache === null){
             $text = json_encode([
-                0 => ['method' => 'sendMessage', 'content' => 'text', '', 'value' => "Default"]
-            ]); 
+                0 => ['method' => 'sendMessage', 'content' => 'text', '', 'value' => "There is no such command"]
+            ]);
         } else {
             switch ($cache->command) {
                 case 'myWords':
                     $text = $this->checkQuiz($cache);
                     break;
                 case 'NewWords':
-                    $text = $this->wordSetSubscription($cache);
+                    $text = $this->wordSetSubscription();
                     break;
                 default:
-                   echo "i is not equal to 0, 1 or 2";
-            }
+                    $text = json_encode([
+                        0 => ['method' => 'sendMessage', 'content' => 'text', '', 'value' => "There is no such command"]
+                    ]);            
+                }
         }
         $this->setText($text);
         $this->clearCache();
@@ -62,17 +65,25 @@ class MessageDefault extends Message {
         return json_encode($messages);
     }
 
-    private function wordSetSubscription($cache)
+    private function wordSetSubscription()
     {
         $tag = Tag::where('id', $this->param['command'])->exists();
         if(!$tag){
-            $messages[0] = ['method' => 'sendMessage', 'content' => 'text', '', 'value' => "No, there is no such Word Set"];
+            $messages[0] = ['method' => 'sendMessage', 'content' => 'text', '', 'value' => "There is no such Word Set"];
         } else {
-            TagUser::updateOrCreate(['tag_id' => $this->param['command'], 'user_id' => $this->id],[]);
+            $newWordSet = TagUser::updateOrCreate(['tag_id' => $this->param['command'], 'user_id' => $this->id],[]);
             $messages[0] = ['method' => 'sendMessage', 'content' => 'text', 'value' => "Yes! You're subscribed on new Word Set\r\nDo you want to try new words /myWords ?"];
+            $this->CopyNewWords($newWordSet->wasRecentlyCreated);
         }
 
         return json_encode($messages);
+    }
+
+    private function CopyNewWords($newWordSet){
+        if( $newWordSet ){
+            $wordIds = TagWord::where('tag_id', $this->param['command'])->get('id')->toArray();
+            print_r($wordIds, true);
+        }
     }
 
     private function clearCache(){
