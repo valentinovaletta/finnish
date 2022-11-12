@@ -3,7 +3,6 @@
 namespace App\Lib\Message\Messages;
 
 use App\Models\Tag;
-use App\Models\TagUser;
 use App\Models\Cache;
 
 class MessageNewWords extends Message {

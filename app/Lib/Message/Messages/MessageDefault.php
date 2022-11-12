@@ -6,6 +6,8 @@ use Illuminate\Support\Facades\DB;
 
 use App\Models\User;
 use App\Models\Cache;
+use App\Models\Tag;
+use App\Models\TagUser;
 
 class MessageDefault extends Message {
 
@@ -25,7 +27,16 @@ class MessageDefault extends Message {
                 0 => ['method' => 'sendMessage', 'content' => 'text', '', 'value' => "Default"]
             ]); 
         } else {
-            $text = $this->checkQuiz($cache);
+            switch ($cache->command) {
+                case 'myWords':
+                    $text = $this->checkQuiz($cache);
+                    break;
+                case 'NewWords':
+                    $text = $this->wordSetSubscription($cache);
+                    break;
+                default:
+                   echo "i is not equal to 0, 1 or 2";
+            }
         }
         $this->setText($text);
         $this->clearCache();
@@ -33,7 +44,7 @@ class MessageDefault extends Message {
 
     private function checkQuiz($cache)
     {
-        $messages = []; 
+        $messages = [];
         if( $this->param['command'] == $cache->rightId ){
             $messages[] = ['method' => 'sendSticker', 'content' => 'sticker', 'value' => 'CAACAgIAAxkBAAEZ0fVjbQMjLMWdsAaB-RKhE_ZqUKzRpwACUgEAAjDUnRERwgZS_w81pCsE'];
             $messages[] = ['method' => 'sendMessage', 'content' => 'text', 'value' => "Yeap! It is $cache->rightAnswer!\r\nYou scored 5 points\r\nContinue /myWords ?"];
@@ -49,7 +60,13 @@ class MessageDefault extends Message {
           }
 
         return json_encode($messages);
+    }
 
+    private function wordSetSubscription($cache)
+    {
+        $tag = Tag::where('id', $this->param['command'])->get();
+        $messages[0] = ['method' => 'sendMessage', 'content' => 'text', 'value' => "Yes! There is such Word Set\r\n".$tag->first()->tag_name."\r\n".$this->param['command']];
+        return json_encode($messages);
     }
 
     private function clearCache(){
