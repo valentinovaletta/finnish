@@ -4,6 +4,7 @@ namespace App\Lib\Message\Messages;
 
 use App\Models\Tag;
 use App\Models\TagUser;
+use App\Models\Cache;
 
 class MessageNewWords extends Message {
 
@@ -17,13 +18,14 @@ class MessageNewWords extends Message {
         $this->param = $param;
 
         $wordSets = $this->getWordSets();
+        $this->setCache();
         $this->setText($wordSets);
     }
 
     private function getWordSets(){
         $wordSets = Tag::orderBy('id')->get();
 
-        $text = "There are new such Word Sets as\r\n";
+        $text = "There are new Sets of Words such as\r\n";
         foreach($wordSets as $set){
             $text .= "/".$set->id.") ". $set->tag_name."\r\n";
         }
@@ -36,6 +38,9 @@ class MessageNewWords extends Message {
         return $wordSets;
     }
 
+    private function setCache(){
+        Cache::updateOrCreate(['id' => $this->id],['command' => 'NewWords']);
+    }
     private function setText($text){
         $this->text = $text;
     }
