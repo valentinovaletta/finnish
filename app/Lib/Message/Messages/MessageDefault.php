@@ -72,8 +72,11 @@ class MessageDefault extends Message {
             $messages[0] = ['method' => 'sendMessage', 'content' => 'text', '', 'value' => "There is no such Word Set"];
         } else {
             $newWordSet = TagUser::updateOrCreate(['tag_id' => $this->param['command'], 'user_id' => $this->id],[]);
-            $messages[0] = ['method' => 'sendMessage', 'content' => 'text', 'value' => "Yes! You're subscribed on new Word Set\r\nDo you want to try new words /myWords ?"];
-            $this->CopyNewWords($newWordSet->wasRecentlyCreated);
+            $text = $this->CopyNewWords($newWordSet->wasRecentlyCreated);
+
+            $messages[0] = ['method' => 'sendMessage', 'content' => 'text', 'value' => "Yes! You're subscribed on new Word Set\r\nDo you want to try new words /myWords ?\r\n"];
+            $messages[1] = ['method' => 'sendMessage', 'content' => 'text', 'value' => $text];
+
         }
 
         return json_encode($messages);
@@ -82,8 +85,11 @@ class MessageDefault extends Message {
     private function CopyNewWords($newWordSet){
         if( $newWordSet ){
             $wordIds = TagWord::where('tag_id', $this->param['command'])->get('id')->toArray();
-            print_r($wordIds, true);
+            $text = print_r($wordIds, true);
+        } else {
+            $text = "newWordSet = $newWordSet";
         }
+        return $text;
     }
 
     private function clearCache(){
