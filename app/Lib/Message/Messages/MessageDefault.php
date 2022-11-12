@@ -84,9 +84,8 @@ class MessageDefault extends Message {
     private function CopyNewWords($newWordSet){
         if( $newWordSet ){
             $wordIds = TagWord::where('tag_id', $this->param['command'])->get('word_id')->toArray();
-            DB::enableQueryLog();
-            $upsert = DB::table($this->id."_vocabulary")->upsert($wordIds, []);
-            $text = print_r(DB::getQueryLog(), true);
+            //$upsert = DB::table($this->id."_vocabulary")->upsert($wordIds, []);
+            $text = print_r($newWordSet, true);
         } else {
             $text = "newWordSet = $newWordSet";
         }
