@@ -68,7 +68,8 @@ class MessageDefault extends Message {
         if(!$tag){
             $messages[0] = ['method' => 'sendMessage', 'content' => 'text', '', 'value' => "No, there is no such Word Set"];
         } else {
-            $messages[0] = ['method' => 'sendMessage', 'content' => 'text', 'value' => "Yes! There is such Word Set\r\n".$tag->first()->tag_name."\r\n".$this->param['command']];
+            TagUser::insertOrIgnore(['tag_id' => $this->param['command'], 'user_id' => $this->id]);
+            $messages[0] = ['method' => 'sendMessage', 'content' => 'text', 'value' => "Yes! You're subscribed on new Word Set\r\nDo you want to try new words /myWords ?"];
         }
 
         return json_encode($messages);
