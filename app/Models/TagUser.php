@@ -11,6 +11,6 @@ class TagUser extends Model
 
     protected $fillable = [
         'tag_id',
-        'tag_user'
+        'user_id'
     ];
 }
