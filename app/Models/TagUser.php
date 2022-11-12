@@ -8,4 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class TagUser extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        'tag_id',
+        'tag_user'
+    ];
 }
