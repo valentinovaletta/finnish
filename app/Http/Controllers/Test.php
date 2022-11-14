@@ -18,18 +18,11 @@ class Test extends Controller{
         $this->id = 494963311;
 
         //$wordIds = TagWord::where('tag_id', 5)->toSQL();
-        $wordIds = TagWord::select('id', 'tag_id', 'word_id')
-        ->where('tag_id', '=', '5')
-        ->get();
-
-        $words = TagWord::select('*')
-        ->inRandomOrder()
-        ->take(4)
+        $wordIds = TagWord::select('word_id', '0')
+        ->where('tag_id', '5')
         ->get();
 
         var_dump($wordIds, true);
-        dd($words, true);
-
     }
 
 }
