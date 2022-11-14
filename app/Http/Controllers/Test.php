@@ -18,7 +18,7 @@ class Test extends Controller{
         $this->id = 494963311;
 
         //$wordIds = TagWord::where('tag_id', 5)->toSQL();
-        $wordIds = TagWord::select('word_id', '0')
+        $wordIds = TagWord::select('word_id', '0 as points')
         ->where('tag_id', '5')
         ->get();
 
