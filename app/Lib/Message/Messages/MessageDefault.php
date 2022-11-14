@@ -86,7 +86,7 @@ class MessageDefault extends Message {
             $wordIds = TagWord::select("word_id", DB::raw("0 as `points`"))->where('tag_id', $this->param['command'])->get();
             $upsert = DB::table($this->id."_vocabulary")->upsert($wordIds->toArray(), []);
 
-            $text = print_r($upsert, true);
+            $text = "There are $upsert new words!"; 
         } else {
             $text = "All words are in your Word Set. Do you want to repeat some /myWords ?";
         }
