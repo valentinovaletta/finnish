@@ -12,9 +12,9 @@ class Test extends Controller{
 
         $this->id = 494963311;
 
-        $wordIds = TagWord::select('word_id')->where('tag_id', $this->param['command'])->get();
+        $wordIds = TagWord::select('word_id')->where('tag_id', 5)->get();
         print_r($wordIds, true);
-        
+
     }
 
 }
