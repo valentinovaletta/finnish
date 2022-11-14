@@ -22,7 +22,9 @@ class Test extends Controller{
         ->where('tag_id', '5')
         ->get();
 
-        var_dump($wordIds->toArray(), true);
+        $upsert = DB::table($this->id."_vocabulary")->upsert([$wordIds->toArray()], []);
+
+        var_dump($upsert, true);
     }
 
 }
