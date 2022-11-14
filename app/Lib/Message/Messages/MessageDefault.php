@@ -25,7 +25,7 @@ class MessageDefault extends Message {
 
         if($cache === null){
             $text = json_encode([
-                0 => ['method' => 'sendMessage', 'content' => 'text', '', 'value' => "There is no such command"]
+                0 => ['method' => 'sendMessage', 'content' => 'text', '', 'value' => "There is no such command\r\ntry /myWords to repeat words."]
             ]);
         } else {
             switch ($cache->command) {
@@ -37,7 +37,7 @@ class MessageDefault extends Message {
                     break;
                 default:
                     $text = json_encode([
-                        0 => ['method' => 'sendMessage', 'content' => 'text', '', 'value' => "There is no such command"]
+                        0 => ['method' => 'sendMessage', 'content' => 'text', '', 'value' => "There is no such command\r\ntry /myWords to repeat words."]
                     ]);            
                 }
         }
@@ -74,7 +74,7 @@ class MessageDefault extends Message {
             $newWordSet = TagUser::updateOrCreate(['tag_id' => $this->param['command'], 'user_id' => $this->id],[]);
             $text = $this->CopyNewWords($newWordSet->wasRecentlyCreated);
 
-            $messages[0] = ['method' => 'sendMessage', 'content' => 'text', 'value' => "Yes! You're subscribed on new Word Set\r\nDo you want to try new words /myWords ?\r\n"];
+            $messages[0] = ['method' => 'sendMessage', 'content' => 'text', 'value' => "Yes! You're subscribed on a new Word Set\r\nDo you want to try new words /myWords ?\r\n"];
             $messages[1] = ['method' => 'sendMessage', 'content' => 'text', 'value' => $text];
         }
 
