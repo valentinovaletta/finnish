@@ -20,9 +20,9 @@ class Test extends Controller{
         //$wordIds = TagWord::where('tag_id', 5)->toSQL();
         $wordIds = TagWord::select("word_id", DB::raw("0 as `points`") )
         ->where('tag_id', '5')
-        ->toArray();
+        ->get();
 
-        var_dump($wordIds, true);
+        var_dump($wordIds->toArray(), true);
     }
 
 }
