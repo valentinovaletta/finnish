@@ -12,7 +12,7 @@ class Test extends Controller{
 
         $this->id = 494963311;
 
-        $wordIds = TagWord::select('word_id')->where('tag_id', 5)->get();
+        $wordIds = TagWord::select('word_id')->where('tag_id', 5)->toSQL();
         print_r($wordIds, true);
 
     }
