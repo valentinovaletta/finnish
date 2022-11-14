@@ -83,7 +83,7 @@ class MessageDefault extends Message {
 
     private function CopyNewWords($newWordSet){
         if( $newWordSet ){
-            $wordIds = TagWord::where('tag_id', $this->param['command'])->get('word_id')->toArray();
+            $wordIds = TagWord::where('tag_id', $this->param['command'])->get('word_id, 0 as points')->toArray();
             // $upsert = DB::table($this->id."_vocabulary")->upsert([
             //     ['word_id' => 401, 'points' => 0],
             //     ['word_id' => 402, 'points' => 0]
@@ -91,7 +91,7 @@ class MessageDefault extends Message {
             // );
             $text = print_r($wordIds, true);
         } else {
-            $text = "newWordSet = $newWordSet";
+            $text = "All words are in your Word Set. Do you want to repeat some /myWords ?";
         }
         return $text;
     }

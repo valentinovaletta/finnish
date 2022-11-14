@@ -44,4 +44,6 @@ jobs:
         script: |
           cd www/finnish.arcadepub.ru
           git pull
+          cd www/enru.arcadepub.ru
+          git pull
           exit
