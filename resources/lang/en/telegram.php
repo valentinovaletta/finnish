@@ -12,8 +12,8 @@ return [
     'defaultAllWords' => "All words are in your Word Set. Do you want to repeat some /myWords ?",
     'defaultUpsert' => "There are :upsert new words! Try /myWords",
     'defaultSubscribed' => "Yes! You're subscribed on a new Word Set\r\n",
-    'defaultCorrect' => "Yeap! It is :answer!\r\nYou scored 5 points\r\nContinue /myWords ?",
-    'defaulIncorrect' => "Nope. You've lost a point!\r\nRight answer was :answer!\r\nContinue /myWords ?",
+    'defaultCorrect' => "Yeap! It is <strong>:answer</strong>!\r\nYou scored 5 points\r\nContinue /myWords ?",
+    'defaulIncorrect' => "Nope. You've lost a point!\r\nRight answer was <b>:answer</b>!\r\nContinue /myWords ?",
     'myWordsWhatisit' => "\r\nWhat is it in Finnish?\r\n",
     'ThereAreNew' => "There are new Sets of Words such as\r\n",
     'ClickOnID' => "Click on Word Set Id to add new words to your vocabulary."
