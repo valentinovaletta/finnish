@@ -51,15 +51,15 @@ class MessageDefault extends Message {
     private function checkQuiz($cache)
     {
         $messages = [];
+        $sticker = rand(0,3);
         if( $this->param['command'] == $cache->rightId ){
-            $sticker = rand(0,2);
             $messages[] = ['method' => 'sendSticker', 'content' => 'sticker', 'value' => __("stickers.good.$sticker")];
             $messages[] = ['method' => 'sendMessage', 'content' => 'text', 'value' => __('telegram.defaultCorrect', ['answer' => $cache->rightAnswer])];
 
             User::where('id', $this->id)->increment('points', 5);
             DB::table($this->id."_vocabulary")->where('word_id', $cache->rightAnswerId)->increment('points', 5);
           } else {
-            $messages[] = ['method' => 'sendSticker', 'content' => 'sticker', 'value' => 'CAACAgIAAxkBAAEZ0fdjbQM6T1lg7zkTF7n251_knccYbgACNwEAAjDUnRHKK3SQd2L8ASsE'];
+            $messages[] = ['method' => 'sendSticker', 'content' => 'sticker', 'value' => __("stickers.bad.$sticker")];
             $messages[] = ['method' => 'sendMessage', 'content' => 'text', 'value' => __('telegram.defaulIncorrect', ['answer' => $cache->rightAnswer])];
 
             User::where('id', $this->id)->decrement('points', 1);
