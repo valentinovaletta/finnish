@@ -27,7 +27,9 @@ class TelegramEnFiBotController extends BaseController
 
         $this->name = $request->input('message.from.first_name');
         $this->lang = $request->input('message.from.language_code');
-        $this->command = $request->input('message.text');
+
+        $command = explode(" ",$request->input('message.text'));
+        $this->command = $command[0];
 
         Storage::disk('local')->put('log.txt', $this->message);
 
