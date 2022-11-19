@@ -17,6 +17,7 @@ class MessageStart extends Message{
     private $user;
 
     private $text;
+    private $menu;
 
     public function __construct(int $id, array $param){
         $this->id = $id;
@@ -73,9 +74,18 @@ class MessageStart extends Message{
             1 => ['method' => 'sendMessage', 'content' => 'text', 'value' => "$greeting\r\nThis is a Start message!"]
         ]);
 
+        $this->setMenu(["/myWords", "/newWords", "/info"]);
     }
 
     public function getText(){
         return $this->text;
     }   
+
+    private function setMenu($menu){
+        $this->menu = array("keyboard" => array($menu),"resize_keyboard" => true,"one_time_keyboard" => true);
+    }
+    
+    public function getMenu(){
+        return $this->menu;
+    }       
 }

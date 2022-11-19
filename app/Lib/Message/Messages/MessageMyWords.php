@@ -11,6 +11,8 @@ class MessageMyWords extends Message{
     private $param;
 
     private $text;
+    private $menu;
+
     private $quizFunctions = [0 => 'formQuizFiEn', 1 => 'formQuizEnFi'];
 
     public function __construct(int $id, array $param){
@@ -63,8 +65,10 @@ class MessageMyWords extends Message{
         $text .= "\r\nWhat is it in Finnish?\r\n";
 
         foreach($answers as $key => $value){
-            $text .= preg_replace('/{n}/i', ++$key, $value)."\r\n";
+            $text .= $menu[] = preg_replace('/{n}/i', ++$key, $value)."\r\n";
         }
+
+        $this->setMenu($menu);
 
         return json_encode([
             0 => ['method' => 'sendPhoto', 'content' => 'photo', 'value' => $rightAnswerImg],
@@ -113,5 +117,12 @@ class MessageMyWords extends Message{
     public function getText(){
         return $this->text;
     }
- 
+
+    private function setMenu($menu){
+        $this->menu = array("keyboard" => array($menu),"resize_keyboard" => true,"one_time_keyboard" => true);
+    }
+    
+    public function getMenu(){
+        return $this->menu;
+    }   
 }

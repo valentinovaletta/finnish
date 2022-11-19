@@ -9,7 +9,7 @@ use App\Lib\Message\MessageFactory;
 
 class TelegramEnFiBotController extends BaseController
 {
-    private $token = '5773821899:AAGhBn9Vx4EDlOlsO_O4ceTncFYp0KCbUW8';
+    private $token = '5773821899:AAGhBn9Vx4EDlOlsO_O4ceTncFYp0KCbUW8';  // remove
 
     private $id;
     private $message;
@@ -34,6 +34,8 @@ class TelegramEnFiBotController extends BaseController
         $messageFactory = new MessageFactory();
         $message = $messageFactory->create(type: str_replace("/", "", $this->command), id: $this->id, param: ['name' => $this->name, 'lang' => $this->lang, 'command' => str_replace("/", "", $this->command)] );
         $this->text = $message -> getText();
+        $this->menu = $message -> getMenu();
+
 
         foreach(json_decode($this->text) as $message){
             $this->TelegramApi( $message->method, $this->id, [$message->content => $message->value, 'reply_markup' => json_encode($this->menu)]);
