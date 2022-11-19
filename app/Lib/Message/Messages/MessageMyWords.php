@@ -103,6 +103,8 @@ class MessageMyWords extends Message{
         foreach($answers as $key => $value){
             $text .= $menu[] = preg_replace('/{n}/i', ++$key, $value)."\r\n";
         }
+        
+        $this->setMenu($menu);
 
         return json_encode([
             0 => ['method' => 'sendPhoto', 'content' => 'photo', 'value' => $rightAnswerImg],
