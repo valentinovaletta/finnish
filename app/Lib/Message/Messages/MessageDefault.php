@@ -53,7 +53,7 @@ class MessageDefault extends Message {
         $messages = [];
         if( $this->param['command'] == $cache->rightId ){
             $sticker = rand(0,2);
-            $messages[] = ['method' => 'sendSticker', 'content' => 'sticker', 'value' => __("telegram.stickers.good.0")];
+            $messages[] = ['method' => 'sendSticker', 'content' => 'sticker', 'value' => __("stickers.good.$sticker")];
             $messages[] = ['method' => 'sendMessage', 'content' => 'text', 'value' => __('telegram.defaultCorrect', ['answer' => $cache->rightAnswer])];
 
             User::where('id', $this->id)->increment('points', 5);
