@@ -62,16 +62,16 @@ class MessageStart extends Message{
     }
 
     private function setText($newUser){
-
+        
         if($newUser){
-            $greeting = "Hello, ".$this->param['name']."! You are a new user here!";
+            $greeting = __('telegram.startGreetingNewUser', ['name' => $this->param['name']]);
         } else {
-            $greeting = "Hello again, ".$this->param['name']."! You have ".$this->user->points." points";
+            $greeting = __('telegram.startGreetingOldUser', ['name' => $this->param['name'], 'points' => $this->user->points]);
         }
 
         $this->text = json_encode([
             0 => ['method' => 'sendSticker', 'content' => 'sticker', 'value' =>"CAACAgIAAxkBAAEZ0I9jbNJzhp-ZoHQYVYtbLrN3S6kjPQACVAEAAjDUnRE1EWvwoCBW6ysE"],
-            1 => ['method' => 'sendMessage', 'content' => 'text', 'value' => "$greeting\r\nThis is a Start message!"]
+            1 => ['method' => 'sendMessage', 'content' => 'text', 'value' => __('telegram.startMessage', ['greeting' => $greeting])]
         ]);
 
         $this->setMenu(["/myWords", "/newWords", "/info"]);
