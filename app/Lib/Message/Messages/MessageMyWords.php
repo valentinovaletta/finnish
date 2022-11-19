@@ -65,7 +65,8 @@ class MessageMyWords extends Message{
         $text .= "\r\nWhat is it in Finnish?\r\n";
 
         foreach($answers as $key => $value){
-            $text .= $menu[] = preg_replace('/{n}/i', ++$key, $value)."\r\n";
+            $text .= $menu[] = preg_replace('/{n}/i', ++$key, $value);
+            $text .= "\r\n";
         }
 
         $this->setMenu($menu);
@@ -101,9 +102,10 @@ class MessageMyWords extends Message{
         $text .= "\r\nWhat is it in English?\r\n";
         
         foreach($answers as $key => $value){
-            $text .= $menu[] = preg_replace('/{n}/i', ++$key, $value)."\r\n";
+            $text .= $menu[] = preg_replace('/{n}/i', ++$key, $value);
+            $text .= "\r\n";
         }
-        
+
         $this->setMenu($menu);
 
         return json_encode([
