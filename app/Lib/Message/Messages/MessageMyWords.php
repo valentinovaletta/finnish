@@ -101,7 +101,7 @@ class MessageMyWords extends Message{
         $text .= "\r\nWhat is it in English?\r\n";
         
         foreach($answers as $key => $value){
-            $text .= preg_replace('/{n}/i', ++$key, $value)."\r\n";
+            $text .= $menu[] = preg_replace('/{n}/i', ++$key, $value)."\r\n";
         }
 
         return json_encode([

@@ -11,6 +11,7 @@ class MessageNewWords extends Message {
     private $param;
 
     private $text;
+    private $menu;
 
     public function __construct(int $id, array $param){
         $this->id = $id;
@@ -26,9 +27,11 @@ class MessageNewWords extends Message {
 
         $text = "There are new Sets of Words such as\r\n";
         foreach($wordSets as $set){
-            $text .= "/".$set->id.") ". $set->tag_name."\r\n";
+            $text .= $menu[] = "/".$set->id.") ". $set->tag_name."\r\n";
         }
         $text .= "Click on Word Set Id to add new words to your vocabulary.";
+
+        $this->setMenu($menu);
 
         return json_encode([
             0 => ['method' => 'sendMessage', 'content' => 'text', '', 'value' => $text]
@@ -47,4 +50,12 @@ class MessageNewWords extends Message {
     public function getText(){
         return $this->text;
     }
+
+    private function setMenu($menu){
+        $this->menu = array("keyboard" => array($menu),"resize_keyboard" => true,"one_time_keyboard" => true);
+    }
+    
+    public function getMenu(){
+        return $this->menu;
+    }      
 }
