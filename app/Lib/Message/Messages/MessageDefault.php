@@ -26,7 +26,7 @@ class MessageDefault extends Message {
 
         if($cache === null){
             $text = json_encode([
-                0 => ['method' => 'sendMessage', 'content' => 'text', '', 'value' => "There is no such command\r\ntry /myWords to repeat words."]
+                0 => ['method' => 'sendMessage', 'content' => 'text', '', 'value' => __('telegram.defaultNoCommand')]
             ]);
         } else {
             switch ($cache->command) {
@@ -38,7 +38,7 @@ class MessageDefault extends Message {
                     break;
                 default:
                     $text = json_encode([
-                        0 => ['method' => 'sendMessage', 'content' => 'text', '', 'value' => "There is no such command\r\ntry /myWords to repeat words."]
+                        0 => ['method' => 'sendMessage', 'content' => 'text', '', 'value' => __('telegram.defaultNoCommand')]
                     ]);            
                 }
         }
@@ -52,14 +52,15 @@ class MessageDefault extends Message {
     {
         $messages = [];
         if( $this->param['command'] == $cache->rightId ){
-            $messages[] = ['method' => 'sendSticker', 'content' => 'sticker', 'value' => 'CAACAgIAAxkBAAEZ0fVjbQMjLMWdsAaB-RKhE_ZqUKzRpwACUgEAAjDUnRERwgZS_w81pCsE'];
-            $messages[] = ['method' => 'sendMessage', 'content' => 'text', 'value' => "Yeap! It is $cache->rightAnswer!\r\nYou scored 5 points\r\nContinue /myWords ?"];
+            $sticker = rand(0,2);
+            $messages[] = ['method' => 'sendSticker', 'content' => 'sticker', 'value' => __("telegram.stickers.good.$sticker")];
+            $messages[] = ['method' => 'sendMessage', 'content' => 'text', 'value' => __('telegram.defaultCorrect', ['answer' => $cache->rightAnswer])];
 
             User::where('id', $this->id)->increment('points', 5);
             DB::table($this->id."_vocabulary")->where('word_id', $cache->rightAnswerId)->increment('points', 5);
           } else {
             $messages[] = ['method' => 'sendSticker', 'content' => 'sticker', 'value' => 'CAACAgIAAxkBAAEZ0fdjbQM6T1lg7zkTF7n251_knccYbgACNwEAAjDUnRHKK3SQd2L8ASsE'];
-            $messages[] = ['method' => 'sendMessage', 'content' => 'text', 'value' => "Nope. You've lost a point!\r\nRight answer was $cache->rightAnswer!\r\nContinue /myWords ?"];
+            $messages[] = ['method' => 'sendMessage', 'content' => 'text', 'value' => __('telegram.defaulIncorrect', ['answer' => $cache->rightAnswer])];
 
             User::where('id', $this->id)->decrement('points', 1);
             DB::table($this->id."_vocabulary")->where('word_id', $cache->rightAnswerId)->decrement('points', 1);
@@ -72,12 +73,12 @@ class MessageDefault extends Message {
     {
         $tag = Tag::where('id', $this->param['command'])->exists();
         if(!$tag){
-            $messages[0] = ['method' => 'sendMessage', 'content' => 'text', '', 'value' => "There is no such Word Set"];
+            $messages[0] = ['method' => 'sendMessage', 'content' => 'text', '', 'value' => __('telegram.defaultNoWordSet')];
         } else {
             $newWordSet = TagUser::updateOrCreate(['tag_id' => $this->param['command'], 'user_id' => $this->id],[]);
             $text = $this->CopyNewWords($newWordSet->wasRecentlyCreated);
 
-            $messages[0] = ['method' => 'sendMessage', 'content' => 'text', 'value' => "Yes! You're subscribed on a new Word Set\r\n"];
+            $messages[0] = ['method' => 'sendMessage', 'content' => 'text', 'value' => __('telegram.defaultSubscribed')];
             $messages[1] = ['method' => 'sendMessage', 'content' => 'text', 'value' => $text];
         }
 
@@ -89,9 +90,9 @@ class MessageDefault extends Message {
             $wordIds = TagWord::select("word_id", DB::raw("0 as `points`"))->where('tag_id', $this->param['command'])->get();
             $upsert = DB::table($this->id."_vocabulary")->upsert($wordIds->toArray(), []);
 
-            $text = "There are $upsert new words! Try /myWords"; 
+            $text = __('telegram.defaultUpsert', ['upsert' => $upsert]); 
         } else {
-            $text = "All words are in your Word Set. Do you want to repeat some /myWords ?";
+            $text = __('telegram.defaultAllWords');
         }
         return $text;
     }

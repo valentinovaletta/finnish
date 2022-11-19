@@ -25,11 +25,11 @@ class MessageNewWords extends Message {
     private function getWordSets(){
         $wordSets = Tag::orderBy('id')->get();
 
-        $text = "There are new Sets of Words such as\r\n";
+        $text = __('telegram.ThereAreNew');
         foreach($wordSets as $set){
             $text .= $menu[] = "/".$set->id.") ". $set->tag_name."\r\n";
         }
-        $text .= "Click on Word Set Id to add new words to your vocabulary.";
+        $text .= __('telegram.ClickOnID');
 
         $this->setMenu($menu);
 

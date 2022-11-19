@@ -62,7 +62,7 @@ class MessageMyWords extends Message{
 
         // form a question and answers
         $text = $rightAnsweren."\r\n(".$rightAnswerPos.") [".$rightAnswerTs."] \r\n";
-        $text .= "\r\nWhat is it in Finnish?\r\n";
+        $text .= __('telegram.myWordsWhatisit');
 
         foreach($answers as $key => $value){
             $text .= $menu[] = preg_replace('/{n}/i', ++$key, $value);

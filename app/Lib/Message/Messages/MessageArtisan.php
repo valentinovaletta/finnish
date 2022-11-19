@@ -14,9 +14,9 @@ class MessageArtisan extends Message {
         $this->id = $id;
         $this->param = $param;
 
-        Artisan::call('migrate:refresh');
-
-        $this->text = "Hello!\r\nThis is an Artisan message!\r\n".Artisan::output();
+        //Artisan::call('migrate:refresh');
+        
+        $this->text = __('telegram.artisan', ['artisan' => Artisan::output()]);
     }
 
     public function getText(){
