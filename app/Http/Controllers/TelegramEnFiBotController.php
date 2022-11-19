@@ -9,7 +9,7 @@ use App\Lib\Message\MessageFactory;
 
 class TelegramEnFiBotController extends BaseController
 {
-    private $token = '5773821899:AAGhBn9Vx4EDlOlsO_O4ceTncFYp0KCbUW8';  // remove
+    private $token;
 
     private $id;
     private $message;
@@ -20,8 +20,13 @@ class TelegramEnFiBotController extends BaseController
     private $text;
     private $menu = array("keyboard" => array(array("/myWords", "/newWords", "/info")),"resize_keyboard" => true,"one_time_keyboard" => true);
 
+    public function __construct() 
+    {
+        $this->token = ENV('TELEGRAM_TOKEN');
+    }
 
-    public function index(Request $request) {
+    public function index(Request $request) 
+    {
         $this->message = json_encode($request->all());
         $this->id = $request->input('message.from.id');
 
@@ -46,7 +51,8 @@ class TelegramEnFiBotController extends BaseController
 
     }
 
-    private function TelegramApi($method,$id,$param) {
+    private function TelegramApi($method,$id,$param) 
+    {
         $url = "https://api.telegram.org/bot$this->token/$method?chat_id=".$id."&".http_build_query($param);
         $ch = curl_init();
         $optArray = array(

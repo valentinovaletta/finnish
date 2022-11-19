@@ -16,7 +16,7 @@ class MessageInfo extends Message{
 
         $this->text = json_encode([
             0 => ['method' => 'sendSticker', 'content' => 'sticker', 'value' =>"CAACAgIAAxkBAAEZ0JNjbNKiyL97chhBKoS0fa6KHXcxLwACRwEAAjDUnRGOQ5cS_6ydwSsE"],
-            1 => ['method' => 'sendMessage', 'content' => 'text', 'value' => "Hello!\r\nThis is an Info message!\r\nYour id is $this->id\r\nYour name is ".$this->param['name']."\r\nYour lang is ".$this->param['lang']]
+            1 => ['method' => 'sendMessage', 'content' => 'text', 'value' => __('telegram.info')]
         ]);
 
         $this->setMenu(["/myWords", "/newWords", "/info"]);
