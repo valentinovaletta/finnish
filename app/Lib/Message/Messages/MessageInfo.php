@@ -8,6 +8,7 @@ class MessageInfo extends Message{
     private $param;
 
     private $text;
+    private $menu;
 
     public function __construct(int $id, array $param){
         $this->id = $id;
@@ -17,10 +18,20 @@ class MessageInfo extends Message{
             0 => ['method' => 'sendSticker', 'content' => 'sticker', 'value' =>"CAACAgIAAxkBAAEZ0JNjbNKiyL97chhBKoS0fa6KHXcxLwACRwEAAjDUnRGOQ5cS_6ydwSsE"],
             1 => ['method' => 'sendMessage', 'content' => 'text', 'value' => "Hello!\r\nThis is an Info message!\r\nYour id is $this->id\r\nYour name is ".$this->param['name']."\r\nYour lang is ".$this->param['lang']]
         ]);
+
+        $this->setMenu(["/myWords", "/newWords", "/info"]);
+
     }
 
     public function getText(){
         return $this->text;
     }
  
+    private function setMenu($menu){
+        $this->menu = array("keyboard" => array($menu),"resize_keyboard" => true,"one_time_keyboard" => true);
+    }
+    
+    public function getMenu(){
+        return $this->menu;
+    }   
 }
