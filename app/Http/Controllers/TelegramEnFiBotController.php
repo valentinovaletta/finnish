@@ -9,7 +9,7 @@ use App\Lib\Message\MessageFactory;
 
 class TelegramEnFiBotController extends BaseController
 {
-    private $token;
+    private $token = '5773821899:AAGhBn9Vx4EDlOlsO_O4ceTncFYp0KCbUW8';
 
     private $id;
     private $message;
@@ -22,7 +22,7 @@ class TelegramEnFiBotController extends BaseController
 
     public function __construct() 
     {
-        $this->token = ENV('TELEGRAM_TOKEN');
+        //$this->token = ENV('TELEGRAM_TOKEN');
     }
 
     public function index(Request $request) 
