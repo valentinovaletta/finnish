@@ -74,7 +74,7 @@ class MessageDefault extends Message {
             $newWordSet = TagUser::updateOrCreate(['tag_id' => $this->param['command'], 'user_id' => $this->id],[]);
             $text = $this->CopyNewWords($newWordSet->wasRecentlyCreated);
 
-            $messages[0] = ['method' => 'sendMessage', 'content' => 'text', 'value' => "Yes! You're subscribed on a new Word Set\r\nDo you want to try new words /myWords ?\r\n"];
+            $messages[0] = ['method' => 'sendMessage', 'content' => 'text', 'value' => "Yes! You're subscribed on a new Word Set\r\n"];
             $messages[1] = ['method' => 'sendMessage', 'content' => 'text', 'value' => $text];
         }
 
@@ -86,7 +86,7 @@ class MessageDefault extends Message {
             $wordIds = TagWord::select("word_id", DB::raw("0 as `points`"))->where('tag_id', $this->param['command'])->get();
             $upsert = DB::table($this->id."_vocabulary")->upsert($wordIds->toArray(), []);
 
-            $text = "There are $upsert new words!"; 
+            $text = "There are $upsert new words! Try /myWords"; 
         } else {
             $text = "All words are in your Word Set. Do you want to repeat some /myWords ?";
         }

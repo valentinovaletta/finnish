@@ -28,7 +28,7 @@ class MessageNewWords extends Message {
         foreach($wordSets as $set){
             $text .= "/".$set->id.") ". $set->tag_name."\r\n";
         }
-        $text .= "Click on Word Set Id to subscribe on it.";
+        $text .= "Click on Word Set Id to add new words to your vocabulary.";
 
         return json_encode([
             0 => ['method' => 'sendMessage', 'content' => 'text', '', 'value' => $text]
