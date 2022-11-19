@@ -16,6 +16,7 @@ class MessageDefault extends Message {
     private $param;
 
     private $text;
+    private $menu;
 
     public function __construct(int $id, array $param){
         $this->id = $id;
@@ -41,6 +42,8 @@ class MessageDefault extends Message {
                     ]);            
                 }
         }
+        
+        $this->setMenu(["/myWords", "/newWords", "/info"]);
         $this->setText($text);
         $this->clearCache();
     }
@@ -104,4 +107,12 @@ class MessageDefault extends Message {
     public function getText(){
         return $this->text;
     } 
+
+    private function setMenu($menu){
+        $this->menu = array("keyboard" => array($menu),"resize_keyboard" => true,"one_time_keyboard" => true);
+    }
+    
+    public function getMenu(){
+        return $this->menu;
+    }     
 }
