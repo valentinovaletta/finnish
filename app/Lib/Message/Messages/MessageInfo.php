@@ -14,8 +14,10 @@ class MessageInfo extends Message{
         $this->id = $id;
         $this->param = $param;
 
+        $sticker = rand(0,3);
+
         $this->text = json_encode([
-            0 => ['method' => 'sendSticker', 'content' => 'sticker', 'value' =>"CAACAgIAAxkBAAEZ0JNjbNKiyL97chhBKoS0fa6KHXcxLwACRwEAAjDUnRGOQ5cS_6ydwSsE"],
+            0 => ['method' => 'sendSticker', 'content' => 'sticker', 'value' => __("stickers.info.$sticker")],
             1 => ['method' => 'sendMessage', 'content' => 'text', 'value' => __('telegram.info', ['id' => $this->id, 'name' => $this->param['name'], 'lang' => $this->param['lang']]) ]
         ]);
 

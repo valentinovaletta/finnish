@@ -69,8 +69,10 @@ class MessageStart extends Message{
             $greeting = __('telegram.startGreetingOldUser', ['name' => $this->param['name'], 'points' => $this->user->points]);
         }
 
+        $sticker = rand(0,2);
+
         $this->text = json_encode([
-            0 => ['method' => 'sendSticker', 'content' => 'sticker', 'value' =>"CAACAgIAAxkBAAEZ0I9jbNJzhp-ZoHQYVYtbLrN3S6kjPQACVAEAAjDUnRE1EWvwoCBW6ysE"],
+            0 => ['method' => 'sendSticker', 'content' => 'sticker', 'value' => __("stickers.hello.$sticker")],
             1 => ['method' => 'sendMessage', 'content' => 'text', 'value' => __('telegram.startMessage', ['greeting' => $greeting])]
         ]);
 
