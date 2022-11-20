@@ -5,28 +5,28 @@ on: push
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   # This workflow contains a single job called "build"
-  # build:
-  #   # The type of runner that the job will run on
-  #   runs-on: ubuntu-latest
+  build:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
 
-  #   # Steps represent a sequence of tasks that will be executed as part of the job
-  #   steps:
-  #     # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-  #     - name: Git Clone
-  #       uses: actions/checkout@v3
-  #       with:
-  #         ref: 'master'
-  #     # Runs a single command using the runners shell
-  #     - name: Ls
-  #       run: ls -la
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - name: Git Clone
+        uses: actions/checkout@v3
+        with:
+          ref: 'master'
+      # Runs a single command using the runners shell
+      - name: Ls
+        run: ls -la
         
-  #     # Install composer
-  #     - name: Install composer dependencies
-  #       run: composer install --no-scripts
+      # Install composer
+      - name: Install composer dependencies
+        run: composer install --no-scripts
 
-  #     # PHPUnit tests
-  #     - name: PHPUnit tests
-  #       run: php artisan test
+      # PHPUnit tests
+      - name: PHPUnit tests
+        run: php artisan test
   
   # This is second job called "ssh-git-pull"
   ssh-git-pull:
@@ -43,7 +43,5 @@ jobs:
         port: ${{ secrets.SSH_SITES_PORT }}
         script: |
           cd www/finnish.arcadepub.ru
-          git pull
-          cd www/enru.arcadepub.ru
           git pull
           exit
