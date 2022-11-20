@@ -14,7 +14,7 @@ class MessageInfo extends Message{
         $this->id = $id;
         $this->param = $param;
 
-        $sticker = rand(0,3);
+        $sticker = rand(0,2);
 
         $this->text = json_encode([
             0 => ['method' => 'sendSticker', 'content' => 'sticker', 'value' => __("stickers.info.$sticker")],
