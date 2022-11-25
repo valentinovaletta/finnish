@@ -27,7 +27,7 @@ class JsonApiTest extends TestCase
                     "type" => "private" 
                     ], 
                 "date" => time(),
-                "text" => rand(0,1000)
+                "text" => '/info'
             ] 
         ];
         $response = $this->postJson('/api/en-fi/test', $data);
