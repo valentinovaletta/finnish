@@ -19,7 +19,7 @@ class Test extends Controller{
 
         $sets = Tag::leftJoin('tag_users', function($join) {
             $join->on('tags.id', '=', 'tag_users.tag_id')
-            ->on('tag_users.user_id', '=', $this->id);
+            ->on('tag_users.user_id', '=', DB::raw($this->id));
           })
           ->whereNull('tag_users.tag_id')
           ->inRandomOrder()
