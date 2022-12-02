@@ -33,7 +33,7 @@ class Test extends Controller{
 
         //$upsert = DB::table($this->id."_vocabulary")->upsert($wordIds->toArray(), []);
 
-        var_dump($sets, true);
+        dd($sets, true);
     }
 
 }
