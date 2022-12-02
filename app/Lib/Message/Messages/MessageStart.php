@@ -45,15 +45,12 @@ class MessageStart extends Message{
             });
             // Subscribe new user to first top 100 tags
             $tagsSet = [
-                ['tag_id'=>'1', 'user_id'=> $this->id],
-                ['tag_id'=>'2', 'user_id'=> $this->id],
-                ['tag_id'=>'3', 'user_id'=> $this->id],
-                ['tag_id'=>'4', 'user_id'=> $this->id]
+                ['tag_id'=>'1', 'user_id'=> $this->id]
             ];
             TagUser::insert($tagsSet);
             // add words into user vocabulary table
             $wordsSet = [];
-            for($i=1; $i <= 400; $i++){
+            for($i=1; $i <= 20; $i++){
                 $wordsSet[$i] = ['word_id' => $i, 'points' => 0];
             }
             DB::table($this->id.'_vocabulary')->insert($wordsSet);
