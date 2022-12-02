@@ -25,6 +25,22 @@ class MessageNewWords extends Message {
     private function getWordSets(){
         $wordSets = Tag::orderBy('id')->get();
 
+/*
+        $words = DB::table('tags')
+        ->leftJoin('tag_users', 'tags.id', '=', 'tag_users.tag_id')
+        ->select('tags.*')
+        ->inRandomOrder()
+        ->take(5)
+        ->get();
+        return $words;
+
+Select      t1.*
+From        tags t1
+Left Join   tag_users t2  On  t1.id = t2.tag_id And t2.user_id = 494963311
+Where       t2.tag_id Is Null
+
+*/
+
         $text = __('telegram.ThereAreNew');
         foreach($wordSets as $set){
             $text .= $menu[] = "/".$set->id.") ". $set->tag_name."\r\n";

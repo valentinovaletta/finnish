@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 use Illuminate\Support\Facades\DB;
-use App\Models\TagWord;
+use App\Models\Tag;
 
 class Test extends Controller{
 
@@ -17,14 +17,23 @@ class Test extends Controller{
         echo '<h1>TEST</h1>';
         $this->id = 494963311;
 
-        //$wordIds = TagWord::where('tag_id', 5)->toSQL();
-        $wordIds = TagWord::select("word_id", DB::raw("0 as `points`") )
-        ->where('tag_id', '5')
-        ->get();
+        $sets = Tag::leftJoin('tag_users', function($join) {
+            $join->on('tags.id', '=', 'tag_users.tag_id')
+            ->on('tag_users.user_id', '=', $this->id);
+          })
+          ->whereNull('tag_users.tag_id')
+          ->inRandomOrder()
+          ->take(5)
+          ->get();
 
-        $upsert = DB::table($this->id."_vocabulary")->upsert($wordIds->toArray(), []);
+// Select      t1.*
+// From        tags t1
+// Left Join   tag_users t2  On  t1.id = t2.tag_id And t2.user_id = 494963311
+// Where       t2.tag_id Is Null
 
-        var_dump($upsert, true);
+        //$upsert = DB::table($this->id."_vocabulary")->upsert($wordIds->toArray(), []);
+
+        var_dump($sets, true);
     }
 
 }
