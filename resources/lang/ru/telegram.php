@@ -3,19 +3,19 @@
 return [
 
     'info' => "Привет!\r\nЭто информационное сообщение!\r\nОно из папки языков\r\nВаш id :id\r\nВаше имя :name\r\nВаш язык :lang",
-    'startGreetingNewUser' => "Hello, :name! You are a new user here!",
-    'startGreetingOldUser' => "Hello again, :name! You have :points points",
-    'startMessage' => ":greeting\r\nYou have some words in your vocabulary!\r\nYou can learn them, push /myWords\r\nIf you want to add new words set, push /newWords",
+    'startGreetingNewUser' => "Привет, :name! Вы новенький здесь!",
+    'startGreetingOldUser' => "Привет снова, :name! У вас есть :points очков",
+    'startMessage' => ":greeting\r\nУ вас есть новые слова в словаре!\r\nВы можете начать их учить, нажмите /myWords\r\nЕсли вы хотите добавить новую подборку слов, нажмите /newWords",
     'artisan' => "This is an Artisan message!\r\n:artisan",
-    'defaultNoCommand' => "There is no such command\r\ntry /myWords to repeat words.",
-    'defaultNoWordSet' => "There is no such Word Set",
-    'defaultAllWords' => "All words are in your Word Set. Do you want to repeat some /myWords ?",
-    'defaultUpsert' => "There are :upsert new words! Try /myWords",
-    'defaultSubscribed' => "Yes! You're subscribed on a new Word Set\r\n",
-    'defaultCorrect' => "Yeap! It is :answer!\r\nYou scored 5 points\r\nContinue /myWords ?",
-    'defaulIncorrect' => "Nope. You've lost a point!\r\nRight answer was :answer!\r\nContinue /myWords ?",
-    'myWordsWhatisit' => "\r\nWhat is it in Finnish?\r\n",
-    'ThereAreNew' => "There are new Sets of Words such as\r\n",
-    'ClickOnID' => "Click on Word Set Id to add new words to your vocabulary."
+    'defaultNoCommand' => "Такой команды нет\r\ntНажмите /myWords чтобы повторять слова.",
+    'defaultNoWordSet' => "Такой подборки слов нет",
+    'defaultAllWords' => "Все слова в вашем словаре. Вы хотите повторить их /myWords ?",
+    'defaultUpsert' => "Появилось :upsert Новых слов! Попробуйте /myWords",
+    'defaultSubscribed' => "Да! Вы подписаны на новый словарь\r\n",
+    'defaultCorrect' => "Ура! Это :answer!\r\nВы заработали 5 очков\r\nПродолжим /myWords ?",
+    'defaulIncorrect' => "Нет. Вы потеряли 1 очко!\r\nПравильный ответ был :answer!\r\nПродолжим /myWords ?",
+    'myWordsWhatisit' => "\r\nЧто это на Английском?\r\n",
+    'ThereAreNew' => "Есть такие подборки новых слов\r\n",
+    'ClickOnID' => "Кликните на номере словаря, чтобы добавить его к себе"
 
 ];
