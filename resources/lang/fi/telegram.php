@@ -5,7 +5,7 @@ return [
     'info' => "Terve!\r\nTämä on tiedotusviesti!\r\nSe on Langin kansiosta.\r\nSinun id on :id\r\nSinun nimi on :name\r\nSinun kieli on :lang",
     'startGreetingNewUser' => "Hello, :name! You are a new user here!",
     'startGreetingOldUser' => "Hello again, :name! You have :points points",
-    'startMessage' => ":greeting\r\nYou have some words in your vocabulary!\r\nYou can learn them, push /myWord\r\nIf you want to add new words set, push /newWords",
+    'startMessage' => ":greeting\r\nYou have some words in your vocabulary!\r\nYou can learn them, push /myWords\r\nIf you want to add new words set, push /newWords",
     'artisan' => "This is an Artisan message!\r\n:artisan",
     'defaultNoCommand' => "There is no such command\r\ntry /myWords to repeat words.",
     'defaultNoWordSet' => "There is no such Word Set",
