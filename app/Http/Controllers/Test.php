@@ -26,14 +26,12 @@ class Test extends Controller{
           ->take(5)
           ->toSQL();
 
+        print_r($sets);  
 // Select      t1.*
 // From        tags t1
 // Left Join   tag_users t2  On  t1.id = t2.tag_id And t2.user_id = 494963311
 // Where       t2.tag_id Is Null
 
-        //$upsert = DB::table($this->id."_vocabulary")->upsert($wordIds->toArray(), []);
-
-        dd($sets, true);
     }
 
 }
