@@ -22,10 +22,11 @@ class Test extends Controller{
             ->on('tag_users.user_id', '=', DB::raw($this->id));
           })
           ->whereNull('tag_users.tag_id')
+          ->select('tags.id, tags.tag_name')
           ->inRandomOrder()
           ->take(5)
           ->get();
-        dd(DB::getQueryLog());
+        //dd(DB::getQueryLog());
         print_r($sets);  
 // Select      t1.*
 // From        tags t1
