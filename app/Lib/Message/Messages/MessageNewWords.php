@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Lib\Message\Messages;
+use Illuminate\Support\Facades\DB;
 
 use App\Models\Tag;
 use App\Models\Cache;
@@ -23,23 +24,16 @@ class MessageNewWords extends Message {
     }
 
     private function getWordSets(){
-        $wordSets = Tag::orderBy('id')->get();
-
-/*
-        $words = DB::table('tags')
-        ->leftJoin('tag_users', 'tags.id', '=', 'tag_users.tag_id')
-        ->select('tags.*')
-        ->inRandomOrder()
-        ->take(5)
-        ->get();
-        return $words;
-
-Select      t1.*
-From        tags t1
-Left Join   tag_users t2  On  t1.id = t2.tag_id And t2.user_id = 494963311
-Where       t2.tag_id Is Null
-
-*/
+        //$wordSets = Tag::orderBy('id')->get();
+        $wordSets = Tag::leftJoin('tag_users', function($join) {
+            $join->on('tags.id', '=', 'tag_users.tag_id')
+            ->on('tag_users.user_id', '=', DB::raw($this->id));
+          })
+          ->whereNull('tag_users.tag_id')
+          ->select('tags.id', 'tags.tag_name')
+          ->inRandomOrder()
+          ->take(5)
+          ->get();
 
         $text = __('telegram.ThereAreNew');
         foreach($wordSets as $set){
