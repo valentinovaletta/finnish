@@ -24,7 +24,7 @@ class Test extends Controller{
           ->whereNull('tag_users.tag_id')
           ->inRandomOrder()
           ->take(5)
-          ->toSQL();
+          ->get();
 
         print_r($sets);  
 // Select      t1.*
