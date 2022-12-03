@@ -14,8 +14,8 @@ return [
     'defaultSubscribed' => "Да! Вы подписаны на новый словарь\r\n",
     'defaultCorrect' => "Ура! Это :answer!\r\nВы заработали 5 очков\r\nПродолжим /myWords ?",
     'defaulIncorrect' => "Нет. Вы потеряли 1 очко!\r\nПравильный ответ был :answer!\r\nПродолжим /myWords ?",
-    'myWordsWhatisitEnFi' => "\r\nЧто это на Английском?\r\n",
-    'myWordsWhatisitFiEn' => "\r\nЧто это на Русском?\r\n",    
+    'myWordsWhatisitEnFi' => "\r\nЧто это на Русском?\r\n",
+    'myWordsWhatisitFiEn' => "\r\nЧто это на Английском?\r\n",    
     'ThereAreNew' => "Есть такие подборки новых слов\r\n",
     'ClickOnID' => "Кликните на номере словаря, чтобы добавить его к себе"
 

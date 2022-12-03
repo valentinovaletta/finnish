@@ -14,8 +14,8 @@ return [
     'defaultSubscribed' => "Yes! You're subscribed on a new Word Set\r\n",
     'defaultCorrect' => "Yeap! It is :answer!\r\nYou scored 5 points\r\nContinue /myWords ?",
     'defaulIncorrect' => "Nope. You've lost a point!\r\nRight answer was :answer!\r\nContinue /myWords ?",
-    'myWordsWhatisitEnFi' => "\r\nWhat is it in English?\r\n",
-    'myWordsWhatisitFiEn' => "\r\nWhat is it in Finnish?\r\n",
+    'myWordsWhatisitEnFi' => "\r\nWhat is it in Finnish?\r\n",
+    'myWordsWhatisitFiEn' => "\r\nWhat is it in English?\r\n",
     'ThereAreNew' => "There are new Sets of Words such as\r\n",
     'ClickOnID' => "Click on Word Set Id to add new words to your vocabulary."
 
