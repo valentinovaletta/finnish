@@ -62,7 +62,7 @@ class MessageMyWords extends Message{
 
         // form a question and answers
         $text = $rightAnsweren."\r\n(".$rightAnswerPos.") [".$rightAnswerTs."] \r\n";
-        $text .= __('telegram.myWordsWhatisit');
+        $text .= __('telegram.myWordsWhatisitEnFi');
 
         foreach($answers as $key => $value){
             $text .= $menu[] = preg_replace('/{n}/i', ++$key, $value);
@@ -99,7 +99,7 @@ class MessageMyWords extends Message{
 
         // form a question and answers
         $text = $rightAnswerfi."\r\n";
-        $text .= "\r\nWhat is it in English?\r\n";
+        $text .= __('telegram.myWordsWhatisitFiEn');
         
         foreach($answers as $key => $value){
             $text .= $menu[] = preg_replace('/{n}/i', ++$key, $value);
