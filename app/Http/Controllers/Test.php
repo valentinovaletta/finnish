@@ -27,7 +27,11 @@ class Test extends Controller{
           ->take(5)
           ->get();
         //dd(DB::getQueryLog());
-        print_r($sets);  
+        //print_r($sets);  
+        foreach($sets as $set){
+            echo $set->id, $set->name;
+        }
+        
 // Select      t1.*
 // From        tags t1
 // Left Join   tag_users t2  On  t1.id = t2.tag_id And t2.user_id = 494963311
