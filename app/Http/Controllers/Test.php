@@ -9,7 +9,7 @@ class Test extends Controller{
     private $id;
 
     public function index(){
-
+        DB::enableQueryLog();
         error_reporting(0);
         error_reporting(E_ALL);
         ini_set('error_reporting', E_ALL);
@@ -25,7 +25,7 @@ class Test extends Controller{
           ->inRandomOrder()
           ->take(5)
           ->get();
-
+        dd(DB::getQueryLog());
         print_r($sets);  
 // Select      t1.*
 // From        tags t1
