@@ -34,7 +34,7 @@ class CreateImage {
     public function saveNewWordInDb(){
 
         if( $this->ex != ''){
-            Endictionary::where('id', $this->id)->update(['ex' => $this->examples, 'status' => 1]);
+            Endictionary::where('id', $this->id)->update(['ex' => $this->ex, 'status' => 1]);
         }
 
     }
