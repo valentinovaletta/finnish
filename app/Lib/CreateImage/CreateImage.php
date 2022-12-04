@@ -33,6 +33,9 @@ class CreateImage {
 
     private function getYandexApiDictionary($word){
         $dictionaryJson = $this->CallDictionaryApi("https://dictionary.yandex.net/api/v1/dicservice.json/lookup?key=dict.1.1.20220605T165718Z.d29bca9ff5cc7d61.ae331150aaba52f73b5ad4d8bce3564ea9028917&lang=en-en&text=".urlencode(trim($word)));
+        
+        print_r($dictionaryJson);
+        
         return isset($dictionaryJson['def'][0]['tr'][0]['ex'][0]['text']) ? $dictionaryJson['def'][0]['tr'][0]['ex'][0]['text'] : '';
     }
 
