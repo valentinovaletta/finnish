@@ -32,13 +32,12 @@ class CreateImage {
         $imgUrl = $newWord->first()->img;
     
         $img = Image::make($imgUrl);
-        $img->text($word, 120, 100, function($font) {
+        $img->text($word, function($font) {
             $font->file(public_path('fonts/ubuntu.ttf'));
             $font->size(76);
             $font->color('#e1e1e1');
             $font->align('center');
             $font->valign('bottom');
-            $font->angle(90);
         });  
     
            $img->save(public_path("images/$word.jpg"));  
