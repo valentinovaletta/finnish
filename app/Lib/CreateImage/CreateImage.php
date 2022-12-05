@@ -43,19 +43,19 @@ class CreateImage {
         });
 
         $img->text($word, 200, 100, function($font) {
-            $font->file(public_path('fonts/ubuntu.ttf'));
+            $font->file(public_path('fonts/ubuntu.otf'));
             $font->size(76);
             $font->color( $this->color );
             $font->align('center');
         });  
         $img->text("[$ts] ($pos)", 200, 150, function($font) {
-            $font->file(public_path('fonts/ubuntu.ttf'));
+            $font->file(public_path('fonts/ubuntu.otf'));
             $font->size(56);
             $font->color( $this->color );
             $font->align('center');
         });
         $img->text($ex, 200, 200, function($font) {
-            $font->file(public_path('fonts/ubuntu.ttf'));
+            $font->file(public_path('fonts/ubuntu.otf'));
             $font->size(56);
             $font->color( $this->color );
             $font->align('center');
