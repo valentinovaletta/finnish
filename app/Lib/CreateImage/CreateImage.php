@@ -3,6 +3,7 @@
 namespace App\Lib\CreateImage;
 
 use App\Models\EnDictionary;
+use Image;
 
 class CreateImage {
 
@@ -19,6 +20,28 @@ class CreateImage {
         $newWord = EnDictionary::inRandomOrder()->where('status', 0)->limit(1)->get();
         $this->id = $newWord->first()->id;
         return $newWord->first()->word;
+    }
+
+    public function createImage(){
+        $newWord = EnDictionary::inRandomOrder()->where('status', 1)->limit(1)->get();
+
+        $word = $newWord->first()->word;
+        $ts = $newWord->first()->ts;
+        $pos = $newWord->first()->pos;
+        $ex = $newWord->first()->ex;
+        $imgUrl = $newWord->first()->img;
+    
+        $img = Image::make($imgUrl);
+        $img->text($word, 120, 100, function($font) {
+            //$font->file(public_path('font.ttf'));
+            $font->size(28);  
+            $font->color('#e1e1e1');  
+            $font->align('center');  
+            $font->valign('bottom');  
+            $font->angle(90);
+        });  
+    
+           $img->save(public_path('images/hardik3.jpg'));  
     }
 
     public function show(){
