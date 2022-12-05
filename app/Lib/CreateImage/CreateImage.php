@@ -38,7 +38,7 @@ class CreateImage {
         $arraycolor = $img->pickColor(100, 100);
         $this->color = $this->rgb_best_contrast($arraycolor[0],$arraycolor[1],$arraycolor[2]);
 
-        $img->scale(1600, 1600, function ($constraint) {
+        $img->resize(1600, 1600, function ($constraint) {
             $constraint->aspectRatio();
             $constraint->upsize();
         });
