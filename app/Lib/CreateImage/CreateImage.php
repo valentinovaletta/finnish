@@ -11,6 +11,8 @@ class CreateImage {
     private $word;
     private $ex;
 
+    private $color;
+
     public function __construct() {
         $this->word = $this->getWordFromDB();
         $this->ex = $this->getYandexApiDictionary( substr($this->word, 2) );
@@ -32,15 +34,31 @@ class CreateImage {
         $imgUrl = $newWord->first()->img;
     
         $img = Image::make($imgUrl);
-        $img->text($word, 100, 100, function($font) {
+
+        $arraycolor = $img->pickColor(100, 100);
+        $this->color = $this->rgb_best_contrast($arraycolor[0],$arraycolor[1],$arraycolor[2]);
+
+        $img->text($word, 200, 300, function($font) {
             $font->file(public_path('fonts/ubuntu.ttf'));
             $font->size(76);
-            $font->color('#e1e1e1');
+            $font->color( $this->color );
             $font->align('center');
             $font->valign('bottom');
         });  
-    
-           $img->save(public_path("images/$word.jpg"));  
+
+        $img->resize(400, 400, function ($constraint) {
+            $constraint->aspectRatio();
+            $constraint->upsize();
+        });
+        $img->save(public_path("images/$word.jpg"));  
+    }
+
+    private function rgb_best_contrast($r, $g, $b) {
+        return array(
+            ($r < 128) ? 255 : 0,
+            ($g < 128) ? 255 : 0,
+            ($b < 128) ? 255 : 0
+        );
     }
 
     public function show(){
