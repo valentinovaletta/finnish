@@ -38,9 +38,8 @@ class CreateImage {
         $arraycolor = $img->pickColor(100, 100);
         $this->color = $this->rgb_best_contrast($arraycolor[0],$arraycolor[1],$arraycolor[2]);
 
-        $img->resize(1600, 1600, function ($constraint) {
+        $img->resize(null, 800, function ($constraint) {
             $constraint->aspectRatio();
-            $constraint->upsize();
         });
 
         $img->text($word, 200, 300, function($font) {
@@ -61,6 +60,11 @@ class CreateImage {
             $font->color( $this->color );
             $font->align('center');
         });
+
+        $img->resize(null, 800, function ($constraint) {
+            $constraint->aspectRatio();
+        });
+
         $img->save(public_path("images/$word.jpg"));  
     }
 
