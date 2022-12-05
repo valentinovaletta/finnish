@@ -12,7 +12,7 @@ class CreateImage {
 
     public function __construct() {
         $this->word = $this->getWordFromDB();
-        $this->ex = $this->getYandexApiDictionary($this->word);
+        $this->ex = $this->getYandexApiDictionary( substr($this->word, 2) );
     }
 
     private function getWordFromDB(){
