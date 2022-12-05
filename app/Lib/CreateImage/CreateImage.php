@@ -3,6 +3,8 @@
 namespace App\Lib\CreateImage;
 
 use App\Models\EnDictionary;
+use App\Models\FiDictionary;
+
 use Image;
 
 class CreateImage {
@@ -25,13 +27,15 @@ class CreateImage {
     }
 
     public function createImage(){
-        $newWord = EnDictionary::inRandomOrder()->where('status', 1)->limit(1)->get();
+        $enWord = EnDictionary::inRandomOrder()->where('status', 1)->limit(1)->get();
+        $ruWord = EnDictionary::where('id', $enWord->first()->id )->get();
 
-        $word = $newWord->first()->word;
-        $ts = $newWord->first()->ts;
-        $pos = $newWord->first()->pos;
-        $ex = $newWord->first()->ex;
-        $imgUrl = $newWord->first()->img;
+        $word = $enWord->first()->word;
+        $ruWord = $ruWord->first()->word;
+        $ts = $enWord->first()->ts;
+        $pos = $enWord->first()->pos;
+        $ex = $enWord->first()->ex;
+        $imgUrl = $enWord->first()->img;
     
         $img = Image::make($imgUrl);
 
@@ -44,13 +48,19 @@ class CreateImage {
 
         $img->text($word, 400, 100, function($font) {
             $font->file(public_path('fonts/ubuntu.otf'));
-            $font->size(60);
+            $font->size(46);
             $font->color( $this->color );
             $font->align('center');
         });  
-        $img->text($ex, 400, 150, function($font) {
+        $img->text($ruWord, 400, 150, function($font) {
             $font->file(public_path('fonts/ubuntu.otf'));
             $font->size(46);
+            $font->color( $this->color );
+            $font->align('center');
+        });        
+        $img->text($ex, 400, 200, function($font) {
+            $font->file(public_path('fonts/ubuntu.otf'));
+            $font->size(40);
             $font->color( $this->color );
             $font->align('center');
         });
