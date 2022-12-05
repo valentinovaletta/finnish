@@ -33,15 +33,15 @@ class CreateImage {
     
         $img = Image::make($imgUrl);
         $img->text($word, 120, 100, function($font) {
-            //$font->file(public_path('font.ttf'));
-            $font->size(28);  
-            $font->color('#e1e1e1');  
-            $font->align('center');  
-            $font->valign('bottom');  
+            $font->file(public_path('fonts/ubuntu.ttf'));
+            $font->size(76);
+            $font->color('#e1e1e1');
+            $font->align('center');
+            $font->valign('bottom');
             $font->angle(90);
         });  
     
-           $img->save(public_path('images/hardik3.jpg'));  
+           $img->save(public_path("images/$word.jpg"));  
     }
 
     public function show(){
