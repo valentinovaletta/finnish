@@ -38,6 +38,11 @@ class CreateImage {
         $arraycolor = $img->pickColor(100, 100);
         $this->color = $this->rgb_best_contrast($arraycolor[0],$arraycolor[1],$arraycolor[2]);
 
+        $img->scale(1600, 1600, function ($constraint) {
+            $constraint->aspectRatio();
+            $constraint->upsize();
+        });
+
         $img->text($word, 200, 300, function($font) {
             $font->file(public_path('fonts/ubuntu.ttf'));
             $font->size(76);
@@ -55,11 +60,6 @@ class CreateImage {
             $font->size(56);
             $font->color( $this->color );
             $font->align('center');
-        });       
-
-        $img->resize(1600, 1600, function ($constraint) {
-            $constraint->aspectRatio();
-            $constraint->upsize();
         });
         $img->save(public_path("images/$word.jpg"));  
     }
