@@ -47,19 +47,19 @@ class CreateImage {
         });
 
         $img->text($word, 400, 100, function($font) {
-            $font->file(public_path('fonts/ubuntu.otf'));
+            $font->file(public_path('fonts/ubuntu.ttf'));
             $font->size(46);
             $font->color( $this->color );
             $font->align('center');
         });  
         $img->text($ruWord, 400, 150, function($font) {
-            $font->file(public_path('fonts/ubuntu.otf'));
+            $font->file(public_path('fonts/ubuntu.ttf'));
             $font->size(46);
             $font->color( $this->color );
             $font->align('center');
         });        
         $img->text($ex, 400, 200, function($font) {
-            $font->file(public_path('fonts/ubuntu.otf'));
+            $font->file(public_path('fonts/ubuntu.ttf'));
             $font->size(40);
             $font->color( $this->color );
             $font->align('center');
