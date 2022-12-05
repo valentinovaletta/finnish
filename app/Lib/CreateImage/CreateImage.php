@@ -28,7 +28,7 @@ class CreateImage {
 
     public function createImage(){
         $enWord = EnDictionary::inRandomOrder()->where('status', 1)->limit(1)->get();
-        $ruWord = EnDictionary::where('id', $enWord->first()->id )->get();
+        $ruWord = FiDictionary::where('id', $enWord->first()->id )->get();
 
         $word = $enWord->first()->word;
         $ruWord = $ruWord->first()->word;
@@ -42,7 +42,7 @@ class CreateImage {
         $arraycolor = $img->pickColor(100, 100);
         $this->color = $this->rgb_best_contrast($arraycolor[0],$arraycolor[1],$arraycolor[2]);
 
-        $img->resize(null, 800, function ($constraint) {
+        $img->resize(800, 800, function ($constraint) {
             $constraint->aspectRatio();
         });
 
