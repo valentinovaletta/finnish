@@ -43,10 +43,21 @@ class CreateImage {
             $font->size(76);
             $font->color( $this->color );
             $font->align('center');
-            $font->valign('bottom');
         });  
+        $img->text("[$ts] ($pos)", 200, 400, function($font) {
+            $font->file(public_path('fonts/ubuntu.ttf'));
+            $font->size(56);
+            $font->color( $this->color );
+            $font->align('center');
+        });
+        $img->text($ex, 200, 500, function($font) {
+            $font->file(public_path('fonts/ubuntu.ttf'));
+            $font->size(56);
+            $font->color( $this->color );
+            $font->align('center');
+        });       
 
-        $img->resize(800, 800, function ($constraint) {
+        $img->resize(1600, 1600, function ($constraint) {
             $constraint->aspectRatio();
             $constraint->upsize();
         });
