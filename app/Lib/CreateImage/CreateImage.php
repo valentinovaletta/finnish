@@ -36,33 +36,23 @@ class CreateImage {
         $img = Image::make($imgUrl);
 
         $arraycolor = $img->pickColor(100, 100);
-        $this->color = '#000';//$this->rgb_best_contrast($arraycolor[0],$arraycolor[1],$arraycolor[2]);
+        $this->color = $this->rgb_best_contrast($arraycolor[0],$arraycolor[1],$arraycolor[2]);
 
         $img->resize(null, 800, function ($constraint) {
             $constraint->aspectRatio();
         });
 
-        $img->text($word, 200, 100, function($font) {
+        $img->text($word, 400, 100, function($font) {
             $font->file(public_path('fonts/ubuntu.otf'));
-            $font->size(76);
+            $font->size(60);
             $font->color( $this->color );
             $font->align('center');
         });  
-        $img->text("[$ts] ($pos)", 200, 150, function($font) {
+        $img->text($ex, 400, 150, function($font) {
             $font->file(public_path('fonts/ubuntu.otf'));
-            $font->size(56);
+            $font->size(46);
             $font->color( $this->color );
             $font->align('center');
-        });
-        $img->text($ex, 200, 200, function($font) {
-            $font->file(public_path('fonts/ubuntu.otf'));
-            $font->size(56);
-            $font->color( $this->color );
-            $font->align('center');
-        });
-
-        $img->resize(null, 800, function ($constraint) {
-            $constraint->aspectRatio();
         });
 
         $img->save(public_path("images/$word.jpg"));  
