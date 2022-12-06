@@ -44,7 +44,7 @@ class CreateImage {
         }
         $img = Image::make($imgUrl);
 
-        $img->rectangle(0, 25, 800, 25, function ($draw) {
+        $img->rectangle(0, 775, 800, 800, function ($draw) {
             $draw->background('#000');
         });
 
