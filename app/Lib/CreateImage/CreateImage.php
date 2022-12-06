@@ -40,44 +40,28 @@ class CreateImage {
         if( $unsplashImg != '' ){
             $imgUrl = $unsplashImg;
         }
-        echo $imgUrl.'<br/>';
         $img = Image::make($imgUrl);
 
-        $arraycolor = $img->pickColor(100, 100);
-        $this->color = $this->rgb_best_contrast($arraycolor[0],$arraycolor[1],$arraycolor[2]);
-
-        $img->resize(800, 800, function ($constraint) {
-            $constraint->aspectRatio();
-        });
-
-        $img->text($word, 100, 100, function($font) {
+        $img->text($word, 10, 100, function($font) {
             $font->file(public_path('fonts/ubuntu.ttf'));
             $font->size(46);
-            $font->color( $this->color );
+            $font->color( '#000' );
             $font->align('left');
         });  
-        $img->text($ruWord, 100, 150, function($font) {
+        $img->text($ruWord, 10, 150, function($font) {
             $font->file(public_path('fonts/ubuntu.ttf'));
             $font->size(46);
-            $font->color( $this->color );
+            $font->color( '#000' );
             $font->align('left');
         });        
-        $img->text($ex, 100, 200, function($font) {
+        $img->text($ex, 10, 200, function($font) {
             $font->file(public_path('fonts/ubuntu.ttf'));
             $font->size(40);
-            $font->color( $this->color );
+            $font->color( '#000' );
             $font->align('left');
         });
 
         $img->save(public_path("images/$word.jpg"));  
-    }
-
-    private function rgb_best_contrast($r, $g, $b) {
-        return array(
-            ($r < 128) ? 255 : 0,
-            ($g < 128) ? 255 : 0,
-            ($b < 128) ? 255 : 0
-        );
     }
 
     public function show(){
