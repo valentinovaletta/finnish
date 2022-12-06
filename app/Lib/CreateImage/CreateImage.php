@@ -76,7 +76,7 @@ class CreateImage {
     }
 
     public function saveNewWordInDb(){
-        Endictionary::where('id', $this->id)->update(['ex' => $this->ex, 'status' => 1]);
+        Endictionary::where('id', $this->id)->update(['status' => 1]);
     }
 
     private function GetImgUnsplashApi($word){
