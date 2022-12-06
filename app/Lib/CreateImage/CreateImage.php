@@ -54,19 +54,19 @@ class CreateImage {
             $font->file(public_path('fonts/ubuntu.ttf'));
             $font->size(46);
             $font->color( $this->color );
-            $font->align('center');
+            $font->align('left');
         });  
         $img->text($ruWord, 100, 150, function($font) {
             $font->file(public_path('fonts/ubuntu.ttf'));
             $font->size(46);
             $font->color( $this->color );
-            $font->align('center');
+            $font->align('left');
         });        
         $img->text($ex, 100, 200, function($font) {
             $font->file(public_path('fonts/ubuntu.ttf'));
             $font->size(40);
             $font->color( $this->color );
-            $font->align('center');
+            $font->align('left');
         });
 
         $img->save(public_path("images/$word.jpg"));  
