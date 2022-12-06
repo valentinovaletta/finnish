@@ -44,12 +44,12 @@ class CreateImage {
         }
         $img = Image::make($imgUrl);
 
-        $img->rectangle(0, 725, 800, 800, function ($draw) {
+        $img->rectangle(0, 735, 800, 800, function ($draw) {
             $draw->background('#000');
         });
 
         $img->text($word." - ".$ruWord, 10, 785, function($font) {
-            $font->file(public_path('fonts/ubuntu.ttf'));
+            $font->file(public_path('fonts/'.rand(1,4).'.ttf'));
             $font->size(36);
             $font->color( '#fff' );
             $font->align('left');
