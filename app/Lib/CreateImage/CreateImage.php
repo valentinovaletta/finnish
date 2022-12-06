@@ -44,9 +44,8 @@ class CreateImage {
         }
         $img = Image::make($imgUrl);
 
-        $img->line(0, 25, 800, 25, function ($draw) {
-            $draw->color('#000');
-            $draw->width(25);
+        $img->rectangle(0, 25, 800, 25, function ($draw) {
+            $draw->background('#000');
         });
 
         $img->text($word." - ".$ruWord, 10, 775, function($font) {
