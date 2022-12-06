@@ -44,11 +44,16 @@ class CreateImage {
         }
         $img = Image::make($imgUrl);
 
+        // resize the image to a width of 300 and constrain aspect ratio (auto height)
+        $img->resize(800, null, function ($constraint) {
+            $constraint->aspectRatio();
+        });
+
         $img->rectangle(0, 0, 800, 65, function ($draw) {
             $draw->background('#000');
         });
 
-        $img->text($word." - ".$ruWord, 10, 10, function($font) {
+        $img->text($word." - ".$ruWord, 10, 50, function($font) {
             $font->file(public_path('fonts/'.rand(2,4).'.ttf'));
             $font->size(36);
             $font->color( '#fff' );
