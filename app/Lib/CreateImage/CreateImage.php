@@ -40,7 +40,7 @@ class CreateImage {
         if( $unsplashImg != '' ){
             $imgUrl = $unsplashImg;
         }
-
+        echo $imgUrl.'<br/>';
         $img = Image::make($imgUrl);
 
         $arraycolor = $img->pickColor(100, 100);
@@ -105,7 +105,6 @@ class CreateImage {
             $img = false;
         }
 
-        $img = str_replace("%body%", "black", "<body text='%body%'>");
         $img = str_replace("w=400", "w=800", $img);
 
         return $img;
