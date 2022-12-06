@@ -28,6 +28,7 @@ class CreateImage {
         $enWord = EnDictionary::inRandomOrder()->where('status', 0)->limit(1)->get();
         $ruWord = FiDictionary::where('id', $enWord->first()->id )->get();
 
+        $this->id = $enWord->first()->id;
         $word = $enWord->first()->word;
         $ruWord = $ruWord->first()->word;
         $ts = $enWord->first()->ts;
