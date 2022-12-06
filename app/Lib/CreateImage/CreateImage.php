@@ -16,8 +16,6 @@ class CreateImage {
     private $color;
 
     public function __construct() {
-        $this->word = $this->getWordFromDB();
-        $this->ex = $this->getYandexApiDictionary( substr($this->word, 2) );
     }
 
     private function getWordFromDB(){
@@ -27,7 +25,7 @@ class CreateImage {
     }
 
     public function createImage(){
-        $enWord = EnDictionary::inRandomOrder()->where('status', 1)->limit(1)->get();
+        $enWord = EnDictionary::inRandomOrder()->where('status', 0)->limit(1)->get();
         $ruWord = FiDictionary::where('id', $enWord->first()->id )->get();
 
         $word = $enWord->first()->word;
@@ -37,6 +35,12 @@ class CreateImage {
         $ex = $enWord->first()->ex;
         $imgUrl = $enWord->first()->img;
     
+        $unsplashImg = $this->GetImgUnsplashApi( $enWord->first()->word );
+
+        if( $unsplashImg != '' ){
+            $imgUrl = $unsplashImg;
+        }
+
         $img = Image::make($imgUrl);
 
         $arraycolor = $img->pickColor(100, 100);
@@ -46,19 +50,19 @@ class CreateImage {
             $constraint->aspectRatio();
         });
 
-        $img->text($word, 400, 100, function($font) {
+        $img->text($word, 100, 100, function($font) {
             $font->file(public_path('fonts/ubuntu.ttf'));
             $font->size(46);
             $font->color( $this->color );
             $font->align('center');
         });  
-        $img->text($ruWord, 400, 150, function($font) {
+        $img->text($ruWord, 100, 150, function($font) {
             $font->file(public_path('fonts/ubuntu.ttf'));
             $font->size(46);
             $font->color( $this->color );
             $font->align('center');
         });        
-        $img->text($ex, 400, 200, function($font) {
+        $img->text($ex, 100, 200, function($font) {
             $font->file(public_path('fonts/ubuntu.ttf'));
             $font->size(40);
             $font->color( $this->color );
@@ -90,10 +94,21 @@ class CreateImage {
         Endictionary::where('id', $this->id)->update(['ex' => $this->ex, 'status' => 1]);
     }
 
-    private function getYandexApiDictionary($word){
-        $dictionaryJson = $this->CallDictionaryApi("https://dictionary.yandex.net/api/v1/dicservice.json/lookup?key=dict.1.1.20220605T165718Z.d29bca9ff5cc7d61.ae331150aaba52f73b5ad4d8bce3564ea9028917&lang=en-ru&text=".urlencode(trim($word)));
-        //print_r($dictionaryJson);
-        return isset($dictionaryJson['def'][0]['tr'][0]['ex'][0]['text']) ? $dictionaryJson['def'][0]['tr'][0]['ex'][0]['text'] : '';
+    private function GetImgUnsplashApi($word){
+        $UnsplashResponce = $this->CallDictionaryApi("https://api.unsplash.com/search/photos/?client_id=3d5fKAxk_gmo9I8XI20kCQWf0j0r1foLd6E7kuLaq0k&page=1&per_page=1&orientation=squarish&query=".$word);
+
+        //print_r("https://api.unsplash.com/search/photos/?client_id=3d5fKAxk_gmo9I8XI20kCQWf0j0r1foLd6E7kuLaq0k&page=1&per_page=1&query=".$word);
+
+        if( array_key_exists('results', $UnsplashResponce) && $UnsplashResponce['total'] > 0 ){
+            $img = $UnsplashResponce['results'][0]['urls']['small'];
+        } else {
+            $img = false;
+        }
+
+        $img = str_replace("%body%", "black", "<body text='%body%'>");
+        $img = str_replace("w=400", "w=800", $img);
+
+        return $img;
     }
 
     private function CallDictionaryApi($url){
