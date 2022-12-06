@@ -44,24 +44,17 @@ class CreateImage {
         }
         $img = Image::make($imgUrl);
 
-        $img->text($word, 10, 100, function($font) {
+        $img->line(0, 25, 800, 25, function ($draw) {
+            $draw->color('#000');
+            $draw->width(25);
+        });
+
+        $img->text($word." - ".$ruWord, 10, 775, function($font) {
             $font->file(public_path('fonts/ubuntu.ttf'));
-            $font->size(40);
+            $font->size(36);
             $font->color( '#fff' );
             $font->align('left');
         });  
-        $img->text($ruWord, 10, 160, function($font) {
-            $font->file(public_path('fonts/ubuntu.ttf'));
-            $font->size(40);
-            $font->color( '#fff' );
-            $font->align('left');
-        });        
-        $img->text($ex, 10, 210, function($font) {
-            $font->file(public_path('fonts/ubuntu.ttf'));
-            $font->size(40);
-            $font->color( '#fff' );
-            $font->align('left');
-        });
 
         $img->save(public_path("images/$word.jpg"));  
     }
