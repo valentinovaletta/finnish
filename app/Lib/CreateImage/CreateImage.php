@@ -34,8 +34,9 @@ class CreateImage {
         $pos = $enWord->first()->pos;
         $ex = $enWord->first()->ex;
         $imgUrl = $enWord->first()->img;
-    
-        $unsplashImg = $this->GetImgUnsplashApi( $enWord->first()->word );
+
+        $unsplashWord = explode(" ", $enWord->first()->word );
+        $unsplashImg = trim($this->GetImgUnsplashApi( end($unsplashWord) ));
 
         if( $unsplashImg != '' ){
             $imgUrl = $unsplashImg;
