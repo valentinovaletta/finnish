@@ -28,7 +28,7 @@ class Example extends Controller{
         $imagesInfo = $images->getImageInfo(9);
 
         foreach($imagesInfo as $img){
-            $imgs[] = public_path("images/".trim($img->word).".jpg");
+            $imgs[] = "https://enru.arcadepub.ru/images/$img->word.jpg";
         }
 
         // $imgs = [
