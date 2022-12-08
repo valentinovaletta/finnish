@@ -23,6 +23,7 @@ Route::get('/test',  [Test::class, 'index']);
 Route::get('/newword',  [NewWord::class, 'index']);
 Route::get('/newenfi',  [NewEnFi::class, 'index']);
 Route::get('/example',  [Example::class, 'index']);
+Route::get('/vk',  [Example::class, 'vk']);
 
 Route::get('/', function () {
     return view('welcome');
