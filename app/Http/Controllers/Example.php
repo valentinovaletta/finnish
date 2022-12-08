@@ -30,13 +30,6 @@ class Example extends Controller{
         foreach($imagesInfo as $img){
             $imgs[] = "https://enru.arcadepub.ru/images/$img->word.jpg";
         }
-
-        // $imgs = [
-        //     0 => 'https://www.google.ru/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png',
-        //     1 => 'https://www.google.ru/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png'
-        // ];
-
-        dd($imgs);
         
         $upload_server = $vk->photosGetWallUploadServer($group_id);
 
