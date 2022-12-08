@@ -36,6 +36,8 @@ class Example extends Controller{
         //     1 => 'https://www.google.ru/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png'
         // ];
 
+        dd($imgs);
+        
         $upload_server = $vk->photosGetWallUploadServer($group_id);
 
         foreach($imgs as $img){
