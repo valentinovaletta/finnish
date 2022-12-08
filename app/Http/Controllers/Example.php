@@ -25,9 +25,9 @@ class Example extends Controller{
         $vk = new Vk($token);
         $images = NEW CreateImage();
 
-        $images->getImageInfo(9);
+        $imagesInfo = $images->getImageInfo(9);
 
-        foreach($images as $img){
+        foreach($imagesInfo as $img){
             $imgs[] = public_path("images/$img->word.jpg");
         }
 
