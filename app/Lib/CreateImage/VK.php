@@ -5,7 +5,7 @@ namespace App\Lib\CreateImage;
 class VK {
 
         private $token;
-        private $v = '5.37';
+        private $v = '5.81';
     
         public function __construct($token)
         {
