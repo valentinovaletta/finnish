@@ -20,13 +20,16 @@ class Example extends Controller{
         $group_id = '212716589';
         $vk = new Vk($token);
         
-        $image_path = 'image.png';
-        copy('https://www.google.ru/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png', 'image.png');
-        
+        $imgs = [
+            0 => 'https://www.google.ru/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png',
+            1 => 'https://www.google.ru/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png'
+        ];
+
         $upload_server = $vk->photosGetWallUploadServer($group_id);
-        var_dump($upload_server);
-        $upload = $vk->uploadFile($upload_server['upload_url'], $image_path);
+
+        $upload = $vk->uploadFile($upload_server['upload_url'], $imgs[0]);
         var_dump($upload);
+
         $save = $vk->photosSaveWallPhoto([
                 'group_id' => $group_id,
                 'photo' => $upload['photo'],
@@ -34,7 +37,7 @@ class Example extends Controller{
                 'hash' => $upload['hash']
             ]
         );
-        var_dump($save);
+        //var_dump($save);
         $attachments = sprintf('photo%s_%s', $save[0]['owner_id'], $save[0]['id']);
         
         
