@@ -22,7 +22,16 @@ class Example extends Controller{
         $j = 0;
         $attachments='';
         $vk = new Vk($token);
-        
+        $images = NEW CreateImage();
+
+        $images->getImageInfo(9);
+
+        foreach($images as $img){
+            $imgs[] = public_path("images/$img->word.jpg");
+        }
+
+        dd($imgs);
+
         $imgs = [
             0 => 'https://www.google.ru/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png',
             1 => 'https://www.google.ru/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png'
@@ -47,8 +56,6 @@ class Example extends Controller{
             $attachments .= 'photo'.$save[0]['owner_id'].'_'.$save[0]['id'].',';
         }
         
-        echo $attachments;
-
         $post = $vk->wallPost([
             'owner_id' => "-$group_id",
             'from_group' => 1,

@@ -73,8 +73,8 @@ class CreateImage {
         return $data;
     }
 
-    public function sendToVk(){
-        
+    public function getImageInfo($num){
+        return $images = EnDictionary::inRandomOrder()->where('status', 1)->limit($num)->get();
     }
 
     public function saveNewWordInDb(){
