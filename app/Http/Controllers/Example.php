@@ -43,7 +43,7 @@ class Example extends Controller{
             ]);        
         }
 
-        dd($saves);
+        //dd($saves);
 
         foreach($saves as $key=>$save){
             $attachments .= sprintf('photo%s_%s', $save['owner_id'], $save['id']);
