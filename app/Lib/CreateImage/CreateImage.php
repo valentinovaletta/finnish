@@ -73,6 +73,10 @@ class CreateImage {
         return $data;
     }
 
+    public function sendToVk(){
+        
+    }
+
     public function saveNewWordInDb(){
         Endictionary::where('id', $this->id)->update(['status' => 1]);
     }

@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "1294fb7cbbb3f3211351829a6a4deedb",
+    "content-hash": "ab9929578ee72261b7f5921d6d26f37e",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -492,6 +492,54 @@
                 }
             ],
             "time": "2020-12-29T14:50:06+00:00"
+        },
+        {
+            "name": "fdcore/vk.api",
+            "version": "2.x-dev",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/L1Qu0R/vk.api.git",
+                "reference": "a36fcd5ce5d9d9b648c8beaf8b155c65f170435c"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/L1Qu0R/vk.api/zipball/a36fcd5ce5d9d9b648c8beaf8b155c65f170435c",
+                "reference": "a36fcd5ce5d9d9b648c8beaf8b155c65f170435c",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "fdcore\\vkapi\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Дмитрий Няшкин",
+                    "email": "sorryidontknowyourmail@mail.com",
+                    "homepage": "http://sorryidontknowyourhomepage.com",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Posting to VK",
+            "homepage": "https://github.com/L1Qu0R/vk.api",
+            "keywords": [
+                "post",
+                "social",
+                "vk"
+            ],
+            "support": {
+                "source": "https://github.com/L1Qu0R/vk.api/tree/v2"
+            },
+            "abandoned": true,
+            "time": "2016-02-08T18:37:40+00:00"
         },
         {
             "name": "fruitcake/laravel-cors",
@@ -7779,7 +7827,9 @@
     ],
     "aliases": [],
     "minimum-stability": "dev",
-    "stability-flags": [],
+    "stability-flags": {
+        "fdcore/vk.api": 20
+    },
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {
