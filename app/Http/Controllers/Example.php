@@ -21,6 +21,7 @@ class Example extends Controller{
         $i = 0;
         $j = 0;
         $attachments='';
+        $text = '';
         $imgs = [];
         $vk = new Vk($token);
         $images = NEW CreateImage();
@@ -28,6 +29,7 @@ class Example extends Controller{
         $imagesInfo = $images->getImageInfo(9);
 
         foreach($imagesInfo as $img){
+            $text .= $img->word." [".$img->ts."]\r\n";
             $imgs[] = "https://enru.arcadepub.ru/images/$img->word.jpg";
         }
         
@@ -53,7 +55,7 @@ class Example extends Controller{
         $post = $vk->wallPost([
             'owner_id' => "-$group_id",
             'from_group' => 1,
-            'message' => "блаблабла",
+            'message' => $text,
             'attachments' => $attachments
         ]);
 
