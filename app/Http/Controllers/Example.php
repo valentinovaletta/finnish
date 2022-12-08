@@ -28,15 +28,13 @@ class Example extends Controller{
         $imagesInfo = $images->getImageInfo(9);
 
         foreach($imagesInfo as $img){
-            $imgs[] = public_path("images/$img->word.jpg");
+            $imgs[] = public_path("images/".trim($img->word).".jpg");
         }
 
-        dd($imgs);
-
-        $imgs = [
-            0 => 'https://www.google.ru/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png',
-            1 => 'https://www.google.ru/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png'
-        ];
+        // $imgs = [
+        //     0 => 'https://www.google.ru/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png',
+        //     1 => 'https://www.google.ru/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png'
+        // ];
 
         $upload_server = $vk->photosGetWallUploadServer($group_id);
 
