@@ -21,6 +21,7 @@ class Example extends Controller{
         $i = 0;
         $j = 0;
         $attachments='';
+        $imgs = [];
         $vk = new Vk($token);
         $images = NEW CreateImage();
 
