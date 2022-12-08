@@ -19,6 +19,7 @@ class Example extends Controller{
         $token = "vk1.a.CkSpYnY7gNEBVKDfvfyyAWQGA3k6r8tzr7RFEHq4pWj5OLg7L1_9MmblaZxnGhEk0YXc-Ak7gn_7pR3fnQs7Ke3CnKyu6vqkBKV3Ku9KadsWrgBmr76j_7YgQdwQYlW99QypylCQ4-9HrIpeBX_24riP6pqRmbdc7EKLpjw0RcIUFbWuo2xRiCY_wLRVVQuQK6q39XqMfBUBu5FF-8yPvg";
         $group_id = '212716589';
         $i = 0;
+        $j = 0;
         $attachments='';
         $vk = new Vk($token);
         
@@ -34,7 +35,7 @@ class Example extends Controller{
         }
 
         foreach($uploads as $upload){
-            $saves[$i++] = $vk->photosSaveWallPhoto([
+            $saves[$j++] = $vk->photosSaveWallPhoto([
                 'group_id' => $group_id,
                 'photo' => $upload['photo'],
                 'server' => $upload['server'],
@@ -42,10 +43,9 @@ class Example extends Controller{
             ]);        
         }
 
-        var_dump($saves);
-/*
+
         foreach($saves as $key=>$save){
-            $attachments .= sprintf('photo%s_%s', $save['owner_id'], $save['id']);
+            $attachments .= sprintf('photo%s_%s', $save[$key]['owner_id'], $save[$key]['id']);
         }
         
         $post = $vk->wallPost([
@@ -54,7 +54,7 @@ class Example extends Controller{
             'message' => "блаблабла",
             'attachments' => $attachments
         ]);
-*/
+
     }
 
 }
