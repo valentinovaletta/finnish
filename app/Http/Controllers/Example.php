@@ -43,7 +43,7 @@ class Example extends Controller{
         }
 
         foreach($saves as $key=>$save){
-            $attachments .= sprintf('photo%s_%s', $save[$key]['owner_id'], $save[$key]['id']);
+            $attachments .= sprintf('photo%s_%s', $save[$key-1]['owner_id'], $save[$key-1]['id']);
         }
         
         $post = $vk->wallPost([
