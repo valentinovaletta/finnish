@@ -73,7 +73,9 @@ class Example extends Controller{
         
         // instantiate user media
         $media = new Media( $config );
-        
+
+        print_r($media);
+
         $imageContainerParams = array( // container parameters for the image post
             'caption' => 'test', // caption for the post
             'image_url' => 'https://www.howtogeek.com/wp-content/uploads/2009/11/5bsod.png?height=200p&trim=2,2,2,2', // url to the image must be on a public server
@@ -82,6 +84,8 @@ class Example extends Controller{
         // create image container
         $imageContainer = $media->create( $imageContainerParams );
         
+        print_r($imageContainer);
+
         // get id of the image container
         $imageContainerId = $imageContainer['id'];
         
