@@ -68,7 +68,7 @@ class Example extends Controller{
     
         $config = array( // instantiation config params
             'user_id' => '118960607695447',
-            'access_token' => 'EAAHpyH6m3QYBAKD6Od07Np7zqCxIDl0D4ZAxbHGCC3RTlY73MdAo23duKBAahq4yZCm0NY7aBRQNjJHT9EgR1qZA6aZCyUwVBGVPPjg9qQPNWZBCijqG2Xp55B5PZA3mVT3ESsSbQNiZApgyotdeP9O1Xt0wP5lAh45e0ZAZAE7P3bjid57K13jdUCFWI9jpx80btIqb3KNUk7ZBMttMg5hTf8',
+            'access_token' => ENV('INST_TOKEN'),
         );
         
         // instantiate user media
