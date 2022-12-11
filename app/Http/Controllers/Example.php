@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use App\Lib\CreateImage\CreateImage;
 use App\Lib\CreateImage\VK;
 
+use Instagram\User\Media;
+use Instagram\User\MediaPublish;
+
 class Example extends Controller{
 
     public function index(){
@@ -59,6 +62,36 @@ class Example extends Controller{
             'attachments' => $attachments
         ]);
 
+    }
+
+    public function Inst() {
+    
+        $config = array( // instantiation config params
+            'user_id' => '118960607695447',
+            'access_token' => 'EAAHpyH6m3QYBAKD6Od07Np7zqCxIDl0D4ZAxbHGCC3RTlY73MdAo23duKBAahq4yZCm0NY7aBRQNjJHT9EgR1qZA6aZCyUwVBGVPPjg9qQPNWZBCijqG2Xp55B5PZA3mVT3ESsSbQNiZApgyotdeP9O1Xt0wP5lAh45e0ZAZAE7P3bjid57K13jdUCFWI9jpx80btIqb3KNUk7ZBMttMg5hTf8',
+        );
+        
+        // instantiate user media
+        $media = new Media( $config );
+        
+        $imageContainerParams = array( // container parameters for the image post
+            'caption' => 'test', // caption for the post
+            'image_url' => 'https://www.howtogeek.com/wp-content/uploads/2009/11/5bsod.png?height=200p&trim=2,2,2,2', // url to the image must be on a public server
+        );
+        
+        // create image container
+        $imageContainer = $media->create( $imageContainerParams );
+        
+        // get id of the image container
+        $imageContainerId = $imageContainer['id'];
+        
+        // instantiate media publish
+        $mediaPublish = new MediaPublish( $config );
+        
+        // post our container with its contents to instagram
+        $publishedPost = $mediaPublish->create( $imageContainerId );
+        
+        print_r($publishedPost);
     }
 
 }
