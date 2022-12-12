@@ -12,7 +12,7 @@ class NewWord extends Controller{
         $word = $newCambridgeWord->getWordStatusZero();
 
         $pieces = explode(" ", trim($word));
-        $example = htmlspecialchars($newCambridgeWord->GetExampleWordnikAPI($pieces[array_key_last($pieces)]));
+        $example = $newCambridgeWord->GetExampleWordnikAPI($pieces[array_key_last($pieces)]);
         dd($example);
         //return $newCambridgeWord->update('ex', $example);
 
