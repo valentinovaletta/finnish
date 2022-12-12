@@ -37,10 +37,12 @@ class Example extends Controller{
         }
         
         $upload_server = $vk->photosGetWallUploadServer($group_id);
+        print_r($upload_server);
 
         foreach($imgs as $img){
             $uploads[$i++] = $vk->uploadFile($upload_server['upload_url'], $img);
         }
+        print_r($uploads);
 
         foreach($uploads as $upload){
             $saves[$j++] = $vk->photosSaveWallPhoto([
@@ -50,10 +52,12 @@ class Example extends Controller{
                 'hash' => $upload['hash']
             ]);        
         }
+        print_r($saves);
 
         foreach($saves as $key=>$save){
             $attachments .= 'photo'.$save[0]['owner_id'].'_'.$save[0]['id'].',';
         }
+        print_r($attachments);
         
         $post = $vk->wallPost([
             'owner_id' => "-$group_id",
