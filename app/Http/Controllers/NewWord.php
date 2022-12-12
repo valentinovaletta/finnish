@@ -14,8 +14,8 @@ class NewWord extends Controller{
         $pieces = explode(" ", trim($word));
         $example = $newCambridgeWord->GetExampleWordnikAPI($pieces[array_key_last($pieces)]);
 
-        $def = preg_replace("/&#?[a-z0-9]{2,8};/i","",$example['def']); 
-        $ex = preg_replace("/&#?[a-z0-9]{2,8};/i","",$example['ex']); 
+        $def = strip_tags(preg_replace("/&#?[a-z0-9]{2,8};/i","",$example['def'])); 
+        $ex = strip_tags(preg_replace("/&#?[a-z0-9]{2,8};/i","",$example['ex'])); 
 
         dd($def,$ex);
         //return $newCambridgeWord->update('ex', $example);
