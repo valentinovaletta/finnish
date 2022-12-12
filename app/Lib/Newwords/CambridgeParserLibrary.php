@@ -95,6 +95,10 @@ class CambridgeParserLibrary {
         Endictionary::where('id', $this->id)->update(['img' => $this->img, 'status' => 1]);
     }
 
+    public function update($key,$value){
+        return Endictionary::where('id', $this->id)->update([$key => $value, 'status' => 1]);
+    }
+
     private function deleteFromNewWords($ids){
         return NewWords::where('id', $ids)->update(['status' => 1]);
     }

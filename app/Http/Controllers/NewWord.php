@@ -9,15 +9,12 @@ class NewWord extends Controller{
     public function index(){
         $newCambridgeWord = NEW CambridgeParserLibrary();
 
-        echo $word = $newCambridgeWord->getWordStatusZero();
-        echo '<br/>';
+        $word = $newCambridgeWord->getWordStatusZero();
 
         $pieces = explode(" ", trim($word));
         $example = $newCambridgeWord->GetExampleWordnikAPI($pieces[array_key_last($pieces)]);
-        print_r($example);
-        echo '<br/>';
 
-
+        return $newCambridgeWord->update('ex', $example);
 
         //print_r($newCambridgeWord->getNewWordObj());
         //return $newCambridgeWord->updateimg();
