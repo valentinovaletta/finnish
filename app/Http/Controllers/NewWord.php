@@ -17,8 +17,9 @@ class NewWord extends Controller{
         $def = strip_tags(preg_replace("/&#?[a-z0-9]{2,8};/i","",$example['def'])); 
         $ex = strip_tags(preg_replace("/&#?[a-z0-9]{2,8};/i","",$example['ex'])); 
 
-        dd($def,$ex);
-        //return $newCambridgeWord->update('ex', $example);
+        //dd($def,$ex);
+        $newCambridgeWord->update('def', $def);
+        $newCambridgeWord->update('ex', $ex);
 
         //print_r($newCambridgeWord->getNewWordObj());
         //return $newCambridgeWord->updateimg();
