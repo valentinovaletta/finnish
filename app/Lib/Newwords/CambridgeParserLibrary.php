@@ -85,6 +85,7 @@ class CambridgeParserLibrary {
     public function getWordStatusZero(){
         $newWord = DB::table('en_dictionaries')
         ->where('status', '=', 0)
+        ->inRandomOrder()
         ->limit(1)
         ->get();
 
