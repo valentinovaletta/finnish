@@ -104,13 +104,13 @@ class CambridgeParserLibrary {
     }
 
     public function GetExampleWordnikAPI($word){
-        $responce = $this->CallDictionaryApi("https://api.wordnik.com/v4/word.json/$word/examples?includeDuplicates=false&useCanonical=false&limit=1&api_key=5vi0brh7eqybfzmqurhs19zafs8hm3a5v3zgwrkrinq3lbb3a");
-        if( array_key_exists('examples', $responce) ){
-            $example = $responce['examples'][0]['text'];
-        } else {
-            $example = false;
-        }
-        return $example;
+        $responce = $this->CallDictionaryApi("https://api.wordnik.com/v4/word.json/$word/definitions?limit=1&includeRelated=false&sourceDictionaries=webster&useCanonical=false&includeTags=false&api_key=5vi0brh7eqybfzmqurhs19zafs8hm3a5v3zgwrkrinq3lbb3a");
+        // if( array_key_exists('examples', $responce) ){
+        //     $example = $responce['examples'][0]['text'];
+        // } else {
+        //     $example = false;
+        // }
+        return $responce;
     }
 
     private function GetImgUnsplashApi($word){
