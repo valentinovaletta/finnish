@@ -23,10 +23,10 @@ class CambridgeParserLibrary {
 
     public function __construct() {
         //$this->word = $this->getWordFromDB(1); // regular word
-        $this->word = $this->getWordFromDBwithoutImg(1); // without image
+        //$this->word = $this->getWordFromDBwithoutImg(1); // without image
 
-        $pieces = explode(" ", trim($this->word));
-        $this->img = $this->GetImgUnsplashApi( substr($pieces[array_key_last($pieces)], 0, -2) ); // substr($this->word, 2)
+        //$pieces = explode(" ", trim($this->word));
+        //$this->img = $this->GetImgUnsplashApi( substr($pieces[array_key_last($pieces)], 0, -2) ); // substr($this->word, 2)
 
         //$this->img = $this->GetImgpixabayApi(urlencode(trim($this->word)));
         //$this->CambridgeObj = $this->getYandexApiDictionary( $this->word ); // substr($this->word, 2)
@@ -76,13 +76,13 @@ class CambridgeParserLibrary {
         $this -> deleteFromNewWords($this->id);
     }
     
-    private function getWordFromDB(){
+    public function getWordFromDB(){
         $newWord = NewWords::inRandomOrder()->where('status', 0)->limit(1)->get();
         $this->id = $newWord->first()->id;
         return $newWord->first()->word;
     }
 
-    private function getWordFromDBwithoutImg(){
+    public function getWordStatusZero(){
         $newWord = DB::table('en_dictionaries')
         ->where('status', '=', 0)
         ->limit(1)
@@ -97,6 +97,16 @@ class CambridgeParserLibrary {
 
     private function deleteFromNewWords($ids){
         return NewWords::where('id', $ids)->update(['status' => 1]);
+    }
+
+    public function GetExampleWordnikAPI($word){
+        $Responce = $this->CallDictionaryApi("https://api.wordnik.com/v4/word.json/$word/examples?includeDuplicates=false&useCanonical=false&limit=1&api_key=5vi0brh7eqybfzmqurhs19zafs8hm3a5v3zgwrkrinq3lbb3a");
+        if( array_key_exists('examples', $Responce) ){
+            $example = $Responce['examples']['text'];
+        } else {
+            $example = false;
+        }
+        return $example;
     }
 
     private function GetImgUnsplashApi($word){

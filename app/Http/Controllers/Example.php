@@ -84,8 +84,6 @@ class Example extends Controller{
         // create image container
         $imageContainer = $media->create( $imageContainerParams );
         
-        print_r($imageContainer);
-
         // get id of the image container
         $imageContainerId = $imageContainer['id'];
         
