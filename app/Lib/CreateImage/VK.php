@@ -51,11 +51,11 @@ class VK {
     
             $data = curl_exec($ch);
             curl_close($ch);
-            $json = json_decode($data, true);
-            if (!isset($json['response'])) {
-                throw new \Exception($data);
+
+            if (curl_errno($ch)) {
+                dd( curl_error($ch) );
             }
-            return $json['response'];
+            return json_decode($data, true);
         }
     
         private function request($method, array $params)
