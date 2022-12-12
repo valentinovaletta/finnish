@@ -13,11 +13,12 @@ class NewWord extends Controller{
         echo '<br/>';
 
         $pieces = explode(" ", trim($word));
-        echo $example = $newCambridgeWord->GetExampleWordnikAPI($pieces[array_key_last($pieces)]);
+        $example = $newCambridgeWord->GetExampleWordnikAPI($pieces[array_key_last($pieces)]);
+        print_r($example);
         echo '<br/>';
 
 
-        
+
         //print_r($newCambridgeWord->getNewWordObj());
         //return $newCambridgeWord->updateimg();
         //return $newCambridgeWord->saveNewWordInDb();
