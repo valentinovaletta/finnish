@@ -110,7 +110,7 @@ class CambridgeParserLibrary {
         $example = '';
         
         if (array_key_exists("text", $responce[0]) ) {
-            $def = array_key_exists('cite', $responce[0]['text'])?$responce[0]['text']:'';
+            $def = $responce[0]['text'];
         }
         if (array_key_exists("citations", $responce[0]) ) {
             $example = array_key_exists('cite', $responce[0]['citations'][0])?$responce[0]['citations'][0]['cite']:'';
