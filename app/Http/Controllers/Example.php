@@ -71,7 +71,7 @@ class Example extends Controller{
     public function Inst() {
     
         $config = array( // instantiation config params
-            'user_id' => '118960607695447',
+            'user_id' => '37835137735',
             'access_token' => ENV('INST_TOKEN'),
         );
         
