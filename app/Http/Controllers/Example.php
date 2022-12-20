@@ -24,7 +24,7 @@ class Example extends Controller{
         $i = 0;
         $j = 0;
         $attachments='';
-        $text = "Наш телегам бот для заучивания новых слов\r\nhttps://t.me/New9wordsBot\r\n";
+        $text = "Наш телегам бот для заучивания новых слов\r\nhttps://t.me/New9wordsBot \r\n\r\nНовые слова\r\n";
         $imgs = [];
         $vk = new Vk($token);
         $images = NEW CreateImage();
