@@ -24,7 +24,7 @@ class Example extends Controller{
         $i = 0;
         $j = 0;
         $attachments='';
-        $text = '';
+        $text = "Наш телегам бот для заучивания новых слов\r\nhttps://t.me/New9wordsBot";
         $imgs = [];
         $vk = new Vk($token);
         $images = NEW CreateImage();
@@ -35,7 +35,9 @@ class Example extends Controller{
             $text .= $img->word." [".$img->ts."]\r\n";
             $imgs[] = "https://enru.arcadepub.ru/images/$img->word.jpg";
         }
-        
+
+        $text .= "#Английский #English #АнглийскиеСлова #EnglishWords #НовыеАнглийскиеСлова";
+
         $upload_server = $vk->photosGetWallUploadServer($group_id);
         print_r($imgs);
 
@@ -70,34 +72,8 @@ class Example extends Controller{
 
     public function Inst() {
     
-        $config = array( // instantiation config params
-            'user_id' => '118960607695447',
-            'access_token' => ENV('INST_TOKEN'),
-        );
-        
-        // instantiate user media
-        $media = new Media( $config );
 
-        print_r($media);
-
-        $imageContainerParams = array( // container parameters for the image post
-            'caption' => 'test', // caption for the post
-            'image_url' => 'https://www.howtogeek.com/wp-content/uploads/2009/11/5bsod.png?height=200p&trim=2,2,2,2', // url to the image must be on a public server
-        );
         
-        // create image container
-        $imageContainer = $media->create( $imageContainerParams );
-        
-        // get id of the image container
-        $imageContainerId = $imageContainer['id'];
-        
-        // instantiate media publish
-        $mediaPublish = new MediaPublish( $config );
-        
-        // post our container with its contents to instagram
-        $publishedPost = $mediaPublish->create( $imageContainerId );
-        
-        print_r($publishedPost);
     }
 
 }
