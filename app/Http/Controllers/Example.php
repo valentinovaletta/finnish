@@ -84,7 +84,7 @@ class Example extends Controller{
         } else {
             $status = $newCambridgeWord->updateNewWord('status',2);
         }
-        
+
         dd($word,$def,$ex,$img);
 
     }
@@ -98,19 +98,19 @@ class Example extends Controller{
             $constraint->aspectRatio();
         });
 
-        $img->rectangle(0, 0, 800, 65, function ($draw) {
+        $img->rectangle(0, 0, 800, 100, function ($draw) {
             $draw->background('#000');
         });
         $img->text($word." - ".$def, 10, 50, function($font) {
             $font->file(public_path('fonts/'.rand(2,4).'.ttf'));
-            $font->size(36);
+            $font->size(16);
             $font->color( '#fff' );
             $font->align('left');
         });
 
         $img->text($ex, 10, 100, function($font) {
             $font->file(public_path('fonts/'.rand(2,4).'.ttf'));
-            $font->size(36);
+            $font->size(14);
             $font->color( '#fff' );
             $font->align('left');
         });
