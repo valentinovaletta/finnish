@@ -102,7 +102,7 @@ class Example extends Controller{
             $draw->background('#000');
         });
         $img->text($word." - ".$def, 10, 35, function($font) {
-            $font->file(public_path('fonts/3.ttf'));
+            $font->file(public_path('fonts/4.ttf'));
             $font->size(16);
             $font->color( '#fff' );
             $font->align('left');
@@ -112,7 +112,7 @@ class Example extends Controller{
             $draw->background('#000');
         });
         $img->text($ex, 10, 775, function($font) {
-            $font->file(public_path('fonts/3.ttf'));
+            $font->file(public_path('fonts/4.ttf'));
             $font->size(14);
             $font->color( '#fff' );
             $font->align('left');
