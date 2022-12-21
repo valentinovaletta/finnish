@@ -98,19 +98,22 @@ class Example extends Controller{
             $constraint->aspectRatio();
         });
 
-        $img->rectangle(0, 0, 800, 100, function ($draw) {
+        $img->rectangle(0, 0, 800, 75, function ($draw) {
             $draw->background('#000');
         });
-        $img->text($word." - ".$def, 10, 50, function($font) {
+        $img->text($word." - ".$def, 10, 35, function($font) {
             $font->file(public_path('fonts/'.rand(2,4).'.ttf'));
             $font->size(16);
             $font->color( '#fff' );
             $font->align('left');
         });
 
-        $img->text($ex, 10, 100, function($font) {
+        $img->rectangle(750, 0, 800, 800, function ($draw) {
+            $draw->background('#000');
+        });
+        $img->text($ex, 10, 775, function($font) {
             $font->file(public_path('fonts/'.rand(2,4).'.ttf'));
-            $font->size(14);
+            $font->size(12);
             $font->color( '#fff' );
             $font->align('left');
         });
