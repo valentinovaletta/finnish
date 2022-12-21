@@ -73,8 +73,9 @@ class Example extends Controller{
     
         $newCambridgeWord = NEW CambridgeParserLibrary();
         $word = $newCambridgeWord->getNewWord();
-        
-        dd($word);
+        $def = $newCambridgeWord->getDefinition( trim($word) );
+
+        dd($word,$def);
 
     }
 
