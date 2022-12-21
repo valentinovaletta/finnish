@@ -162,7 +162,7 @@ class CambridgeParserLibrary {
     }
 
     public function getExample($word){
-        $responce = $this->CallDictionaryApi("https://api.wordnik.com/v4/word.json/$word/definitions?limit=1&includeRelated=false&sourceDictionaries=webster&useCanonical=false&includeTags=false&api_key=5vi0brh7eqybfzmqurhs19zafs8hm3a5v3zgwrkrinq3lbb3a");
+        $responce = $this->CallDictionaryApi("https://api.wordnik.com/v4/word.json/$word/examples?limit=1&includeRelated=false&sourceDictionaries=webster&useCanonical=false&includeTags=false&api_key=5vi0brh7eqybfzmqurhs19zafs8hm3a5v3zgwrkrinq3lbb3a");
         $example = '';
         
         try {
