@@ -111,7 +111,7 @@ class Example extends Controller{
         $img->rectangle(0, 740, 800, 800, function ($draw) {
             $draw->background('#000');
         });
-        $img->text($ex, 10, 765, function($font) {
+        $img->text($ex, 10, 775, function($font) {
             $font->file(public_path('fonts/'.rand(2,4).'.ttf'));
             $font->size(14);
             $font->color( '#fff' );
