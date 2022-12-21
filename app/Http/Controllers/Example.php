@@ -75,8 +75,9 @@ class Example extends Controller{
         $word = $newCambridgeWord->getNewWord();
         $def = $newCambridgeWord->getDefinition( trim($word) );
         $ex = $newCambridgeWord->getExample( trim($word) );
-
-        dd($word,$def,$ex);
+        $img = $newCambridgeWord->getImg( trim($word) );
+        
+        dd($word,$def,$ex,$img);
 
     }
 

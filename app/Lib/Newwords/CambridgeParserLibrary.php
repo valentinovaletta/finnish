@@ -174,6 +174,18 @@ class CambridgeParserLibrary {
         return $example;
     }
 
+    public function getImg($word){
+        $UnsplashResponce = $this->CallDictionaryApi("https://api.unsplash.com/search/photos/?client_id=3d5fKAxk_gmo9I8XI20kCQWf0j0r1foLd6E7kuLaq0k&page=1&per_page=1&query=".$word);
+
+        try {
+            $img = $UnsplashResponce['results'][0]['urls']['small'];
+        } catch (\Exception $e) {
+            $img = '';
+        }
+
+        return str_replace("w=400", "w=800", $img);
+    }
+
 /* inst */
 
     private function CallDictionaryApi($url){
