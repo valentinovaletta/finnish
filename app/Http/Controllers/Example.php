@@ -98,7 +98,7 @@ class Example extends Controller{
             $constraint->aspectRatio();
         });
 
-        $img->rectangle(0, 0, 800, 75, function ($draw) {
+        $img->rectangle(0, 0, 800, 60, function ($draw) {
             $draw->background('#000');
         });
         $img->text($word." - ".$def, 10, 35, function($font) {
@@ -108,10 +108,10 @@ class Example extends Controller{
             $font->align('left');
         });
 
-        $img->rectangle(0, 750, 800, 800, function ($draw) {
+        $img->rectangle(0, 740, 800, 800, function ($draw) {
             $draw->background('#000');
         });
-        $img->text($ex, 10, 785, function($font) {
+        $img->text($ex, 10, 765, function($font) {
             $font->file(public_path('fonts/'.rand(2,4).'.ttf'));
             $font->size(14);
             $font->color( '#fff' );
