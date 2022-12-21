@@ -160,6 +160,20 @@ class CambridgeParserLibrary {
         $this->definition = isset($dictionaryJson[0]['shortdef'][0]) ? $dictionaryJson[0]['shortdef'][0] : '';
         return $this->definition;
     }
+
+    public function getExample($word){
+        $responce = $this->CallDictionaryApi("https://api.wordnik.com/v4/word.json/$word/definitions?limit=1&includeRelated=false&sourceDictionaries=webster&useCanonical=false&includeTags=false&api_key=5vi0brh7eqybfzmqurhs19zafs8hm3a5v3zgwrkrinq3lbb3a");
+        $example = '';
+        
+        try {
+            $example = $responce[0]['citations'][0]['cite'];
+        } catch (\Exception $e) {
+            $example = '';
+        }
+
+        return $example;
+    }
+
 /* inst */
 
     private function CallDictionaryApi($url){
