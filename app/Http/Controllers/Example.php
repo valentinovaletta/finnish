@@ -6,6 +6,7 @@ use App\Lib\CreateImage\CreateImage;
 use App\Lib\CreateImage\VK;
 
 use App\Lib\Newwords\CambridgeParserLibrary;
+use Image;
 
 class Example extends Controller{
 
@@ -77,7 +78,44 @@ class Example extends Controller{
         $ex = $newCambridgeWord->getExample( trim($word) );
         $img = $newCambridgeWord->getImg( trim($word) );
         
+        if( $word !== '' && $def !== '' && $ex !== '' && $img !== '' ){
+            $this->createImage(trim($word), $def, $ex, $img);
+            $status = $newCambridgeWord->updateNewWord('status',1);
+        } else {
+            $status = $newCambridgeWord->updateNewWord('status',2);
+        }
+        
         dd($word,$def,$ex,$img);
+
+    }
+
+    private function createImage($word, $def, $ex, $imgUrl){
+
+        $img = Image::make($imgUrl);
+
+        // resize the image to a width of 300 and constrain aspect ratio (auto height)
+        $img->resize(800, null, function ($constraint) {
+            $constraint->aspectRatio();
+        });
+
+        $img->rectangle(0, 0, 800, 65, function ($draw) {
+            $draw->background('#000');
+        });
+        $img->text($word." - ".$def, 10, 50, function($font) {
+            $font->file(public_path('fonts/'.rand(2,4).'.ttf'));
+            $font->size(36);
+            $font->color( '#fff' );
+            $font->align('left');
+        });
+
+        $img->text($ex, 10, 100, function($font) {
+            $font->file(public_path('fonts/'.rand(2,4).'.ttf'));
+            $font->size(36);
+            $font->color( '#fff' );
+            $font->align('left');
+        });
+
+        $img->save(public_path("images/inst/$word.jpg"));
 
     }
 
