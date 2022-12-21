@@ -166,7 +166,7 @@ class CambridgeParserLibrary {
         $example = '';
         
         try {
-            $example = $responce[0]['citations'][0]['cite'];
+            $example = $responce[0]['text'];
         } catch (\Exception $e) {
             $example = '';
         }
