@@ -5,8 +5,7 @@ namespace App\Http\Controllers;
 use App\Lib\CreateImage\CreateImage;
 use App\Lib\CreateImage\VK;
 
-use Instagram\User\Media;
-use Instagram\User\MediaPublish;
+use App\Lib\Newwords\CambridgeParserLibrary;
 
 class Example extends Controller{
 
@@ -72,8 +71,11 @@ class Example extends Controller{
 
     public function Inst() {
     
-
+        $newCambridgeWord = NEW CambridgeParserLibrary();
+        $word = $newCambridgeWord->getNewWord();
         
+        dd($word);
+
     }
 
 }

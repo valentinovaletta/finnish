@@ -143,6 +143,19 @@ class CambridgeParserLibrary {
 
     }
 
+/* inst */
+
+    public function getNewWord(){
+        $newWord = NewWords::where('status', '=', 0)
+        ->inRandomOrder()
+        ->limit(1)
+        ->get();
+
+        $this->id = $newWord->first()->id;
+        return $newWord->first()->word;
+    }
+
+/* inst */
 
     private function CallDictionaryApi($url){
 
