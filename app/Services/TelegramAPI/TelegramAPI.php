@@ -4,14 +4,14 @@ namespace App\Services\TelegramAPI;
 
 class TelegramAPI {
 
-    private static $token;
+    private $token;
 
     public function __construct() {
-        self::$token = ENV('EnEnBotToken');
+        $this->token = ENV('EnEnBotToken');
     }
 
-    public static function Request($method, $param=[]) {
-        $url = "https://api.telegram.org/bot".self::$token."/$method?";
+    public static function Request($method, $token,$param=[]) {
+        $url = "https://api.telegram.org/bot$token/$method?";
         echo $url .= http_build_query($param);
         $ch = curl_init();
         $optArray = array(
