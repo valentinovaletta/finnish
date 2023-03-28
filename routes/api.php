@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TelegramEnFiBotController;
+use App\Http\Controllers\TelegramEnENBotController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,6 +18,7 @@ use App\Http\Controllers\TelegramEnFiBotController;
 
 //Route::get('/en-fi/{token}',  [TelegramEnFiBotController::class, 'index']);
 Route::post('/en-fi/{token}',  [TelegramEnFiBotController::class, 'index']);
+Route::post('/EnEn/{token}',  [TelegramEnEnBotController::class, 'index']);
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
