@@ -12,7 +12,7 @@ class TelegramAPI {
 
     public static function Request($method, $param=[]) {
         $url = "https://api.telegram.org/bot".self::$token."/$method?";
-        $url .= http_build_query($param);
+        echo $url .= http_build_query($param);
         $ch = curl_init();
         $optArray = array(
                 CURLOPT_URL => $url,
