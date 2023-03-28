@@ -12,6 +12,12 @@ use App\Services\normalizeDataService\normalizeTelegramDataService;
 
 class TelegramEnEnBotController extends BaseController
 {
+    private $token;
+
+    public function __construct() {
+        $this->token = ENV('EnEnBotToken');
+    }
+
     public function index(Request $request) {
 
         $messageFactory = new MessageFactory(new normalizeTelegramDataService($request));
@@ -20,10 +26,10 @@ class TelegramEnEnBotController extends BaseController
         $telegramMessage =  $messageFactoryObj->getMessage();
 
         foreach(json_decode($telegramMessage) as $message){
-            TelegramAPI::Request($message->method, $message->param);
+            TelegramAPI::Request($this->token, $message->method, $message->param);
             usleep( 200000 );
         }
-        
+
     }
 
 }
