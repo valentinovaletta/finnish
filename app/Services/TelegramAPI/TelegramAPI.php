@@ -4,10 +4,10 @@ namespace App\Services\TelegramAPI;
 
 class TelegramAPI {
 
-    private $token;
-
+    private static $token;
+    
     public function __construct() {
-        $this->token = ENV('EnEnBotToken');
+        self::$token = ENV('EnEnBotToken');
     }
 
     public static function Request($method, $param=[]) {
