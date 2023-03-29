@@ -45,11 +45,11 @@ class MessageNewWord extends Message{
         $rightAnswerTs = $words->first()->ts;
         $rightAnswerImg = $words->first()->img;
 
-        $answers = [
-            ["text" => $words->get(0)->fiword, "callback_data" => "ChackAnswer/".$words->get(0)->fiword],
-            ["text" => $words->get(1)->fiword, "callback_data" => "ChackAnswer/".$words->get(1)->fiword],
-            ["text" => $words->get(2)->fiword, "callback_data" => "ChackAnswer/".$words->get(2)->fiword],
-            ["text" => $words->get(3)->fiword, "callback_data" => "ChackAnswer/".$words->get(3)->fiword]
+        $answers = [     
+            [["text" => $words->get(0)->fiword, "callback_data" => "ChackAnswer/".$words->get(0)->fiword]],
+            [["text" => $words->get(1)->fiword, "callback_data" => "ChackAnswer/".$words->get(1)->fiword]],
+            [["text" => $words->get(2)->fiword, "callback_data" => "ChackAnswer/".$words->get(2)->fiword]],
+            [["text" => $words->get(3)->fiword, "callback_data" => "ChackAnswer/".$words->get(3)->fiword]]
         ];
 
         //shuffle($answers);
