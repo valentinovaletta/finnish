@@ -18,7 +18,7 @@ class MessageNewWord extends Message{
 
         $words = $this->getWords();
         $quizfunc = $this->quizFunctions[rand(0, count($this->quizFunctions)-1 )];
-        $text = json_decode($this->$quizfunc($words));
+        $text = $this->$quizfunc($words);
 
         //$this->setKeyboard(json_encode(["inline_keyboard" => [  ]]));
         $this->setMessage(['method' => 'editMessageText', 'param' => ['chat_id' => $this->chatId, 'message_id' => $this->param['message_id'], 'text' => $text->question ."\n\n". print_r($text->answers, true), 'reply_markup'=>$this->keyboard]]);
@@ -58,10 +58,10 @@ class MessageNewWord extends Message{
         $text = $rightAnsweren."\r\n(".$rightAnswerPos.") [".$rightAnswerTs."] \r\n";
         $text .= __('telegram.myWordsWhatisitEnFi');
 
-        return json_encode([
+        return [
             'question' => $text,
             'answers' => $answers
-        ]);    
+        ];
     }
 
 }
