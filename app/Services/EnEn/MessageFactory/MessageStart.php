@@ -21,6 +21,7 @@ class MessageStart extends Message{
         $this->param = $param;
 
         $newUser = $this->newUser();
+        $this->createNewUser($newUser);
 
         $this->setKeyboard();
         $this->setMessage(['method' => 'sendSticker', 'param' => ['chat_id' => $this->chatId, 'sticker' => 'CAACAgIAAxkBAAEd6DFkAagSnQZuZgHkLvX1RV2JdR0Z_gACVB0AAoqR0ElUTMG-FBDOOy4E']]);
@@ -35,7 +36,7 @@ class MessageStart extends Message{
     private function createNewUser($newUser){
         if( $newUser ){
             // create new user vacabulary set
-            Schema::connection('mysql')->create($this->chatId.'_vocabulary_EnEn', function (Blueprint $table) {
+            Schema::connection('mysql')->create($this->chatId.'_vocabulary_enen', function (Blueprint $table) {
                 $table->integer('word_id')->primary()->unique();
                 $table->integer('points');
                 $table->timestamps();
@@ -50,7 +51,7 @@ class MessageStart extends Message{
             for($i=1; $i <= 20; $i++){
                 $wordsSet[$i] = ['word_id' => $i, 'points' => 0];
             }
-            DB::table($this->chatId.'_vocabulary_EnEn')->insert($wordsSet);
+            DB::table($this->chatId.'_vocabulary_enen')->insert($wordsSet);
         }
         return true;
     }
