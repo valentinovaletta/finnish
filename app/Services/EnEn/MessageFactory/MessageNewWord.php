@@ -20,7 +20,7 @@ class MessageNewWord extends Message{
         $quizfunc = $this->quizFunctions[rand(0, count($this->quizFunctions)-1 )];
         $quiz = $this->$quizfunc($words);
 
-        $this->setKeyboard(json_encode(["inline_keyboard" => [ $quiz['answers'] ]]));
+        $this->setKeyboard(json_encode(["inline_keyboard" => $quiz['answers'] ]));
         $this->setMessage(['method' => 'editMessageText', 'param' => ['chat_id' => $this->chatId, 'message_id' => $this->param['message_id'], 'text' => $quiz['question'], 'reply_markup'=>$this->keyboard]]);
     }
 
