@@ -23,7 +23,7 @@ class MessageStart extends Message{
     }
 
     private function newUser(){
-        $this->user = User::firstOrCreate(['id' => $this->chatId, 'name' => $this->param['name'], 'language' => $this->param['lang'],  'bot' => 'EnEn']);
+        $this->user = User::firstOrCreate(['id' => $this->chatId, 'name' => $this->param['name'],  'bot' => 'EnEn']);
         return $this->user->wasRecentlyCreated;
     }
 
