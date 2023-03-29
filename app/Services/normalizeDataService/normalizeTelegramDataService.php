@@ -14,7 +14,7 @@ class normalizeTelegramDataService implements normalizeDataServiceInterface{
 
         if($request->has('callback_query')) {
 
-            $this->normalizedData['method'] = 'editMessageText';
+            //$this->normalizedData['method'] = 'editMessageText';
 
             $this->normalizedData['callback'] = true;
             $this->normalizedData['chatId'] = $this->normalizedData['param']['chat_id'] = $request->input('callback_query.from.id');
@@ -26,7 +26,7 @@ class normalizeTelegramDataService implements normalizeDataServiceInterface{
             $this->normalizedData['commandArg'] = $this->normalizedData['param']['commandArg'] = $callbackData[1];
         } else {
 
-            $this->normalizedData['method'] = 'sendMessage';
+            //$this->normalizedData['method'] = 'sendMessage';
 
             $this->normalizedData['callback'] = $this->normalizedData['param']['commandArg'] = false;
             $this->normalizedData['commandArg'] = false;
