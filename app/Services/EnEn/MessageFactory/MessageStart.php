@@ -3,6 +3,11 @@
 namespace App\Services\EnEn\MessageFactory;
 
 use App\Models\User;
+use App\Models\TagUser;
+
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+use Illuminate\Support\Facades\DB;
 
 class MessageStart extends Message{
 
@@ -27,5 +32,26 @@ class MessageStart extends Message{
         return $this->user->wasRecentlyCreated;
     }
 
-
+    private function createNewUser($newUser){
+        if( $newUser ){
+            // create new user vacabulary set
+            Schema::connection('mysql')->create($this->chatId.'_vocabulary_EnEn', function (Blueprint $table) {
+                $table->integer('word_id')->primary()->unique();
+                $table->integer('points');
+                $table->timestamps();
+            });
+            // Subscribe new user to first top 100 tags
+            $tagsSet = [
+                ['tag_id'=>'1', 'user_id'=> $this->chatId]
+            ];
+            TagUser::insert($tagsSet);
+            // add words into user vocabulary table
+            $wordsSet = [];
+            for($i=1; $i <= 20; $i++){
+                $wordsSet[$i] = ['word_id' => $i, 'points' => 0];
+            }
+            DB::table($this->chatId.'_vocabulary_EnEn')->insert($wordsSet);
+        }
+        return true;
+    }
 }

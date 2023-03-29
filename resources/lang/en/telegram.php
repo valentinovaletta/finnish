@@ -19,5 +19,5 @@ return [
     'ThereAreNew' => "There are new Sets of Words such as\r\n",
     'ClickOnID' => "Click on Word Set Id to add new words to your vocabulary.",
 
-    'MessageStart' => "Hey-hey there! I'm English to English Dictionary Bot\nI can help you to learn new English words!\nThere is a button 'New word' down below, push it and begin your journey. \nYou can call this menu by sending any gobbledygook message in the chat.\nAnd there are also buttons 'profile' and 'info' they can help you to get more information about your progress.\n\nNow, use one of the buttons and good luck."
+    'MessageStart' => "Hey-hey there! I'm English to English Dictionary Bot\nI can help you to learn new English words!\n\nThere is a button 'New word' down below, push it and begin your journey. \n\nYou can call this menu by sending any gobbledygook message in the chat.\n\nAnd there are also buttons 'profile' and 'info' they can help you to get more information about your progress.\n\nNow, use one of the buttons and good luck."
 ];
