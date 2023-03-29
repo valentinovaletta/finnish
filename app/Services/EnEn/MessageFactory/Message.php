@@ -24,15 +24,15 @@ abstract class Message{
                     [
                         [
                             "text" => __('keyboard.Start'),
-                            "callback_data" => "NewWord/"
+                            "callback_data" => "NewWord"
                         ],                        
                         [
                             "text" => __('keyboard.Profile'),
-                            "callback_data" => "Profile/"
+                            "callback_data" => "Profile"
                         ],
                         [
                             "text" => __('keyboard.Info'),
-                            "callback_data" => "Info/"
+                            "callback_data" => "Info"
                         ]
                     ]
                 ]
