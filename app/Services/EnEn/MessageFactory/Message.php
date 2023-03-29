@@ -23,6 +23,10 @@ abstract class Message{
                 "inline_keyboard" => [
                     [
                         [
+                            "text" => __('keyboard.Start'),
+                            "callback_data" => "NewWord/"
+                        ],                        
+                        [
                             "text" => __('keyboard.Profile'),
                             "callback_data" => "Profile/"
                         ],

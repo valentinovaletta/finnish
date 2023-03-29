@@ -17,6 +17,7 @@ class CreateUsersTable extends Migration
             $table->id();
             $table->string('name')->nullable();
             $table->char('language', 3)->nullable();
+            $table->char('bot', 4)->nullable();
             $table->integer('points')->default(100);
             $table->string('email')->unique()->nullable();
             $table->timestamp('email_verified_at')->nullable();

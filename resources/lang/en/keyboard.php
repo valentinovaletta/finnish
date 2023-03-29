@@ -2,7 +2,7 @@
 
 return [
 
-    'info' => "Info",
+    'Info' => "Info",
     'Profile' => "Profile",
     'Start' => "New Word",
 
