@@ -20,8 +20,8 @@ class MessageNewWord extends Message{
         $quizfunc = $this->quizFunctions[rand(0, count($this->quizFunctions)-1 )];
         $text = json_decode($this->$quizfunc($words));
 
-        $this->setKeyboard(json_encode(["inline_keyboard" => [[["text" => "Назад","callback_data" => "StartAgain/"]]]]));
-        $this->setMessage(['method' => 'editMessageText', 'param' => ['chat_id' => $this->chatId, 'message_id' => $this->param['message_id'], 'text' => $text->question, 'reply_markup'=>$this->keyboard]]);
+        $this->setKeyboard(json_encode(["inline_keyboard" => [  ]]));
+        $this->setMessage(['method' => 'editMessageText', 'param' => ['chat_id' => $this->chatId, 'message_id' => $this->param['message_id'], 'text' => $text->question ."\n\n". $text->answers, 'reply_markup'=>$this->keyboard]]);
     }
 
     private function getWords(){
@@ -46,10 +46,10 @@ class MessageNewWord extends Message{
         $rightAnswerImg = $words->first()->img;
 
         $answers = [
-            $words->get(0)->fiword,
-            $words->get(1)->fiword,
-            $words->get(2)->fiword,
-            $words->get(3)->fiword
+            ["text" => $words->get(0)->fiword, "callback_data" => "ChackAnswer/".$words->get(0)->fiword],
+            ["text" => $words->get(1)->fiword, "callback_data" => "ChackAnswer/".$words->get(1)->fiword],
+            ["text" => $words->get(2)->fiword, "callback_data" => "ChackAnswer/".$words->get(2)->fiword],
+            ["text" => $words->get(3)->fiword, "callback_data" => "ChackAnswer/".$words->get(3)->fiword]
         ];
 
         shuffle($answers);
