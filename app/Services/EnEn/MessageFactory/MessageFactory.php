@@ -20,7 +20,7 @@ class MessageFactory {
     public function __construct(normalizeDataServiceInterface $telegramObject)
     {
       $this->data = $telegramObject->getData();
-      //$this->method = $this->data['method'];
+      $this->method = $this->data['method'];
       $this->chatId = $this->data['chatId'];
       $this->command = $this->data['command'];
       $this->commandArg = $this->data['commandArg'];
