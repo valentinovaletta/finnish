@@ -52,7 +52,7 @@ class MessageNewWord extends Message{
             ["text" => $words->get(3)->fiword, "callback_data" => "ChackAnswer/".$words->get(3)->fiword]
         ];
 
-        shuffle($answers);
+        //shuffle($answers);
   
         // form a question and answers
         $text = $rightAnsweren."\r\n(".$rightAnswerPos.") [".$rightAnswerTs."] \r\n";
