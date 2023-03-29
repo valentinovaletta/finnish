@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Services\BotZavod\MessageFactory;
+namespace App\Services\EnEn\MessageFactory;
 
-use App\Services\BotZavod\MessageFactory\MessageDefault;
+use App\Services\EnEn\MessageFactory\MessageDefault;
 use App\Services\normalizeDataService\normalizeDataServiceInterface;
 
 class MessageFactory {
 
-    private $namespace = "App\Services\BotZavod\MessageFactory\\";
+    private $namespace = "App\Services\EnEn\MessageFactory\\";
 
     protected $method;
     protected $chatId;

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Services\BotZavod\MessageFactory;
+namespace App\Services\EnEn\MessageFactory;
 
 abstract class Message{
 
@@ -23,22 +23,14 @@ abstract class Message{
                 "inline_keyboard" => [
                     [
                         [
-                            "text" => "Записаться на прием",
-                            "callback_data" => "PickDate/"
+                            "text" => __('keyboard.Profile'),
+                            "callback_data" => "Profile/"
                         ],
                         [
-                            "text" => "Больше Информации",
+                            "text" => __('keyboard.Info'),
                             "callback_data" => "Info/"
-                        ],
-                        [
-                            "text" => "Записать телефон",
-                            "callback_data" => "Phone/"
-                        ],
-                        [
-                            "text" => "Перезвоните мне",
-                            "callback_data" => "CallMe/"
                         ]
-                    ]               
+                    ]
                 ]
             ]);
         }

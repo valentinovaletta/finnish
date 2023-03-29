@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Services\BotZavod\MessageFactory;
+namespace App\Services\EnEn\MessageFactory;
 
 class MessageCallMe extends Message{
 

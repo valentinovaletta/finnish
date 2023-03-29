@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Routing\Controller as BaseController;
 
 use App\Services\TelegramAPI\TelegramAPI;
-use App\Services\BotZavod\MessageFactory\MessageFactory;
+use App\Services\EnEn\MessageFactory\MessageFactory;
 use App\Services\normalizeDataService\normalizeTelegramDataService;
 
 class TelegramEnEnBotController extends BaseController

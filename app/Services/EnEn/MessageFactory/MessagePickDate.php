@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Services\BotZavod\MessageFactory;
+namespace App\Services\EnEn\MessageFactory;
 
 use Carbon\CarbonPeriod;
 use Illuminate\Support\Facades\Cache;
