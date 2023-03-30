@@ -36,7 +36,7 @@ class MessageCheckAnswer extends Message {
 
     private function checkAnswer($userAnswer){
 
-        $cache = json_decode( Cache::get($this->chatId) );
+        $cache = json_decode( Cache::get($this->chatId), true );
 
         return ['status' => ($cache['id'] == $userAnswer), 'rightAnswer' => $cache['id'], 'rightAnswerText' => $cache['answer'], 'userAnswer' => $userAnswer];
     }
