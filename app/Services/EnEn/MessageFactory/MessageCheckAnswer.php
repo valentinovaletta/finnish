@@ -16,7 +16,7 @@ class MessageCheckAnswer extends Message {
         $check = $this->checkAnswer($this->param['commandArg']);
 
         if(!$check){
-            $text = "(".$check.")".__('telegram.IncorrectAnswer', ['answer' => $this->param['commandArg']]);
+            $text = "(".$check.")".__('telegram.IncorrectAnswer', ['answer' => Cache::get($this->chatId)]);
         } else {
             $text = "(".$check.")".__('telegram.CorrectAnswer', ['answer' => $this->param['commandArg']]);
         }
