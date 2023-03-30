@@ -3,7 +3,7 @@
 namespace App\Services\EnEn\MessageFactory;
 
 use Illuminate\Support\Facades\DB;
-use App\Models\Cache;
+use Illuminate\Support\Facades\Cache;
 
 class MessageNewWord extends Message{
 
@@ -46,13 +46,15 @@ class MessageNewWord extends Message{
         $rightAnswerImg = $words->first()->img;
 
         $answers = [     
-            [["text" => $words->get(0)->fiword, "callback_data" => "ChackAnswer/".$words->get(0)->fiword]],
-            [["text" => $words->get(1)->fiword, "callback_data" => "ChackAnswer/".$words->get(1)->fiword]],
-            [["text" => $words->get(2)->fiword, "callback_data" => "ChackAnswer/".$words->get(2)->fiword]],
-            [["text" => $words->get(3)->fiword, "callback_data" => "ChackAnswer/".$words->get(3)->fiword]]
+            [["text" => $words->get(0)->fiword, "callback_data" => "CheckAnswer/".$words->get(0)->fiword]],
+            [["text" => $words->get(1)->fiword, "callback_data" => "CheckAnswer/".$words->get(1)->fiword]],
+            [["text" => $words->get(2)->fiword, "callback_data" => "CheckAnswer/".$words->get(2)->fiword]],
+            [["text" => $words->get(3)->fiword, "callback_data" => "CheckAnswer/".$words->get(3)->fiword]]
         ];
+        
+        Cache::put($this->chatId, $rightAnswerfi);
 
-        //shuffle($answers);
+        shuffle($answers);
   
         // form a question and answers
         $text = $rightAnsweren."\r\n(".$rightAnswerPos.") [".$rightAnswerTs."] \r\n";
