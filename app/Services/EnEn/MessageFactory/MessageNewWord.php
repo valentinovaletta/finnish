@@ -46,13 +46,13 @@ class MessageNewWord extends Message{
         $rightAnswerImg = $words->first()->img;
 
         $answers = [     
-            [["text" => $words->get(0)->fiword, "callback_data" => "CheckAnswer/".$words->get(0)->fiword]],
-            [["text" => $words->get(1)->fiword, "callback_data" => "CheckAnswer/".$words->get(1)->fiword]],
-            [["text" => $words->get(2)->fiword, "callback_data" => "CheckAnswer/".$words->get(2)->fiword]],
-            [["text" => $words->get(3)->fiword, "callback_data" => "CheckAnswer/".$words->get(3)->fiword]]
+            [["text" => $words->get(0)->fiword, "callback_data" => "CheckAnswer/".$words->get(0)->id]],
+            [["text" => $words->get(1)->fiword, "callback_data" => "CheckAnswer/".$words->get(1)->id]],
+            [["text" => $words->get(2)->fiword, "callback_data" => "CheckAnswer/".$words->get(2)->id]],
+            [["text" => $words->get(3)->fiword, "callback_data" => "CheckAnswer/".$words->get(3)->id]]
         ];
         
-        Cache::put($this->chatId, $rightAnswerfi);
+        Cache::put($this->chatId, $rightAnswerId);
 
         shuffle($answers);
   

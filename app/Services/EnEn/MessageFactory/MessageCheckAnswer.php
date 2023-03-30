@@ -4,6 +4,9 @@ namespace App\Services\EnEn\MessageFactory;
 
 use Illuminate\Support\Facades\Cache;
 
+use App\Models\User;
+use Illuminate\Support\Facades\DB;
+
 class MessageCheckAnswer extends Message {
 
     private $chatId;
@@ -17,8 +20,14 @@ class MessageCheckAnswer extends Message {
 
         if(!$check['status']){
             $text = __('telegram.IncorrectAnswer', ['answer' => $check['rightAnswer']]);
+
+            User::where('id', $this->chatId)->increment('points', 3);
+            DB::table($this->chatId."_vocabulary_enen")->where('word_id', $check['rightAnswer'])->increment('points', 3);
         } else {
             $text = __('telegram.CorrectAnswer', ['answer' => $check['rightAnswer']]);
+
+            User::where('id', $this->chatId)->decrement('points', 1);
+            DB::table($this->chatId."_vocabulary_enen")->where('word_id', $check['rightAnswer'])->decrement('points', 1);            
         }
 
         $this->setKeyboard(json_encode(["inline_keyboard" => [[["text" => __('keyboard.GoOn'), "callback_data" => "NewWord/"]]]]));
