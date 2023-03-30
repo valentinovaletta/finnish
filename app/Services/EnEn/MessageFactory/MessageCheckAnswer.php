@@ -15,10 +15,10 @@ class MessageCheckAnswer extends Message {
         
         $check = $this->checkAnswer($this->param['commandArg']);
 
-        if(!$check){
-            $text = "(".$check.")".__('telegram.IncorrectAnswer', ['answer' => Cache::get($this->chatId)]);
+        if(!$check['status']){
+            $text = __('telegram.IncorrectAnswer', ['answer' => $check['rightAnswer']]);
         } else {
-            $text = "(".$check.")".__('telegram.CorrectAnswer', ['answer' => $this->param['commandArg']]);
+            $text = __('telegram.CorrectAnswer', ['answer' => $check['rightAnswer']]);
         }
 
         $this->setKeyboard(json_encode(["inline_keyboard" => [[["text" => __('keyboard.GoOn'), "callback_data" => "NewWord/"]]]]));
@@ -26,7 +26,7 @@ class MessageCheckAnswer extends Message {
     }
 
     private function checkAnswer($userAnswer){
-        return Cache::get($this->chatId) == $userAnswer;
+        return ['status' => (Cache::get($this->chatId) == $userAnswer), 'rightAnswer' => Cache::get($this->chatId), 'userAnswer' => $userAnswer];
     }
 
 }
