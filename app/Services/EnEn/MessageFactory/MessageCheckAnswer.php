@@ -22,7 +22,7 @@ class MessageCheckAnswer extends Message {
         }
 
         $this->setKeyboard(json_encode(["inline_keyboard" => [[["text" => "Назад","callback_data" => "StartAgain/"]]]]));
-        $this->setMessage(['method' => 'editMessageText', 'param' => ['chat_id' => $this->chatId, 'message_id' => $this->param['message_id'], 'text' => $this->param['commandArg'].__('telegram.defaultCorrect'), 'reply_markup'=>$this->keyboard]]);
+        $this->setMessage(['method' => 'editMessageText', 'param' => ['chat_id' => $this->chatId, 'message_id' => $this->param['message_id'], 'text' => $text, 'reply_markup'=>$this->keyboard]]);
     }
 
     private function checkAnswer($userAnswer){
