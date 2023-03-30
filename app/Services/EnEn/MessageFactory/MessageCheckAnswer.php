@@ -19,12 +19,12 @@ class MessageCheckAnswer extends Message {
         $check = $this->checkAnswer($this->param['commandArg']);
 
         if(!$check['status']){
-            $text = __('telegram.IncorrectAnswer', ['answer' => $check['rightAnswer']]);
+            $text = __('telegram.IncorrectAnswer', ['answer' => $check['rightAnswerText']]);
             User::where('id', $this->chatId)->decrement('points', 1);
             DB::table($this->chatId."_vocabulary_enen")->where('word_id', $check['rightAnswer'])->decrement('points', 1); 
 
         } else {
-            $text = __('telegram.CorrectAnswer', ['answer' => $check['rightAnswer']]);
+            $text = __('telegram.CorrectAnswer', ['answer' => $check['rightAnswerText']]);
 
             User::where('id', $this->chatId)->increment('points', 3);
             DB::table($this->chatId."_vocabulary_enen")->where('word_id', $check['rightAnswer'])->increment('points', 3);           
@@ -35,7 +35,10 @@ class MessageCheckAnswer extends Message {
     }
 
     private function checkAnswer($userAnswer){
-        return ['status' => (Cache::get($this->chatId) == $userAnswer), 'rightAnswer' => Cache::get($this->chatId), 'userAnswer' => $userAnswer];
+
+        $cache = json_decode( Cache::get($this->chatId) );
+
+        return ['status' => ($cache['id'] == $userAnswer), 'rightAnswer' => $cache['id'], 'rightAnswerText' => $cache['answer'], 'userAnswer' => $userAnswer];
     }
 
 }

@@ -52,7 +52,7 @@ class MessageNewWord extends Message{
             [["text" => $words->get(3)->fiword, "callback_data" => "CheckAnswer/".$words->get(3)->id]]
         ];
         
-        Cache::put($this->chatId, $rightAnswerId);
+        Cache::put($this->chatId, json_encode(['id' => $rightAnswerId, 'answer' => $rightAnswerfi]));
 
         shuffle($answers);
   
