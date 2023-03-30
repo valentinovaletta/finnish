@@ -7,4 +7,5 @@ return [
     'Start' => "New Word",
 
     'startMessage' => ":greeting\r\nIf you want to add new words set",
+    'GoOn' => "Go on"
 ];

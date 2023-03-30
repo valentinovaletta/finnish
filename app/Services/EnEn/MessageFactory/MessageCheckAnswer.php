@@ -21,7 +21,7 @@ class MessageCheckAnswer extends Message {
             $text = "(".$check.")".__('telegram.CorrectAnswer', ['answer' => $this->param['commandArg']]);
         }
 
-        $this->setKeyboard(json_encode(["inline_keyboard" => [[["text" => "Назад","callback_data" => "StartAgain/"]]]]));
+        $this->setKeyboard(json_encode(["inline_keyboard" => [[["text" => __('keyboard.GoOn'), "callback_data" => "NewWord/"]]]]));
         $this->setMessage(['method' => 'editMessageText', 'param' => ['chat_id' => $this->chatId, 'message_id' => $this->param['message_id'], 'text' => $text, 'reply_markup'=>$this->keyboard]]);
     }
 
