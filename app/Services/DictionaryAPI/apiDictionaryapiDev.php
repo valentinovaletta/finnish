@@ -11,6 +11,9 @@ class apiDictionaryapiDev {
     public static function getDefandEx($word, $pos){
         $request = json_decode(Self::Request( Self::getWordWithoutPrep($word) ), true);
 
+        $def='';
+        $ex='';
+
         if( !isset($request[0]['meanings']) ){
             return false;
         }
@@ -20,8 +23,8 @@ class apiDictionaryapiDev {
                 $def = isset($meaning['definitions'][0]['definition']) ? $meaning['definitions'][0]['definition'] : '';
                 $ex = isset($meaning['definitions'][0]['example']) ? $meaning['definitions'][0]['example'] : '';
             }
-            
         }
+
         return ['def' => $def, 'ex' => $ex];
     }   
 
