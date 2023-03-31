@@ -17,7 +17,10 @@ class apiDictionaryapiDev {
     }    
 
     public static function getAudio($word){
-        return Self::Request( Self::getWordWithoutPrep($word) );
+        $request = json_decode(Self::Request( Self::getWordWithoutPrep($word) ));
+
+        $audio = isset($request[0]['phonetics'][0]['audio']) ? isset($request[0]['phonetics'][0]['audio']) : false;
+        return $audio;
     }     
 
     private static function getWordWithoutPrep($word) {
