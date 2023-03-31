@@ -19,7 +19,7 @@ class apiDictionaryapiDev {
     public static function getAudio($word){
         $request = json_decode(Self::Request( Self::getWordWithoutPrep($word) ), true);
 
-        $audio = isset($request[0]['phonetics'][0]['audio']) ? isset($request[0]['phonetics'][0]['audio']) : false;
+        $audio = isset($request[0]['phonetics'][0]['audio']) ? $request[0]['phonetics'][0]['audio'] : false;
         return $audio;
     }     
 
