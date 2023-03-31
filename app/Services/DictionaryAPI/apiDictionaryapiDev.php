@@ -10,7 +10,7 @@ class apiDictionaryapiDev {
     }
 
     public static function Request($word) {
-        $url = "        https://api.dictionaryapi.dev/api/v2/entries/en/$word";
+        $url = "https://api.dictionaryapi.dev/api/v2/entries/en/$word";
         $ch = curl_init();
         $optArray = array(
                 CURLOPT_URL => $url,
