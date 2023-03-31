@@ -11,8 +11,8 @@ class apiDictionaryapiDev {
     public static function getDefandEx($word, $pos){
         $request = json_decode(Self::Request( Self::getWordWithoutPrep($word) ), true);
 
-        $def='';
-        $ex='';
+        $def='none';
+        $ex='none';
 
         if( !isset($request[0]['meanings']) ){
             return false;
