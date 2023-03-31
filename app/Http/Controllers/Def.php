@@ -11,11 +11,12 @@ class Def extends Controller{
         
         $word = EnDictionary::where('ex', '')->first();
 
-        $def = apiDictionaryapiDev::getWord( $word->first()->word );
-        $audio = apiDictionaryapiDev::getAudio( $word->first()->word );
+        $def = apiDictionaryapiDev::getDef( $word->first()->word );
+        //$ex = apiDictionaryapiDev::getEx( $word->first()->word );
+        //$audio = apiDictionaryapiDev::getAudio( $word->first()->word );
 
         print_r($def);
-        print_r($audio);
+        //print_r($audio);
     }
 
 }

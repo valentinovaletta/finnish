@@ -9,7 +9,17 @@ class apiDictionaryapiDev {
     }
 
     public static function getDef($word){
-        return Self::Request( Self::getWordWithoutPrep($word) );
+        $request = json_decode(Self::Request( Self::getWordWithoutPrep($word) ), true);
+        $def = '';
+
+        if( !isset($request[0]['meanings']) ){
+            return false;
+        }
+
+        foreach($request[0]['meanings'] as $meaning){
+            $def .= $meaning['partOfSpeech'];
+        }
+        return $def;
     }
 
     public static function getEx($word){
