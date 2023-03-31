@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\NewWord;
+use App\Http\Controllers\Def;
+
 use App\Http\Controllers\NewEnFi;
 use App\Http\Controllers\Example;
 
@@ -25,6 +27,7 @@ Route::get('/newenfi',  [NewEnFi::class, 'index']);
 Route::get('/example',  [Example::class, 'index']);
 Route::get('/vk',  [Example::class, 'vk']);
 Route::get('/inst',  [Example::class, 'Inst']);
+Route::get('/def',  [Def::class, 'index']);
 
 
 Route::get('/', function () {
