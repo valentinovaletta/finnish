@@ -9,7 +9,7 @@ class Def extends Controller{
 
     public function index(){
         
-        $word = EnDictionary::where('ex', '')->get(1);
+        $word = EnDictionary::where('ex', '')->limit(1)->get();
 
         $defAndEx = apiDictionaryapiDev::getDefandEx( $word->first()->word, $word->first()->pos );
         $audio = apiDictionaryapiDev::getAudio( $word->first()->word );
