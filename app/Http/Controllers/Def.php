@@ -10,8 +10,7 @@ class Def extends Controller{
     public function index(){
         
         $word = EnDictionary::where('ex', '')->first();
-        print_r($word);
-
+        print_r($word->get(0)->word);
     }
 
 }
