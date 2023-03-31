@@ -20,6 +20,7 @@ class CreateEnDictionariesTable extends Migration
             $table->string('pos');
             $table->string('ex');
             $table->string('def');
+            $table->string('audio');
             $table->string('img');
             $table->boolean('status')->default(0);
             $table->timestamps();

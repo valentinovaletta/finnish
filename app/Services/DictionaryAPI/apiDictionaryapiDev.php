@@ -5,11 +5,27 @@ namespace App\Services\DictionaryAPI;
 class apiDictionaryapiDev {
 
     public static function getWord($word){
-        $ex = explode(" ", $word);
-        return Self::Request($ex[1]);
+        return Self::Request( Self::getWordWithoutPrep($word) );
     }
 
-    public static function Request($word) {
+    public static function getDef($word){
+        return Self::Request( Self::getWordWithoutPrep($word) );
+    }
+
+    public static function getEx($word){
+        return Self::Request( Self::getWordWithoutPrep($word) );
+    }    
+
+    public static function getAudio($word){
+        return Self::Request( Self::getWordWithoutPrep($word) );
+    }     
+
+    private static function getWordWithoutPrep($word) {
+        $ex = explode(" ", $word);
+        return $ex[1];
+    }
+
+    private static function Request($word) {
         $url = "https://api.dictionaryapi.dev/api/v2/entries/en/$word";
         $ch = curl_init();
         $optArray = array(

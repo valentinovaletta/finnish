@@ -15,6 +15,7 @@ class EnDictionary extends Model
         'pos',
         'ex',
         'def',
+        'audio',
         'img',
         'status'
     ];
