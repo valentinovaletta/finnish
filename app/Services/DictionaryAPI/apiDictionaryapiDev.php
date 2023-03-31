@@ -8,9 +8,8 @@ class apiDictionaryapiDev {
         return Self::Request( Self::getWordWithoutPrep($word) );
     }
 
-    public static function getDef($word, $pos){
+    public static function getDefandEx($word, $pos){
         $request = json_decode(Self::Request( Self::getWordWithoutPrep($word) ), true);
-        $def = '';
 
         if( !isset($request[0]['meanings']) ){
             return false;
@@ -18,16 +17,13 @@ class apiDictionaryapiDev {
 
         foreach($request[0]['meanings'] as $meaning){
             if ( $meaning['partOfSpeech'] == $pos ){
-                $def .= $meaning['partOfSpeech'];
+                $def = isset($meaning['definitions'][0]['definition']) ? $meaning['definitions'][0]['definition'] : false;
+                $ex = isset($meaning['definitions'][0]['example']) ? $meaning['definitions'][0]['example'] : false;
             }
             
         }
-        return $def;
-    }
-
-    public static function getEx($word){
-        return Self::Request( Self::getWordWithoutPrep($word) );
-    }    
+        return ['def' => $def, 'ex' => $ex];
+    }   
 
     public static function getAudio($word){
         $request = json_decode(Self::Request( Self::getWordWithoutPrep($word) ), true);
