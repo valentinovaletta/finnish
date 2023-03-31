@@ -20,8 +20,8 @@ class apiDictionaryapiDev {
 
         foreach($request[0]['meanings'] as $meaning){
             if ( $meaning['partOfSpeech'] == $pos ){
-                $def = isset($meaning['definitions'][0]['definition']) ? $meaning['definitions'][0]['definition'] : '';
-                $ex = isset($meaning['definitions'][0]['example']) ? $meaning['definitions'][0]['example'] : '';
+                $def = isset($meaning['definitions'][0]['definition']) ? $meaning['definitions'][0]['definition'] : 'none';
+                $ex = isset($meaning['definitions'][0]['example']) ? $meaning['definitions'][0]['example'] : 'none';
             }
         }
 
@@ -31,7 +31,7 @@ class apiDictionaryapiDev {
     public static function getAudio($word){
         $request = json_decode(Self::Request( Self::getWordWithoutPrep($word) ), true);
 
-        $audio = isset($request[0]['phonetics'][0]['audio']) ? $request[0]['phonetics'][0]['audio'] : '';
+        $audio = isset($request[0]['phonetics'][0]['audio']) ? $request[0]['phonetics'][0]['audio'] : 'none';
         return $audio;
     }     
 
