@@ -8,7 +8,7 @@ class apiDictionaryapiDev {
         return Self::Request( Self::getWordWithoutPrep($word) );
     }
 
-    public static function getDef($word){
+    public static function getDef($word, $pos){
         $request = json_decode(Self::Request( Self::getWordWithoutPrep($word) ), true);
         $def = '';
 
@@ -17,7 +17,10 @@ class apiDictionaryapiDev {
         }
 
         foreach($request[0]['meanings'] as $meaning){
-            $def .= $meaning['partOfSpeech'];
+            if ( $meaning['partOfSpeech'] == $pos ){
+                $def .= $meaning['partOfSpeech'];
+            }
+            
         }
         return $def;
     }

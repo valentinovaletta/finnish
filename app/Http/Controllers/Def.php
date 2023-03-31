@@ -11,7 +11,7 @@ class Def extends Controller{
         
         $word = EnDictionary::where('ex', '')->first();
 
-        $def = apiDictionaryapiDev::getDef( $word->first()->word );
+        $def = apiDictionaryapiDev::getDef( $word->first()->word, $word->first()->pos );
         //$ex = apiDictionaryapiDev::getEx( $word->first()->word );
         //$audio = apiDictionaryapiDev::getAudio( $word->first()->word );
 
