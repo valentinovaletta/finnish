@@ -11,6 +11,6 @@ class MessageInfo extends Message{
         $this->chatId = $chatId;
         $this->param = $param;
         $this->setKeyboard(json_encode(["inline_keyboard" => [[["text" => "Назад","callback_data" => "StartAgain/"]]]]));
-        $this->setMessage(['method' => 'editMessageText', 'param' => ['chat_id' => $this->chatId, 'message_id' => $this->param['message_id'], 'text' => "Info", 'reply_markup'=>$this->keyboard]]);
+        $this->setMessage(['method' => 'editMessageText', 'delay' => 200000, 'param' => ['chat_id' => $this->chatId, 'message_id' => $this->param['message_id'], 'text' => "Info", 'reply_markup'=>$this->keyboard]]);
     }
 }

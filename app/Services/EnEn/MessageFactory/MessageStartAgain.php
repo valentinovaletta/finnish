@@ -11,6 +11,6 @@ class MessageStartAgain extends Message{
         $this->chatId = $chatId;
         $this->param = $param;
         $this->setKeyboard();
-        $this->setMessage(['method' => 'editMessageText', 'param' => ['chat_id' => $this->chatId, 'message_id' => $this->param['message_id'], 'text' => __('telegram.MessageStart'), 'reply_markup'=>$this->keyboard]]);
+        $this->setMessage(['method' => 'editMessageText', 'delay' => 200000, 'param' => ['chat_id' => $this->chatId, 'message_id' => $this->param['message_id'], 'text' => __('telegram.MessageStart'), 'reply_markup'=>$this->keyboard]]);
     }
 }

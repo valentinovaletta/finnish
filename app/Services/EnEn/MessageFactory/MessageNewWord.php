@@ -21,7 +21,7 @@ class MessageNewWord extends Message{
         $quiz = $this->$quizfunc($words);
 
         $this->setKeyboard(json_encode(["inline_keyboard" => $quiz['answers'] ]));
-        $this->setMessage(['method' => 'editMessageText', 'param' => ['chat_id' => $this->chatId, 'message_id' => $this->param['message_id'], 'text' => $quiz['question'], 'reply_markup'=>$this->keyboard]]);
+        $this->setMessage(['method' => 'editMessageText', 'delay' => 200000, 'param' => ['chat_id' => $this->chatId, 'message_id' => $this->param['message_id'], 'text' => $quiz['question'], 'reply_markup'=>$this->keyboard]]);
     }
 
     private function getWords(){

@@ -27,7 +27,7 @@ class TelegramEnEnBotController extends BaseController
 
         foreach(json_decode($telegramMessage) as $message){
             TelegramAPI::Request($this->token, $message->method, $message->param);
-            usleep( 200000 );
+            usleep( $message->delay );
         }
 
     }
