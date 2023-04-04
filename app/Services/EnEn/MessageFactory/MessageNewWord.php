@@ -10,7 +10,7 @@ class MessageNewWord extends Message{
     private $chatId;
     private $param;
 
-    private $quizFunctions = [0 => 'DefenitionToWord', 1 => 'DefenitionToWord'];
+    private $quizFunctions = [0 => 'DefenitionToWord', 1 => 'WordToDefenition'];
 
     public function __construct(int $chatId, array $param){
         $this->chatId = $chatId;
@@ -45,7 +45,6 @@ class MessageNewWord extends Message{
         $rightAnswerDef = $words->first()->def;
         $rightAnswerEx = $words->first()->ex;
 
-
         $answers = [     
             [["text" => $words->get(0)->enword, "callback_data" => "CheckAnswer/".$words->get(0)->id]],
             [["text" => $words->get(1)->enword, "callback_data" => "CheckAnswer/".$words->get(1)->id]],
@@ -58,7 +57,7 @@ class MessageNewWord extends Message{
         shuffle($answers);
   
         // form a question and answers
-        $text = $rightAnswerDef."\r\n(".$rightAnswerPos.") [".$rightAnswerTs."] \r\n";
+        $text = $rightAnswerDef."\r\n";
         $text .= __('telegram.WhatIsIt');
 
         return [
@@ -67,4 +66,34 @@ class MessageNewWord extends Message{
         ];
     }
 
+    private function WordToDefenition($words){
+        // choice right answer 
+        $rightAnswerId = $words->first()->id;
+        $rightAnsweren = $words->first()->enword;
+        $rightAnswerPos = $words->first()->pos;
+        $rightAnswerTs = $words->first()->ts;
+        $rightAnswerImg = $words->first()->img;
+        $rightAnswerDef = $words->first()->def;
+        $rightAnswerEx = $words->first()->ex;
+
+        $answers = [     
+            [["text" => $words->get(0)->def, "callback_data" => "CheckAnswer/".$words->get(0)->id]],
+            [["text" => $words->get(1)->def, "callback_data" => "CheckAnswer/".$words->get(1)->id]],
+            [["text" => $words->get(2)->def, "callback_data" => "CheckAnswer/".$words->get(2)->id]],
+            [["text" => $words->get(3)->def, "callback_data" => "CheckAnswer/".$words->get(3)->id]]
+        ];
+        
+        Cache::put($this->chatId, json_encode(['id' => $rightAnswerId, 'answer' => $rightAnsweren]));
+
+        shuffle($answers);
+  
+        // form a question and answers
+        $text = $rightAnsweren."\r\n(".$rightAnswerPos.") [".$rightAnswerTs."] \r\n";
+        $text .= __('telegram.WhatIsIt');
+
+        return [
+            'question' => $text,
+            'answers' => $answers
+        ];
+    }
 }
