@@ -20,8 +20,7 @@ class MessageCheckAnswer extends Message {
         $text = $this->formResponce($check);
 
         $this->setKeyboard(json_encode(["inline_keyboard" => [[["text" => __('keyboard.GoOn'), "callback_data" => "NewWord/"]]]]));
-        $this->setMessage(['method' => 'editMessageText', 'delay' => 2000000, 'param' => ['chat_id' => $this->chatId, 'message_id' => $this->param['message_id'], 'text' => "test", 'reply_markup'=>$this->keyboard]]);
-        $this->setMessage(['method' => 'editMessageText', 'delay' => 2000000, 'param' => ['chat_id' => $this->chatId, 'message_id' => $this->param['message_id'], 'text' => $text, 'reply_markup'=>$this->keyboard]]);
+        $this->setMessage(['method' => 'editMessageText', 'delay' => 200000, 'param' => ['chat_id' => $this->chatId, 'message_id' => $this->param['message_id'], 'text' => $text, 'reply_markup'=>$this->keyboard]]);
     }
 
     private function checkAnswer($userAnswer){
@@ -38,8 +37,17 @@ class MessageCheckAnswer extends Message {
         }
 
         User::where('id', $this->chatId)->increment('points', 3);
-        DB::table($this->chatId."_vocabulary_enen")->where('word_id', $check['rightAnswer'])->increment('points', 3);  
+        DB::table($this->chatId."_vocabulary_enen")->where('word_id', $check['rightAnswer'])->increment('points', 3);
+
+        $this->achievements();
+
         return __('telegram.CorrectAnswer', ['answer' => $check['rightAnswerText']]);
+    }
+
+    private function achievements(){
+        $points = User::where('id', $this->chatId)->get('points');
+        $this->setMessage(['method' => 'editMessageText', 'delay' => 4000000, 'param' => ['chat_id' => $this->chatId, 'message_id' => $this->param['message_id'], 'text' => print_r($points, true), 'reply_markup'=>$this->keyboard]]);
+        return true;
     }
 
 }
