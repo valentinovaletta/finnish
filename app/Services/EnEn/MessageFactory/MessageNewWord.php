@@ -27,8 +27,7 @@ class MessageNewWord extends Message{
     private function getWords(){
         $words = DB::table($this->chatId.'_vocabulary_enen')
         ->join('en_dictionaries', $this->chatId.'_vocabulary_enen.word_id', '=', 'en_dictionaries.id')
-        ->join('fi_dictionaries', $this->chatId.'_vocabulary_enen.word_id', '=', 'fi_dictionaries.id')
-        ->select($this->chatId.'_vocabulary_enen.word_id as id', $this->chatId.'_vocabulary_enen.points as points', 'en_dictionaries.word as enword', 'en_dictionaries.pos as pos', 'en_dictionaries.ts as ts', 'en_dictionaries.img as img', 'fi_dictionaries.word as fiword')
+        ->select($this->chatId.'_vocabulary_enen.word_id as id', $this->chatId.'_vocabulary_enen.points as points', 'en_dictionaries.word as enword', 'en_dictionaries.pos as pos', 'en_dictionaries.ts as ts', 'en_dictionaries.img as img', 'en_dictionaries.def as def', 'en_dictionaries.ex as ex')
         ->orderBy($this->chatId.'_vocabulary_enen.points')
         ->inRandomOrder()
         ->take(4)
@@ -40,25 +39,27 @@ class MessageNewWord extends Message{
         // choice right answer 
         $rightAnswerId = $words->first()->id;
         $rightAnsweren = $words->first()->enword;
-        $rightAnswerfi = $words->first()->fiword;
         $rightAnswerPos = $words->first()->pos;
         $rightAnswerTs = $words->first()->ts;
         $rightAnswerImg = $words->first()->img;
+        $rightAnswerDef = $words->first()->def;
+        $rightAnswerEx = $words->first()->ex;
+
 
         $answers = [     
-            [["text" => $words->get(0)->fiword, "callback_data" => "CheckAnswer/".$words->get(0)->id]],
-            [["text" => $words->get(1)->fiword, "callback_data" => "CheckAnswer/".$words->get(1)->id]],
-            [["text" => $words->get(2)->fiword, "callback_data" => "CheckAnswer/".$words->get(2)->id]],
-            [["text" => $words->get(3)->fiword, "callback_data" => "CheckAnswer/".$words->get(3)->id]]
+            [["text" => $words->get(0)->enword, "callback_data" => "CheckAnswer/".$words->get(0)->id]],
+            [["text" => $words->get(1)->enword, "callback_data" => "CheckAnswer/".$words->get(1)->id]],
+            [["text" => $words->get(2)->enword, "callback_data" => "CheckAnswer/".$words->get(2)->id]],
+            [["text" => $words->get(3)->enword, "callback_data" => "CheckAnswer/".$words->get(3)->id]]
         ];
         
-        Cache::put($this->chatId, json_encode(['id' => $rightAnswerId, 'answer' => $rightAnswerfi]));
+        Cache::put($this->chatId, json_encode(['id' => $rightAnswerId, 'answer' => $rightAnsweren]));
 
         shuffle($answers);
   
         // form a question and answers
-        $text = $rightAnsweren."\r\n(".$rightAnswerPos.") [".$rightAnswerTs."] \r\n";
-        $text .= __('telegram.myWordsWhatisitEnFi');
+        $text = $rightAnswerDef."\r\n(".$rightAnswerPos.") [".$rightAnswerTs."] \r\n";
+        $text .= __('telegram.WhatIsIt');
 
         return [
             'question' => $text,
