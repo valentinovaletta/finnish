@@ -46,7 +46,7 @@ class MessageCheckAnswer extends Message {
 
     private function achievements(){
         $points = User::where('id', $this->chatId)->get('points');
-        $this->setMessage(['method' => 'editMessageText', 'delay' => 4000000, 'param' => ['chat_id' => $this->chatId, 'message_id' => $this->param['message_id'], 'text' => print_r($points, true), 'reply_markup'=>$this->keyboard]]);
+        $this->setMessage(['method' => 'editMessageText', 'delay' => 4000000, 'param' => ['chat_id' => $this->chatId, 'message_id' => $this->param['message_id'], 'text' => $points->first()->points, 'reply_markup'=>$this->keyboard]]);
         return true;
     }
 
