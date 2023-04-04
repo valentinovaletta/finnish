@@ -20,7 +20,7 @@ return [
     'ClickOnID' => "Click on Word Set Id to add new words to your vocabulary.",
 
     'MessageStart' => "Hey-hey there! I'm English to English Dictionary Bot\nI can help you to learn new English words!\n\nThere is a button 'New word' down below, push it and begin your journey. \n\nYou can call this menu by sending any gobbledygook message in the chat.\n\nAnd there are also buttons 'profile' and 'info' they can help you to get more information about your progress.\n\nNow, use one of the buttons and good luck.",
-    'CorrectAnswer' => "Yeap! It is :answer!\r\nYou scored 3 points",
-    'IncorrectAnswer' => "Nope. You've lost a point!\r\nRight answer was :answer!",
+    'CorrectAnswer' => "Yeap! It is :answer\r\nYou scored 3 points",
+    'IncorrectAnswer' => "Nope. You've lost a point!\r\nRight answer was :answer",
     'WhatIsIt' => "\r\nWhat is it?\r\n",
 ];
