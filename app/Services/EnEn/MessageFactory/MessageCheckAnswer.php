@@ -54,8 +54,8 @@ class MessageCheckAnswer extends Message {
         $title = DB::table('messages')
         ->join('users', 'messages.id', '=', ('users.messages' + 1))
         ->select('messages.id as id', 'messages.title as title', 'messages.points as messagesPoints', 'users.points as usersPoints')
-        ->where([['users.id', $this->chatId],['users.points', '>', 'messages.points']]);
-        $points = User::where('id', $this->chatId)->get(['points', 'messages']);
+        ->where('users.id', $this->chatId)
+        ->where('users.points', '>', 'messages.points');
 
         $this->setMessage(['method' => 'editMessageText', 'delay' => 4000000, 'param' => ['chat_id' => $this->chatId, 'message_id' => $this->param['message_id'], 'text' => print_r($title, true), 'reply_markup'=>$this->keyboard]]);
         
