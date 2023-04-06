@@ -39,14 +39,14 @@ class MessageCheckAnswer extends Message {
         User::where('id', $this->chatId)->increment('points', 3);
         DB::table($this->chatId."_vocabulary_enen")->where('word_id', $check['rightAnswer'])->increment('points', 3);
 
-        $this->achievements();
+        $this->messages();
 
         return __('telegram.CorrectAnswer', ['answer' => $check['rightAnswerText']]);
     }
 
-    private function achievements(){
-        $points = User::where('id', $this->chatId)->get('points');
-        $this->setMessage(['method' => 'editMessageText', 'delay' => 4000000, 'param' => ['chat_id' => $this->chatId, 'message_id' => $this->param['message_id'], 'text' => $points->first()->points, 'reply_markup'=>$this->keyboard]]);
+    private function messages(){
+        $points = User::where('id', $this->chatId)->get(['points', 'messages']);
+        $this->setMessage(['method' => 'editMessageText', 'delay' => 4000000, 'param' => ['chat_id' => $this->chatId, 'message_id' => $this->param['message_id'], 'text' => $points->first()->points .' | '.$points->first()->messages, 'reply_markup'=>$this->keyboard]]);
         return true;
     }
 
