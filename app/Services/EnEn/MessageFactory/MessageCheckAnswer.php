@@ -73,10 +73,13 @@ class MessageCheckAnswer extends Message {
             ['users.achievements', '>', DB::raw('achievements.points')],
         ])->get();
 
-        if (!$achievements->isEmpty()){
-            User::where('id', $this->chatId)->increment('achievements');
-            $this->setMessage(['method' => 'editMessageText', 'delay' => 4000000, 'param' => ['chat_id' => $this->chatId, 'message_id' => $this->param['message_id'], 'text' => $achievements->first()->title .' | '.$achievements->first()->points .' | '.$achievements->first()->func, 'reply_markup'=>$this->keyboard]]);
-        }
+        $this->setMessage(['method' => 'editMessageText', 'delay' => 4000000, 'param' => ['chat_id' => $this->chatId, 'message_id' => $this->param['message_id'], 'text' => print_r($achievements, true), 'reply_markup'=>$this->keyboard]]);
+
+        // if (!$achievements->isEmpty()){
+        //     User::where('id', $this->chatId)->increment('achievements');
+        //     $this->setMessage(['method' => 'editMessageText', 'delay' => 4000000, 'param' => ['chat_id' => $this->chatId, 'message_id' => $this->param['message_id'], 'text' => $achievements->first()->title .' | '.$achievements->first()->points .' | '.$achievements->first()->func, 'reply_markup'=>$this->keyboard]]);
+        // }
+
     }
 
 }
