@@ -53,7 +53,7 @@ class MessageCheckAnswer extends Message {
 
         DB::enableQueryLog();
         $title = DB::table('messages')
-        ->join('users', 'messages.id', '=', ('users.messages' + 1))
+        ->join('users', 'messages.id', '=', 'users.messages')
         ->select('messages.id as id', 'messages.title as title', 'messages.points as messagesPoints', 'users.points as usersPoints')
         ->where([
             ['users.id', $this->chatId],
