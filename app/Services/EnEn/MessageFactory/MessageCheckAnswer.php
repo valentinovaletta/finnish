@@ -42,6 +42,7 @@ class MessageCheckAnswer extends Message {
         DB::table($this->chatId."_vocabulary_enen")->where('word_id', $check['rightAnswer'])->increment('points', 3);
 
         $this->messages();
+        $this->achievements();
 
         return __('telegram.CorrectAnswer', ['answer' => $check['rightAnswerText']]);
     }
@@ -59,6 +60,24 @@ class MessageCheckAnswer extends Message {
         if (!$message->isEmpty()){
             User::where('id', $this->chatId)->increment('messages');
             $this->setMessage(['method' => 'editMessageText', 'delay' => 4000000, 'param' => ['chat_id' => $this->chatId, 'message_id' => $this->param['message_id'], 'text' => $message->first()->title, 'reply_markup'=>$this->keyboard]]);
+        }
+
+        return true;
+    }
+
+    private function achievements(){
+
+        $achievements = DB::table('achievements')
+        ->join('users', 'achievements.id', '=', DB::raw('users.achievements'))
+        ->select('achievements.id as id', 'achievements.title as title', 'achievements.points as achievementsPoints', 'achievements.func as achievementsFunc', 'users.achievements as usersAchievements')
+        ->where([
+            ['users.id', DB::raw($this->chatId) ],
+            ['users.achievements', '>', DB::raw('achievements.points')],
+        ])->get();
+
+        if (!$achievements->isEmpty()){
+            User::where('id', $this->chatId)->increment('achievements');
+            $this->setMessage(['method' => 'editMessageText', 'delay' => 4000000, 'param' => ['chat_id' => $this->chatId, 'message_id' => $this->param['message_id'], 'text' => $achievements->first()->title .' | '.$achievements->first()->points .' | '.$achievements->first()->func, 'reply_markup'=>$this->keyboard]]);
         }
 
         return true;
