@@ -57,7 +57,7 @@ class MessageCheckAnswer extends Message {
         ])->get();
 
         if (!$message->isEmpty()){
-            User::where('id', $this->chatId)->increment('message');
+            User::where('id', $this->chatId)->increment('messages');
             $this->setMessage(['method' => 'editMessageText', 'delay' => 4000000, 'param' => ['chat_id' => $this->chatId, 'message_id' => $this->param['message_id'], 'text' => $message->first()->title, 'reply_markup'=>$this->keyboard]]);
         }
 
