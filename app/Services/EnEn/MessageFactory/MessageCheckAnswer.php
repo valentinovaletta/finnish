@@ -61,7 +61,7 @@ class MessageCheckAnswer extends Message {
         ])->get();
         $query = DB::getQueryLog();
 
-        $this->setMessage(['method' => 'editMessageText', 'delay' => 4000000, 'param' => ['chat_id' => $this->chatId, 'message_id' => $this->param['message_id'], 'text' => print_r($query, true), 'reply_markup'=>$this->keyboard]]);
+        $this->setMessage(['method' => 'editMessageText', 'delay' => 4000000, 'param' => ['chat_id' => $this->chatId, 'message_id' => $this->param['message_id'], 'text' => print_r($title, true), 'reply_markup'=>$this->keyboard]]);
         
         return true;
     }
