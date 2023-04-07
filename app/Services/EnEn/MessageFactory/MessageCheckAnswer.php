@@ -77,7 +77,7 @@ class MessageCheckAnswer extends Message {
 
         if (!$achievements->isEmpty()){
             User::where('id', $this->chatId)->increment('achievements');
-            $this->setMessage(['method' => 'editMessageText', 'delay' => 4000000, 'param' => ['chat_id' => $this->chatId, 'message_id' => $this->param['message_id'], 'text' => '!!!', 'reply_markup'=>$this->keyboard]]);
+            $this->setMessage(['method' => 'editMessageText', 'delay' => 4000000, 'param' => ['chat_id' => $this->chatId, 'message_id' => $this->param['message_id'], 'text' => $achievements->first()->title .' | '.$achievements->first()->achievementsPoints .' | '.$achievements->first()->achievementsFunc, 'reply_markup'=>$this->keyboard]]);
         }
 
     }
