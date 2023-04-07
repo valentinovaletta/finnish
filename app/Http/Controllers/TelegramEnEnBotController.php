@@ -20,6 +20,8 @@ class TelegramEnEnBotController extends BaseController
 
     public function index(Request $request) {
 
+        Storage::disk('local')->put('log.txt', $request);
+
         $messageFactory = new MessageFactory(new normalizeTelegramDataService($request));
         $messageFactoryObj = $messageFactory->create();
         
