@@ -48,20 +48,21 @@ class MessageCheckAnswer extends Message {
 
     private function messages(){
 
-// SELECT messages.id, messages.title, messages.points, users.points FROM messages 
-// INNER JOIN users ON messages.id = (users.messages + 1) where users.id = 494963311 and users.points > messages.points 
-
-        DB::enableQueryLog();
-        $title = DB::table('messages')
+        $message = DB::table('messages')
         ->join('users', 'messages.id', '=', DB::raw('users.messages'))
         ->select('messages.id as id', 'messages.title as title', 'messages.points as messagesPoints', 'users.points as usersPoints')
         ->where([
             ['users.id', DB::raw($this->chatId) ],
             ['users.points', '>', DB::raw('messages.points')],
         ])->get();
-        $query = DB::getQueryLog();
 
-        $this->setMessage(['method' => 'editMessageText', 'delay' => 4000000, 'param' => ['chat_id' => $this->chatId, 'message_id' => $this->param['message_id'], 'text' => print_r($title, true), 'reply_markup'=>$this->keyboard]]);
+        if (!$message->isEmpty()){
+            $title = $message->first()->title;
+        } else {
+            $title = 'Nope';
+        }
+
+        $this->setMessage(['method' => 'editMessageText', 'delay' => 4000000, 'param' => ['chat_id' => $this->chatId, 'message_id' => $this->param['message_id'], 'text' => $title, 'reply_markup'=>$this->keyboard]]);
         
         return true;
     }
