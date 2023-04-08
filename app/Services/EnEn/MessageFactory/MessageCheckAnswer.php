@@ -39,7 +39,7 @@ class MessageCheckAnswer extends Message {
         }
 
         User::where('id', $this->chatId)->increment('points', 3);
-        DB::table($this->chatId."_vocabulary_enen")->where('word_id', $check['rightAnswer'])->increment('points', 3);
+        DB::table($this->chatId."_vocabulary_enen")->where('word_id', $check['rightAnswer'])->increment('points', 4);
 
         $this->messages();
         $this->achievements();
