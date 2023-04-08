@@ -84,13 +84,13 @@ class MessageCheckAnswer extends Message {
     private function newWords($n){
 
         $lastWordId = DB::table($this->chatId.'_vocabulary_enen')->orderBy('word_id', 'desc')->limit(1)->get();
-        $wordId = $lastWordId->first()->word_id;
-        // $wordsSet = [];
-        // for($i=1; $i <= 20; $i++){
-        //     $wordsSet[$i] = ['word_id' => $i, 'points' => 0];
-        // }
-        // DB::table($this->chatId.'_vocabulary_enen')->insert($wordsSet);
 
-        $this->setMessage(['method' => 'editMessageText', 'delay' => 4000000, 'param' => ['chat_id' => $this->chatId, 'message_id' => $this->param['message_id'], 'text' => $wordId."You've got 10 new words!", 'reply_markup'=>$this->keyboard]]);
+        $wordsSet = [];
+        for($i = ($lastWordId->first()->word_id + 1); $i <= ($lastWordId->first()->word_id + 10); $i++){
+            $wordsSet[$i] = ['word_id' => $i, 'points' => 0];
+        }
+        DB::table($this->chatId.'_vocabulary_enen')->insert($wordsSet);
+
+        $this->setMessage(['method' => 'editMessageText', 'delay' => 4000000, 'param' => ['chat_id' => $this->chatId, 'message_id' => $this->param['message_id'], 'text' => "You've got 10 new words!", 'reply_markup'=>$this->keyboard]]);
     }
 }
