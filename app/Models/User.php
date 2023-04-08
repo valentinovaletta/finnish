@@ -24,7 +24,9 @@ class User extends Authenticatable
         'points',
         'email',
         'password',
-        'bot'
+        'bot',
+        'messages',
+        'achievements'
     ];
 
     /**

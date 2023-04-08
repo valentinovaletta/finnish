@@ -29,7 +29,7 @@ class MessageStart extends Message{
     }
 
     private function newUser(){
-        $this->user = User::firstOrCreate(['id' => $this->chatId, 'name' => $this->param['name'],  'bot' => 'EnEn']);
+        $this->user = User::firstOrCreate(['id' => $this->chatId, 'name' => $this->param['name'],  'bot' => 'EnEn', 'messages' => 1, 'achievements' => 1]);
         return $this->user->wasRecentlyCreated;
     }
 
@@ -42,10 +42,10 @@ class MessageStart extends Message{
                 $table->timestamps();
             });
             // Subscribe new user to first top 100 tags
-            $tagsSet = [
-                ['tag_id'=>'1', 'user_id'=> $this->chatId]
-            ];
-            TagUser::insert($tagsSet);
+            // $tagsSet = [
+            //     ['tag_id'=>'1', 'user_id'=> $this->chatId]
+            // ];
+            // TagUser::insert($tagsSet);
             // add words into user vocabulary table
             $wordsSet = [];
             for($i=1; $i <= 20; $i++){
