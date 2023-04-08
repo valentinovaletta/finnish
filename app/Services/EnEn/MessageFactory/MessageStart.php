@@ -25,7 +25,7 @@ class MessageStart extends Message{
 
         $this->setKeyboard();
         $this->setMessage(['method' => 'sendSticker', 'delay' => 200000, 'param' => ['chat_id' => $this->chatId, 'sticker' => 'CAACAgIAAxkBAAEd6DFkAagSnQZuZgHkLvX1RV2JdR0Z_gACVB0AAoqR0ElUTMG-FBDOOy4E', 'disable_notification' => true]]);
-        $this->setMessage(['method' => 'sendMessage', 'delay' => 200000, 'param' => ['chat_id' => $this->chatId, 'text' => __('telegram.MessageStart'), 'disable_notification' => true, 'reply_markup'=>$this->keyboard]]);
+        $this->setMessage(['method' => 'sendMessage', 'delay' => 200000, 'param' => ['chat_id' => $this->chatId, 'text' => __('telegram.MessageStart'), 'disable_notification' => true, 'parse_mode' => 'HTML', 'reply_markup'=>$this->keyboard]]);
     }
 
     private function newUser(){

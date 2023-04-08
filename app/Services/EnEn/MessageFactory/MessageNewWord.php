@@ -21,7 +21,7 @@ class MessageNewWord extends Message{
         $quiz = $this->$quizfunc($words);
 
         $this->setKeyboard(json_encode(["inline_keyboard" => $quiz['answers'] ]));
-        $this->setMessage(['method' => 'editMessageText', 'delay' => 200000, 'param' => ['chat_id' => $this->chatId, 'message_id' => $this->param['message_id'], 'text' => $quiz['question'], 'reply_markup'=>$this->keyboard]]);
+        $this->setMessage(['method' => 'editMessageText', 'delay' => 200000, 'param' => ['chat_id' => $this->chatId, 'message_id' => $this->param['message_id'], 'text' => $quiz['question'], 'parse_mode' => 'HTML', 'reply_markup'=>$this->keyboard]]);
     }
 
     private function getWords(){
@@ -57,7 +57,7 @@ class MessageNewWord extends Message{
         shuffle($answers);
   
         // form a question and answers
-        $text = $rightAnswerDef."\r\n";
+        $text = "<b>".$rightAnswerDef."</b>\r\n";
         $text .= __('telegram.WhatIsIt');
 
         return [
@@ -88,7 +88,7 @@ class MessageNewWord extends Message{
         shuffle($answers);
   
         // form a question and answers
-        $text = $rightAnsweren."\r\n(".$rightAnswerPos.") [".$rightAnswerTs."] \r\n";
+        $text = "<b>".$rightAnsweren."</b>\r\n(<i>".$rightAnswerPos."</i>) [<i>".$rightAnswerTs."</i>] \r\n";
         $text .= __('telegram.WhatIsIt');
 
         return [
