@@ -12,6 +12,6 @@ class MessageDefault extends Message {
         $this->param = $param;
 
         $this->setKeyboard();
-        $this->setMessage(['method' => 'sendMessage', 'delay' => 200000, 'param' => ['chat_id' => $this->chatId, 'text' => __('telegram.MessageStart'), 'disable_notification' => true, 'reply_markup'=>$this->keyboard]]);
+        $this->setMessage(['method' => 'sendMessage', 'delay' => 200000, 'param' => ['chat_id' => $this->chatId, 'text' => __('telegram.MessageStart'), 'disable_notification' => true, 'parse_mode' => 'HTML', 'reply_markup'=>$this->keyboard]]);
     }
 }
