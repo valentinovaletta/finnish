@@ -59,7 +59,7 @@ class MessageCheckAnswer extends Message {
 
         if (!$message->isEmpty()){
             User::where('id', $this->chatId)->increment('messages');
-            $this->setMessage(['method' => 'editMessageText', 'delay' => 4000000, 'param' => ['chat_id' => $this->chatId, 'message_id' => $this->param['message_id'], 'text' => $message->first()->title." There are only ".($message->first()->usersPoints + 50)." left!", 'reply_markup'=>$this->keyboard]]);
+            $this->setMessage(['method' => 'editMessageText', 'delay' => 4000000, 'param' => ['chat_id' => $this->chatId, 'message_id' => $this->param['message_id'], 'text' => $message->first()->title." There are only 50 points left!", 'reply_markup'=>$this->keyboard]]);
         }
     }
 
