@@ -59,7 +59,7 @@ class MessageCheckAnswer extends Message {
 
         if (!$message->isEmpty()){
             User::where('id', $this->chatId)->increment('messages');
-            $this->setMessage(['method' => 'editMessageText', 'delay' => 3000000, 'param' => ['chat_id' => $this->chatId, 'message_id' => $this->param['message_id'], 'text' => $message->first()->title." <b>There are only 50 points left!</b>", 'parse_mode' => 'HTML', 'reply_markup'=>$this->keyboard]]);
+            $this->setMessage(['method' => 'editMessageText', 'delay' => 3000000, 'param' => ['chat_id' => $this->chatId, 'message_id' => $this->param['message_id'], 'text' => "\xE2\x84\xB9 ".$message->first()->title." <b>There are only 50 points left!</b>", 'parse_mode' => 'HTML', 'reply_markup'=>$this->keyboard]]);
         }
     }
 
@@ -91,6 +91,6 @@ class MessageCheckAnswer extends Message {
         }
         DB::table($this->chatId.'_vocabulary_enen')->insert($wordsSet);
 
-        $this->setMessage(['method' => 'editMessageText', 'delay' => 3000000, 'param' => ['chat_id' => $this->chatId, 'message_id' => $this->param['message_id'], 'text' => "<b>You've got 10 new words!</b>", 'parse_mode' => 'HTML', 'reply_markup'=>$this->keyboard]]);
+        $this->setMessage(['method' => 'editMessageText', 'delay' => 3000000, 'param' => ['chat_id' => $this->chatId, 'message_id' => $this->param['message_id'], 'text' => "\xF0\x9F\x8C\x9F <b>You've got 10 new words!</b>", 'parse_mode' => 'HTML', 'reply_markup'=>$this->keyboard]]);
     }
 }
