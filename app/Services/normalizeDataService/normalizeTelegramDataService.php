@@ -36,7 +36,7 @@ class normalizeTelegramDataService implements normalizeDataServiceInterface{
             if($request->has('message.text')){
                 $this->normalizedData['command'] = $this->normalizedData['param']['command'] = str_replace("/", "", $request->input('message.text'));     
             } else {
-                $this->normalizedData['command'] = $this->normalizedData['param']['command'] = 'start';
+                $this->normalizedData['command'] = $this->normalizedData['param']['command'] = 'default';
             }
         }
 
