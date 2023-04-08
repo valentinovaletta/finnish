@@ -83,7 +83,7 @@ class MessageCheckAnswer extends Message {
 
     private function newWords($n){
 
-        $lastWordId = DB::table($this->chatId.'_vocabulary_enen')->order_by('word_id', 'desc')->first();
+        $lastWordId = DB::table($this->chatId.'_vocabulary_enen')->orderBy('word_id', 'desc')->limit(1)->get();
 
         // $wordsSet = [];
         // for($i=1; $i <= 20; $i++){
