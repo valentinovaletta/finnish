@@ -38,7 +38,7 @@ class MessageCheckAnswer extends Message {
             return __('telegram.IncorrectAnswer', ['answer' => $check['rightAnswerText']]);
         }
 
-        User::where('id', $this->chatId)->increment('points', 3);
+        User::where('id', $this->chatId)->increment('points', 4);
         DB::table($this->chatId."_vocabulary_enen")->where('word_id', $check['rightAnswer'])->increment('points', 4);
 
         $this->messages();
