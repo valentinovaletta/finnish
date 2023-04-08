@@ -59,7 +59,7 @@ class MessageCheckAnswer extends Message {
 
         if (!$message->isEmpty()){
             User::where('id', $this->chatId)->increment('messages');
-            $this->setMessage(['method' => 'editMessageText', 'delay' => 4000000, 'param' => ['chat_id' => $this->chatId, 'message_id' => $this->param['message_id'], 'text' => $message->first()->title, 'reply_markup'=>$this->keyboard]]);
+            $this->setMessage(['method' => 'editMessageText', 'delay' => 4000000, 'param' => ['chat_id' => $this->chatId, 'message_id' => $this->param['message_id'], 'text' => $message->first()->title." There are only ".($message->first()->usersPoints + 50)." left!", 'reply_markup'=>$this->keyboard]]);
         }
     }
 
@@ -86,7 +86,7 @@ class MessageCheckAnswer extends Message {
         $lastWordId = DB::table($this->chatId.'_vocabulary_enen')->orderBy('word_id', 'desc')->limit(1)->get();
 
         $wordsSet = [];
-        for($i = ($lastWordId->first()->word_id + 1); $i <= ($lastWordId->first()->word_id + 10); $i++){
+        for($i = ($lastWordId->first()->word_id + 1); $i <= ($lastWordId->first()->word_id + $n); $i++){
             $wordsSet[$i] = ['word_id' => $i, 'points' => 0];
         }
         DB::table($this->chatId.'_vocabulary_enen')->insert($wordsSet);
